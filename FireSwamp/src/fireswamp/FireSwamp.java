@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fireswamp;
 
+import byui.cit260.fireSwamp.model.Item;
+import byui.cit260.fireSwamp.model.Location;
 import byui.cit260.fireSwamp.model.Player;
 
 /**
@@ -17,13 +14,17 @@ public class FireSwamp {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        Location startingPoint = new Location();
+        Item[] startingInventory = new Item[3];
+        
         Player playerOne = new Player();
         
-        playerOne.setName("Fred Flintstone");
-        playerOne.setGender('M');
-        //playerOne.setInventory("");
-        //playerOne.setPosition
-        playerOne.setIsAlive(true);
+        playerOne.setPlayerName("Fred Flintstone");
+        playerOne.setPlayerGender('M');
+        playerOne.setPlayerInventory(startingInventory);
+        playerOne.setPlayerPosition(startingPoint);
+        playerOne.setPlayerIsAlive(true);
         
         String playerInfo = playerOne.toString();
         System.out.println(playerInfo);
