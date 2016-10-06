@@ -12,8 +12,12 @@ public class Player implements Serializable{
     // class instance variables
     private String name;
     private char gender;
-    //private arrayOfItems[] inventory;
-    //private Location playerPosition;
+    /* Before using these attributes We need to implement the Item and Location
+       classes
+    
+    private Items[] inventory;
+    private Location playerPosition;
+    */
     private boolean isAlive;
 
     // default constructor function
