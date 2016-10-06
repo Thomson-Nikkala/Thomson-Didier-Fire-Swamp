@@ -15,7 +15,7 @@ public class Player implements Serializable{
     /* Before using these attributes We need to implement the Item and Location
        classes
     
-    private Items[] inventory;
+    private Item[] inventory;
     private Location playerPosition;
     */
     private boolean isAlive;
@@ -42,11 +42,11 @@ public class Player implements Serializable{
         this.gender = gender;
     }
 
-    /*public arrayOfItems[] getInventory() {
+    /*public Item[] getInventory() {
         return inventory;
     }
 
-    public void setInventory(arrayOfItems[] inventory) {
+    public void setInventory(item[] inventory) {
         this.inventory = inventory;
     }
 
