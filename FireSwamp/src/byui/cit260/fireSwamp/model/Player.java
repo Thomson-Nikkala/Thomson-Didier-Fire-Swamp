@@ -1,6 +1,7 @@
 package byui.cit260.fireSwamp.model;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -10,44 +11,40 @@ import java.util.Objects;
 public class Player implements Serializable{
     
     // class instance variables
-    private String name;
-    private char gender;
-    /* Before using these attributes We need to implement the Item and Location
-       classes
-    
-    private Item[] inventory;
+    private String playerName;
+    private char playerGender;
+    private Item[] playerInventory;
     private Location playerPosition;
-    */
-    private boolean isAlive;
+    private Boolean playerIsAlive;
 
-    // default constructor function
+    // default constructor
     public Player() {
-    }    
+    }
     
-    // class functions
     
-    public String getName() {
-        return name;
+
+    public String getPlayerName() {
+        return playerName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
     }
 
-    public char getGender() {
-        return gender;
+    public char getPlayerGender() {
+        return playerGender;
     }
 
-    public void setGender(char gender) {
-        this.gender = gender;
+    public void setPlayerGender(char playerGender) {
+        this.playerGender = playerGender;
     }
 
-    /*public Item[] getInventory() {
-        return inventory;
+    public Item[] getPlayerInventory() {
+        return playerInventory;
     }
 
-    public void setInventory(item[] inventory) {
-        this.inventory = inventory;
+    public void setPlayerInventory(Item[] playerInventory) {
+        this.playerInventory = playerInventory;
     }
 
     public Location getPlayerPosition() {
@@ -57,24 +54,23 @@ public class Player implements Serializable{
     public void setPlayerPosition(Location playerPosition) {
         this.playerPosition = playerPosition;
     }
-    */
-    
-    public boolean isIsAlive() {
-        return isAlive;
+
+    public Boolean getPlayerIsAlive() {
+        return playerIsAlive;
     }
 
-    public void setIsAlive(boolean isAlive) {
-        this.isAlive = isAlive;
+    public void setPlayerIsAlive(Boolean playerIsAlive) {
+        this.playerIsAlive = playerIsAlive;
     }
 
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 59 * hash + Objects.hashCode(this.name);
-        hash = 59 * hash + this.gender;
-        //hash = 59 * hash + Arrays.deepHashCode(this.inventory);
-        //hash = 59 * hash + Objects.hashCode(this.playerPosition);
-        hash = 59 * hash + (this.isAlive ? 1 : 0);
+        hash = 13 * hash + Objects.hashCode(this.playerName);
+        hash = 13 * hash + this.playerGender;
+        hash = 13 * hash + Arrays.deepHashCode(this.playerInventory);
+        hash = 13 * hash + Objects.hashCode(this.playerPosition);
+        hash = 13 * hash + Objects.hashCode(this.playerIsAlive);
         return hash;
     }
 
@@ -90,31 +86,35 @@ public class Player implements Serializable{
             return false;
         }
         final Player other = (Player) obj;
-        if (this.gender != other.gender) {
+        if (this.playerGender != other.playerGender) {
             return false;
         }
-        if (this.isAlive != other.isAlive) {
+        if (!Objects.equals(this.playerName, other.playerName)) {
             return false;
         }
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
-        /*if (!Arrays.deepEquals(this.inventory, other.inventory)) {
+        if (!Arrays.deepEquals(this.playerInventory, other.playerInventory)) {
             return false;
         }
         if (!Objects.equals(this.playerPosition, other.playerPosition)) {
             return false;
         }
-        */
+        if (!Objects.equals(this.playerIsAlive, other.playerIsAlive)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        //return "Player{" + "name=" + name + ", gender=" + gender + ", inventory=" + inventory + ", playerPosition=" + playerPosition + ", isAlive=" + isAlive + '}';
-        return "Player{" + "name=" + name + ", gender=" + gender + ",  isAlive=" + isAlive + '}';
+        return "Player{" + "playerName=" + playerName + ", playerGender=" + playerGender + ", playerInventory=" + playerInventory + ", playerPosition=" + playerPosition + ", playerIsAlive=" + playerIsAlive + '}';
+    }
+
+    public void setPlayerInventory(Item startingInventory) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
     
+    
+
 }

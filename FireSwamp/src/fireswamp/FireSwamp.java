@@ -1,8 +1,6 @@
 package fireswamp;
 
-import byui.cit260.fireSwamp.model.Item;
-import byui.cit260.fireSwamp.model.Location;
-import byui.cit260.fireSwamp.model.Player;
+import byui.cit260.fireSwamp.model.*;
 
 /**
  *
@@ -15,7 +13,8 @@ public class FireSwamp {
      */
     public static void main(String[] args) {
         
-        Location startingPoint = new Location();
+        Location startingPoint;
+        startingPoint = new Location();
         Item[] startingInventory = new Item[3];
         
         Player playerOne = new Player();
