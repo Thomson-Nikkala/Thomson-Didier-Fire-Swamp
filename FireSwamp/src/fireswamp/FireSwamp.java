@@ -4,7 +4,7 @@ import byui.cit260.fireSwamp.model.*;
 
 /**
  *
- * @author maraa
+ * @author Didier Jourdain <maraamu@byui.edu>
  */
 public class FireSwamp {
 

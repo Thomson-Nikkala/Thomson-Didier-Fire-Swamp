@@ -10,7 +10,7 @@ import java.util.Objects;
 
 /**
  *
- * @author Didier Jourdain
+ * @author Didier Jourdain <maraamu@byui.edu>
  */
 public class Item implements Serializable{
     
