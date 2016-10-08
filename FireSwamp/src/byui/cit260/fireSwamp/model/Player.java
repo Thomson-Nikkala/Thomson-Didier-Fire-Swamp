@@ -6,7 +6,7 @@ import java.util.Objects;
 
 /**
  *
- * @author Didier Jourdain and Nikkala Thomson
+ * @authors Didier Jourdain and Nikkala Thomson
  */
 public class Player implements Serializable{
     
@@ -21,8 +21,6 @@ public class Player implements Serializable{
     public Player() {
     }
     
-    
-
     public String getPlayerName() {
         return playerName;
     }

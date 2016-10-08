@@ -13,20 +13,17 @@ public class FireSwamp {
      */
     public static void main(String[] args) {
         
-        Location startingPoint;
-        startingPoint = new Location();
-        Item[] startingInventory = new Item[3];
+        Map mainMap = new Map();
         
-        Player playerOne = new Player();
+        mainMap.setMapEntrance.locationRow(3);
+        mainMap.setMapEntrance.locationColumn(4);
         
-        playerOne.setPlayerName("Fred Flintstone");
-        playerOne.setPlayerGender('M');
-        playerOne.setPlayerInventory(startingInventory);
-        playerOne.setPlayerPosition(startingPoint);
-        playerOne.setPlayerIsAlive(true);
+        dangerOne.setDangerDescription("Quicksand that is drier and quicker.");
+        dangerOne.setDangerName("Lightning Sand");
+        dangerOne.setDangerType(1);
         
-        String playerInfo = playerOne.toString();
-        System.out.println(playerInfo);
+        String dangerInfo = dangerOne.toString();
+        System.out.println(dangerInfo);
     }
     
 }
