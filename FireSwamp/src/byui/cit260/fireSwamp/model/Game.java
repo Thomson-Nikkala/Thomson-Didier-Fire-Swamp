@@ -10,9 +10,9 @@ import java.util.Objects;
  */
 public class Game implements Serializable{
     
-    private Map map;
-    private Player player;
-    private Item[] itemList;
+    private Map gameMap;
+    private Player gamePlayer;
+    private Item[] gameItemList;
 
     //constructor
     
@@ -20,44 +20,44 @@ public class Game implements Serializable{
     }
     
     //getters and setters
+
+    public Map getGameMap() {
+        return gameMap;
+    }
+
+    public void setGameMap(Map gameMap) {
+        this.gameMap = gameMap;
+    }
+
+    public Player getGamePlayer() {
+        return gamePlayer;
+    }
+
+    public void setGamePlayer(Player gamePlayer) {
+        this.gamePlayer = gamePlayer;
+    }
+
+    public Item[] getGameItemList() {
+        return gameItemList;
+    }
+
+    public void setGameItemList(Item[] gameItemList) {
+        this.gameItemList = gameItemList;
+    }
    
-    public Map getMap() {
-        return map;
-    }
-
-    public void setMap(Map map) {
-        this.map = map;
-    }
-
-    public Player getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-
-    public Item[] getItemList() {
-        return itemList;
-    }
-
-    public void setItemList(Item[] itemList) {
-        this.itemList = itemList;
-    }
-
     //hashCode()
-    
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 89 * hash + Objects.hashCode(this.map);
-        hash = 89 * hash + Objects.hashCode(this.player);
-        hash = 89 * hash + Arrays.deepHashCode(this.itemList);
+        int hash = 3;
+        hash = 53 * hash + Objects.hashCode(this.gameMap);
+        hash = 53 * hash + Objects.hashCode(this.gamePlayer);
+        hash = 53 * hash + Arrays.deepHashCode(this.gameItemList);
         return hash;
     }
-
-    //equals()
     
+    //equals()
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -67,24 +67,25 @@ public class Game implements Serializable{
             return false;
         }
         final Game other = (Game) obj;
-        if (!Objects.equals(this.map, other.map)) {
+        if (!Objects.equals(this.gameMap, other.gameMap)) {
             return false;
         }
-        if (!Objects.equals(this.player, other.player)) {
+        if (!Objects.equals(this.gamePlayer, other.gamePlayer)) {
             return false;
         }
-        if (!Arrays.deepEquals(this.itemList, other.itemList)) {
+        if (!Arrays.deepEquals(this.gameItemList, other.gameItemList)) {
             return false;
         }
         return true;
     }
-
-    //toString()
     
+    //toString()
+
     @Override
     public String toString() {
-        return "Game{" + "map=" + map + ", player=" + player + ", itemList=" + itemList + '}';
+        return "Game{" + "gameMap=" + gameMap + ", gamePlayer=" + gamePlayer + /*", gameItemList=" + gameItemList + */ '}'; 
+        //gameItemList is an array so it doesn't work with the toString function
     }
     
-    
+        
 }

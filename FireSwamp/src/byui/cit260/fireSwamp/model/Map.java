@@ -9,8 +9,8 @@ import java.util.Objects;
  */
 public class Map implements Serializable{
     
-    private int numRows;
-    private int numColumns;
+    private int mapRows;
+    private int mapColumns;
     private Location mapEntrance;
     private Location mapExit;
 
@@ -19,21 +19,21 @@ public class Map implements Serializable{
     }
 
     //getters and setters
-    
-    public int getNumRows() {
-        return numRows;
+
+    public int getMapRows() {
+        return mapRows;
     }
 
-    public void setNumRows(int numRows) {
-        this.numRows = numRows;
+    public void setMapRows(int mapRows) {
+        this.mapRows = mapRows;
     }
 
-    public int getNumColumns() {
-        return numColumns;
+    public int getMapColumns() {
+        return mapColumns;
     }
 
-    public void setNumColumns(int numColumns) {
-        this.numColumns = numColumns;
+    public void setMapColumns(int mapColumns) {
+        this.mapColumns = mapColumns;
     }
 
     public Location getMapEntrance() {
@@ -51,21 +51,21 @@ public class Map implements Serializable{
     public void setMapExit(Location mapExit) {
         this.mapExit = mapExit;
     }
-
-    //hashCode()
     
+    //hashCode()
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 67 * hash + this.numRows;
-        hash = 67 * hash + this.numColumns;
-        hash = 67 * hash + Objects.hashCode(this.mapEntrance);
-        hash = 67 * hash + Objects.hashCode(this.mapExit);
+        int hash = 7;
+        hash = 97 * hash + this.mapRows;
+        hash = 97 * hash + this.mapColumns;
+        hash = 97 * hash + Objects.hashCode(this.mapEntrance);
+        hash = 97 * hash + Objects.hashCode(this.mapExit);
         return hash;
     }
-
+ 
     //equals()
-    
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -75,10 +75,10 @@ public class Map implements Serializable{
             return false;
         }
         final Map other = (Map) obj;
-        if (this.numRows != other.numRows) {
+        if (this.mapRows != other.mapRows) {
             return false;
         }
-        if (this.numColumns != other.numColumns) {
+        if (this.mapColumns != other.mapColumns) {
             return false;
         }
         if (!Objects.equals(this.mapEntrance, other.mapEntrance)) {
@@ -89,18 +89,12 @@ public class Map implements Serializable{
         }
         return true;
     }
-
-    //toString()
     
+    //toString()
+
     @Override
     public String toString() {
-        return "Map{" + "numRows=" + numRows + ", numColumns=" + numColumns + ", mapEntrance=" + mapEntrance + ", mapExit=" + mapExit + '}';
+        return "Map{" + "mapRows=" + mapRows + ", mapColumns=" + mapColumns + ", mapEntrance=" + mapEntrance + ", mapExit=" + mapExit + '}';
     }
-
-    
-
-    
-    
-    
-    
+       
 }
