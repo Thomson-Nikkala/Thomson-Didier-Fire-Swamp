@@ -13,7 +13,7 @@ public class Player implements Serializable{
     // class instance variables
     private String playerName;
     private char playerGender;
-    private Item[] playerInventory;
+    private Item playerInventory;
     private Location playerPosition;
     private Boolean playerIsAlive;
 
@@ -37,11 +37,11 @@ public class Player implements Serializable{
         this.playerGender = playerGender;
     }
 
-    public Item[] getPlayerInventory() {
+    public Item getPlayerInventory() {
         return playerInventory;
     }
 
-    public void setPlayerInventory(Item[] playerInventory) {
+    public void setPlayerInventory(Item playerInventory) {
         this.playerInventory = playerInventory;
     }
 
@@ -63,12 +63,12 @@ public class Player implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 13 * hash + Objects.hashCode(this.playerName);
-        hash = 13 * hash + this.playerGender;
-        hash = 13 * hash + Arrays.deepHashCode(this.playerInventory);
-        hash = 13 * hash + Objects.hashCode(this.playerPosition);
-        hash = 13 * hash + Objects.hashCode(this.playerIsAlive);
+        int hash = 7;
+        hash = 23 * hash + Objects.hashCode(this.playerName);
+        hash = 23 * hash + this.playerGender;
+        hash = 23 * hash + Objects.hashCode(this.playerInventory);
+        hash = 23 * hash + Objects.hashCode(this.playerPosition);
+        hash = 23 * hash + Objects.hashCode(this.playerIsAlive);
         return hash;
     }
 
@@ -90,7 +90,7 @@ public class Player implements Serializable{
         if (!Objects.equals(this.playerName, other.playerName)) {
             return false;
         }
-        if (!Arrays.deepEquals(this.playerInventory, other.playerInventory)) {
+        if (!Objects.equals(this.playerInventory, other.playerInventory)) {
             return false;
         }
         if (!Objects.equals(this.playerPosition, other.playerPosition)) {
@@ -107,9 +107,8 @@ public class Player implements Serializable{
         return "Player{" + "playerName=" + playerName + ", playerGender=" + playerGender + ", playerInventory=" + playerInventory + ", playerPosition=" + playerPosition + ", playerIsAlive=" + playerIsAlive + '}';
     }
 
-    public void setPlayerInventory(Item startingInventory) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
+
     
     
     

@@ -1,6 +1,8 @@
 package fireswamp;
 
 import byui.cit260.fireSwamp.model.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -16,15 +18,10 @@ public class FireSwamp {
         
         Map mainMap = new Map();
         Danger dangerOne = new Danger();
+        
         Location entryPoint = new Location();
         Location extractionPoint = new Location();
         
-        
-        
-        /* We can't access locationRow and Column this way
-        mainMap.setMapEntrance.locationRow(3);
-        mainMap.setMapEntrance.locationColumn(4);
-        */
         entryPoint.setLocationRow(3);
         entryPoint.setLocationColumn(4);
         mainMap.setMapEntrance(entryPoint);
@@ -35,6 +32,45 @@ public class FireSwamp {
         
         String dangerInfo = dangerOne.toString();
         System.out.println(dangerInfo);
+        
+        /* Testing Player, Location, Item and Question
+           Tested by Didier
+        */
+         //Instantiate Player class
+         Player myPlayer = new Player();
+         myPlayer.setPlayerName("Didier");
+         myPlayer.setPlayerGender('M');
+        
+         //Need to create an item to put in player's inventory
+         Item stick = new Item();
+         stick.setItemType(0);
+         stick.setItemName("Monkey King's stick");
+         stick.setQuantity(1);
+         stick.setItemDescription("This is Monkey King's magical stick");
+         
+         String itemInfo = stick.toString();
+         System.out.println(itemInfo);
+         
+         //Continue instantiating Player class
+         myPlayer.setPlayerInventory(stick);
+         
+         //Need to create the player's location
+         Location playerInitialPosition = new Location();
+         playerInitialPosition.setLocationRow(2);
+         playerInitialPosition.setLocationColumn(0);
+         playerInitialPosition.setLocationVisited(true);
+         playerInitialPosition.setLocationDescription("This is where the player starts");
+         
+         //Finish instantiating Player class
+         myPlayer.setPlayerPosition(playerInitialPosition);
+         myPlayer.setPlayerIsAlive(true);
+         
+         //Prepare output for myPlayer
+         String playerInfo = myPlayer.toString();
+         System.out.println(playerInfo);
+        
+        
+        
     }
     
 }
