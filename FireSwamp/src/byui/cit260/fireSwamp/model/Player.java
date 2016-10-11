@@ -15,7 +15,7 @@ public class Player implements Serializable{
     private char playerGender;
     private Item playerInventory;
     private Location playerPosition;
-    private Boolean playerIsAlive;
+    private boolean playerIsAlive;
 
     // default constructor
     public Player() {
@@ -53,11 +53,11 @@ public class Player implements Serializable{
         this.playerPosition = playerPosition;
     }
 
-    public Boolean getPlayerIsAlive() {
+    public boolean getPlayerIsAlive() {
         return playerIsAlive;
     }
 
-    public void setPlayerIsAlive(Boolean playerIsAlive) {
+    public void setPlayerIsAlive(boolean playerIsAlive) {
         this.playerIsAlive = playerIsAlive;
     }
 
