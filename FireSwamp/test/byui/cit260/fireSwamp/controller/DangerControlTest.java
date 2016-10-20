@@ -61,5 +61,77 @@ public class DangerControlTest {
         result = instance.calcLightningSandAnswer(diameter);
         assertEquals(expResult, result, 0.01);
     }
+
+    /**
+     * Test of calcFireSpurtAnswer method, of class DangerControl.
+     */
+    @Test
+    public void testCalcFireSpurtAnswer() {
+        System.out.println("calcFireSpurtAnswer with L=0, W=0, H= 0");
+        double length = 0.0;
+        double width = 0.0;
+        double height = 0.0;
+        DangerControl instance = new DangerControl();
+        double expResult = -111.0;
+        double result = instance.calcFireSpurtAnswer(length, width, height);
+        assertEquals(expResult, result, 0.0);
+        
+        System.out.println("calcFireSpurtAnswer with L<3, W=0, H= 0");
+        length = 2.9;
+        width = 0.0;
+        height = 0.0;
+        expResult = -112.0;
+        result = instance.calcFireSpurtAnswer(length, width, height);
+        assertEquals(expResult, result, 0.0);
+        
+        System.out.println("calcFireSpurtAnswer with L=15, W=20, H=50");
+        length = 15.0;
+        width = 20.0;
+        height = 50.0;
+        expResult = 5000.0;
+        result = instance.calcFireSpurtAnswer(length, width, height);
+        assertEquals(expResult, result, 0.0);
+        /*
+        System.out.println("calcFireSpurtAnswer with L=0, W=0, H= 0");
+        length = 0.0;
+        width = 0.0;
+        height = 0.0;
+        expResult = -111.0;
+        result = instance.calcFireSpurtAnswer(length, width, height);
+        assertEquals(expResult, result, 0.0);
+        
+        System.out.println("calcFireSpurtAnswer with L=0, W=0, H= 0");
+        length = 0.0;
+        width = 0.0;
+        height = 0.0;
+        expResult = -111.0;
+        result = instance.calcFireSpurtAnswer(length, width, height);
+        assertEquals(expResult, result, 0.0);
+        
+        System.out.println("calcFireSpurtAnswer with L=0, W=0, H= 0");
+        length = 0.0;
+        width = 0.0;
+        height = 0.0;
+        expResult = -111.0;
+        result = instance.calcFireSpurtAnswer(length, width, height);
+        assertEquals(expResult, result, 0.0);
+        
+        System.out.println("calcFireSpurtAnswer with L=0, W=0, H= 0");
+        length = 0.0;
+        width = 0.0;
+        height = 0.0;
+        expResult = -111.0;
+        result = instance.calcFireSpurtAnswer(length, width, height);
+        assertEquals(expResult, result, 0.0);
+        
+        System.out.println("calcFireSpurtAnswer with L=0, W=0, H= 0");
+        length = 0.0;
+        width = 0.0;
+        height = 0.0;
+        expResult = -111.0;
+        result = instance.calcFireSpurtAnswer(length, width, height);
+        assertEquals(expResult, result, 0.0);
+        */
+    }
     
 }
