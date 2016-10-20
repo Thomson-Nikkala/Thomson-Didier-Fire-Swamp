@@ -7,8 +7,17 @@ package byui.cit260.fireSwamp.controller;
 
 /**
  *
- * @author Didier Jourdain
+ * @authors Didier Jourdain and Nikkala
  */
 public class DangerControl {
+    
+    public double calcLightningSandAnswer (double diameter) {
+        if (diameter > 0.0 && diameter <= 30) {
+            double answer = diameter * Math.PI / 2.0;
+            return answer;
+        } else {
+            return -1;
+        }
+    }
     
 }
