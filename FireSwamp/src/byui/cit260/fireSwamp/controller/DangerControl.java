@@ -7,7 +7,7 @@ package byui.cit260.fireSwamp.controller;
 
 /**
  *
- * @authors Didier Jourdain and Nikkala
+ * @authors Didier Jourdain and Nikkala Thomson
  */
 public class DangerControl {
     
@@ -72,6 +72,15 @@ public class DangerControl {
             return answer;
         } else {
             return (length * width * height) / 3;
+        }
+    }
+    
+     public double calcRousAnswer (double length) {
+        if (length >= 1.0 && length <= 15) {
+            double answer = length / 2.0 + 0.5;
+            return answer;
+        } else {
+            return -1;
         }
     }
     
