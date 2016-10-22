@@ -64,7 +64,7 @@ public class DangerControlTest {
 
     /**
      * Test of calcFireSpurtAnswer method, of class DangerControl.
-     */
+     
     @Test
     public void testCalcFireSpurtAnswer() {
         System.out.println("calcFireSpurtAnswer with L=0, W=0, H= 0");
@@ -88,7 +88,7 @@ public class DangerControlTest {
         length = 15.0;
         width = 20.0;
         height = 50.0;
-        expResult = .0;
+        expResult = 0.0;
         result = instance.calcFireSpurtAnswer(length, width, height);
         assertEquals(expResult, result, 0.0);
         /*
@@ -131,7 +131,50 @@ public class DangerControlTest {
         expResult = -111.0;
         result = instance.calcFireSpurtAnswer(length, width, height);
         assertEquals(expResult, result, 0.0);
-        */
+        
+    }*/
+
+    /**
+     * Test of calcRousAnswer method, of class DangerControl.
+     */
+    @Test
+    public void testCalcRousAnswer() {
+        System.out.println("calcRousAnswer length 3");
+        double length = 3.0;
+        DangerControl instance = new DangerControl();
+        double expResult = 2.0;
+        double result = instance.calcRousAnswer(length);
+        assertEquals(expResult, result, 0.01);
+        
+        System.out.println("calcRousAnswer length -2");
+        length = -2.0;
+        expResult = -1;
+        result = instance.calcRousAnswer(length);
+        assertEquals(expResult, result, 0.01);
+       
+        System.out.println("calcRousAnswer length 0");
+        length = 0.0;
+        expResult = -1;
+        result = instance.calcRousAnswer(length);
+        assertEquals(expResult, result, 0.01);
+        
+        System.out.println("calcRousAnswer length 5");
+        length = 5.0;
+        expResult = 3.0;
+        result = instance.calcRousAnswer(length);
+        assertEquals(expResult, result, 0.01);
+        
+        System.out.println("calcRousAnswer length 1");
+        length = 1.0;
+        expResult = 1.0;
+        result = instance.calcRousAnswer(length);
+        assertEquals(expResult, result, 0.01);
+        
+        System.out.println("calcRousAnswer length 15");
+        length = 15.0;
+        expResult = 8.0;
+        result = instance.calcRousAnswer(length);
+        assertEquals(expResult, result, 0.01);
     }
     
 }
