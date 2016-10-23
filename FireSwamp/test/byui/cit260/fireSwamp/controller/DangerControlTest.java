@@ -88,7 +88,7 @@ public class DangerControlTest {
         length = 15.0;
         width = 20.0;
         height = 50.0;
-        expResult = .0;
+        expResult = 5000.0;
         result = instance.calcFireSpurtAnswer(length, width, height);
         assertEquals(expResult, result, 0.0);
         /*
