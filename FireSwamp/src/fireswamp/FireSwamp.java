@@ -1,21 +1,49 @@
 package fireswamp;
 
 import byui.cit260.fireSwamp.model.*;
+import byui.cit260.fireSwamp.view.*;
+/*
 import java.util.HashSet;
 import java.util.Set;
-
+*/
 /**
  *
  * @authors Didier Jourdain <maraamu@byui.edu>
  *          Nikkala Thomson <nikkalat@gmail.com>
  */
 public class FireSwamp {
+    
+    private static Game currentGame = null;
+    private static Player player = null;
+
+    public static Game getCurrentGame() {
+        return currentGame;
+    }
+
+    public static void setCurrentGame(Game currentGame) {
+        FireSwamp.currentGame = currentGame;
+    }
 
     /**
      * @param args the command line arguments
      */
+    
+    public static void setPlayer(Player player) {
+        System.out.println("\n*** setPlayer called ***");
+    }
+    
+    public static String getPlayerName() {
+        System.out.println("\n*** getPlayer called ***");
+        return "hello";
+    }
+    
     public static void main(String[] args) {
         
+        StartProgramView startProgramView = new StartProgramView();
+        startProgramView.displayStartProgramView();
+        
+        
+        /*
         Map mainMap = new Map();
         Danger dangerOne = new Danger();
         
@@ -35,7 +63,7 @@ public class FireSwamp {
         
         /* Testing Player, Location, Item and Question
            Tested by Didier
-        */
+        
          //Instantiate Player class
          Player myPlayer = new Player();
          myPlayer.setPlayerName("Didier");
@@ -69,8 +97,10 @@ public class FireSwamp {
          String playerInfo = myPlayer.toString();
          System.out.println(playerInfo);
         
-        
+        */
         
     }
+
+    
     
 }
