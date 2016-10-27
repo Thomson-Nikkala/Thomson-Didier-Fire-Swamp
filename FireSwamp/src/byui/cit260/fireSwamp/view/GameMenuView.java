@@ -22,7 +22,7 @@ public class GameMenuView {
     }
 
     private void displayMenu() {
-        
+        System.out.println("\n*** displayMenu() function called ***");
     }
     
 }
