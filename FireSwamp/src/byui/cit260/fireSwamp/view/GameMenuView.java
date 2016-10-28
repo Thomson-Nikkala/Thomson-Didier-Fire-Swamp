@@ -5,23 +5,15 @@
  */
 package byui.cit260.fireSwamp.view;
 
-import byui.cit260.fireSwamp.controller.GameControl;
-import fireswamp.FireSwamp;
-
 /**
  *
  * @author Didier Jourdain and Nikkala Thomson
  */
 public class GameMenuView {
     
-    private void startNewGame() {
-        GameControl.createNewGame(FireSwamp.getPlayerName());
-        
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayMenu();
-    }
+    
 
-    private void displayMenu() {
+    void displayMenu() {
         System.out.println("\n*** displayMenu() function called ***");
     }
     

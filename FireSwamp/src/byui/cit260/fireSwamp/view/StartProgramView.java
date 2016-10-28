@@ -16,6 +16,7 @@ import java.util.Scanner;
 public class StartProgramView {
 
     private String promptMessage;
+   
     
     public StartProgramView() {
         
@@ -60,7 +61,7 @@ public class StartProgramView {
         boolean valid = false;
         
         while (!valid) {
-            System.out.println("\n" + this.promptMessage);
+            System.out.print("\n" + this.promptMessage);
             
             value = keyboard.nextLine();
             value = value.trim();

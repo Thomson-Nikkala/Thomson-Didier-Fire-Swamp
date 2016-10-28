@@ -6,6 +6,8 @@
 package byui.cit260.fireSwamp.view;
 
 
+import byui.cit260.fireSwamp.controller.GameControl;
+import fireswamp.FireSwamp;
 import java.util.Scanner;
 
 /**
@@ -27,7 +29,7 @@ public class MainMenuView {
                   + "\nX - eXit game"
                   + "\n------------------------------------------------------";
         
-        this.prompt = this.menu + "\n\nChoose wisely:";
+        this.prompt = this.menu + "\n\nPLease enter your choice: ";
         
     }
 
@@ -50,7 +52,7 @@ public class MainMenuView {
         boolean valid = false;
         
         while (!valid) {
-            System.out.println("\n" + this.prompt);
+            System.out.print("\n" + this.prompt);
             
             value = keyboard.nextLine();
             value = value.trim();
@@ -99,7 +101,10 @@ public class MainMenuView {
     }
 
     private void startNewGame() {
-        System.out.println("\n*** startNewGame function called ***");
+        GameControl.createNewGame(FireSwamp.getPlayer());
+        
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.displayMenu();
     }
     
 }

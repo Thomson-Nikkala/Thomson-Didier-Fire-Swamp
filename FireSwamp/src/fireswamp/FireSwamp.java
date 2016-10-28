@@ -32,7 +32,7 @@ public class FireSwamp {
         System.out.println("\n*** setPlayer called ***");
     }
     
-    public static String getPlayerName() {
+    public static String getPlayer() {
         System.out.println("\n*** getPlayer called ***");
         return "hello";
     }
@@ -100,6 +100,7 @@ public class FireSwamp {
         */
         
     }
+
 
     
     
