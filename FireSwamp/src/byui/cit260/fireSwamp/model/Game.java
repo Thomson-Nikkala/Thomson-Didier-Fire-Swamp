@@ -1,3 +1,7 @@
+/***************************************************
+ * Game Class                                      *
+ *                                                 *
+ ***************************************************/
 package byui.cit260.fireSwamp.model;
 
 import java.io.Serializable;
@@ -6,7 +10,7 @@ import java.util.Objects;
 
 /**
  *
- * @author Nikkala Thomson
+ * @authors Didier Jourdain and Nikkala Thomson
  */
 public class Game implements Serializable{
     

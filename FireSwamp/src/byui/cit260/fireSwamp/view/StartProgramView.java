@@ -1,8 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/***************************************************
+ * StartProgramView Class                          *
+ *                                                 *
+ ***************************************************/
 package byui.cit260.fireSwamp.view;
 
 import byui.cit260.fireSwamp.controller.GameControl;
@@ -11,7 +10,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Didier Jourdain and Nikkala Thomson
+ * @authors Didier Jourdain and Nikkala Thomson
  */
 public class StartProgramView {
 
@@ -36,8 +35,6 @@ public class StartProgramView {
                  +  "\n* in Florin.                                         *"
                  +  "\n*                                                    *"
                  +  "\n******************************************************");
-        
-        
     }
 
     public void displayStartProgramView() {
@@ -99,8 +96,8 @@ public class StartProgramView {
 
     private void displayNextView(Player player) {
         System.out.println("\n==============================================="
-                          + "\n Welcome to the game " + player.getPlayerName()
-                          + "\n We hope you have a lot of fun!"
+                         + "\n     Welcome to the game " + player.getPlayerName()
+                         + "\n       We hope you have a lot of fun!"
                          + "\n==============================================="
                         );
         

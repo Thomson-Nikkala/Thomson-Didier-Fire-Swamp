@@ -1,8 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/***************************************************
+ * MainMenuView Class                              *
+ *                                                 *
+ ***************************************************/
 package byui.cit260.fireSwamp.view;
 
 
@@ -12,7 +11,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author maraa
+ * @authors Didier Jourdain and Nikkala Thomson
  */
 public class MainMenuView {
 

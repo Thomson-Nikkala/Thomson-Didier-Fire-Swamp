@@ -1,3 +1,7 @@
+/***************************************************
+ * Player Class                                    *
+ *                                                 *
+ ***************************************************/
 package byui.cit260.fireSwamp.model;
 
 import java.io.Serializable;

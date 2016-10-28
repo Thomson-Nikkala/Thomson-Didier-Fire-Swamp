@@ -1,8 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/***************************************************
+ * DangerControl Class                             *
+ *                                                 *
+ ***************************************************/
 package byui.cit260.fireSwamp.controller;
 
 /**
@@ -12,6 +11,7 @@ package byui.cit260.fireSwamp.controller;
 public class DangerControl {
     
     public double calcLightningSandAnswer (double diameter) {
+        
         if (diameter > 0.0 && diameter <= 30) {
             double answer = diameter * Math.PI / 2.0;
             return answer;
@@ -20,12 +20,11 @@ public class DangerControl {
         }
     }
     
-    public double calcFireSpurtAnswer(double length, double width,
-                                      double height){
-        
+    public double calcFireSpurtAnswer(double length, double width, double height){
         
         double answer = 0.0;
         
+        // length checking
         if (length <= 0.0) {
             answer = answer -1.0;
         }
@@ -40,6 +39,7 @@ public class DangerControl {
             }
         }
         
+        // width checking
         if (width <= 0.0) {
             answer = answer -10.0;
         }
@@ -54,8 +54,9 @@ public class DangerControl {
             }
         }
         
+        // height checking
         if (height <= 0.0) {
-            answer = answer -100.0;
+            answer = answer - 100.0;
         }
         else {
             if (height < 3.0) {
@@ -76,6 +77,7 @@ public class DangerControl {
     }
     
      public double calcRousAnswer (double length) {
+         
         if (length >= 1.0 && length <= 15) {
             double answer = length / 2.0 + 0.5;
             return answer;

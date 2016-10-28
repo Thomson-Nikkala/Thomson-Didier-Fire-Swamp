@@ -1,8 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/***************************************************
+ * GameControl Class                             *
+ *                                                 *
+ ***************************************************/
 package byui.cit260.fireSwamp.controller;
 
 import byui.cit260.fireSwamp.model.Player;
@@ -10,7 +9,7 @@ import fireswamp.FireSwamp;
 
 /**
  *
- * @author maraa
+ * @authors Didier Jourdain and Nikkala Thomson
  */
 public class GameControl {
 
