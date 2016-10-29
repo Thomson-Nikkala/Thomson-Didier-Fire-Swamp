@@ -25,12 +25,13 @@ public class FireSwamp {
     }
 
     /**
-     * @param args the command line arguments
+     * @param player
      */
     public static void setPlayer(Player player) {
         System.out.println("\n*** setPlayer called ***");
     }
 
+    //@TODO change the return type to Player?
     public static String getPlayer() {
         System.out.println("\n*** getPlayer called ***");
         return "hello";
