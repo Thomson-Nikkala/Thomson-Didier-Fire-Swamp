@@ -21,7 +21,7 @@ public class HelpMenuView {
         this.displayMenu();
     }
 
-    private void displayMenu() {
+    public void displayMenu() {
         
         prompt = "Please enter your choice: ";
         
