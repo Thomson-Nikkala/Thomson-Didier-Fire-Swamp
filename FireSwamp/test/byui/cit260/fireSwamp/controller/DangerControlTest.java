@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Nikkala
+ * @authors Didier Jourdain and Nikkala Thomson
  */
 public class DangerControlTest {
 
