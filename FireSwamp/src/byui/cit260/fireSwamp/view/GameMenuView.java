@@ -16,15 +16,12 @@ public class GameMenuView {
 
     public GameMenuView() {
         
-        
+        this.prompt = "Please enter your choice: ";
         // display the banner when view is created
-        this.displayMenu();
+        this.displayBanner();
     }
     
-    public void displayMenu() {
-        
-        prompt = "Please enter your choice: ";
-        
+    private void displayBanner() {
         System.out.println(
                     "\n******************************************************"
                  +  "\n* GAME MENU                                          *"
@@ -41,6 +38,22 @@ public class GameMenuView {
                  +  "\n* H - Help                                           *"
                  +  "\n* B - Back                                           *"
                  +  "\n******************************************************");
+    }
+    
+    public void displayMenu() {
+        
+        boolean done = false;
+        do {
+            //prompt for and get player's name
+            String menuOption = this.getMenuOption();
+            if (menuOption.toUpperCase().equals("X")) {
+                return;
+            }
+
+            done = this.doAction(menuOption);
+
+        } while (!done);
+        
     }
    
       private String getMenuOption() {
