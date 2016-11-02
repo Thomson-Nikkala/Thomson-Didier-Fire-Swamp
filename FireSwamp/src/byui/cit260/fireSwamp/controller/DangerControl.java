@@ -25,17 +25,17 @@ public class DangerControl {
         double answer = 0.0;
 
         // length checking
-        if (length < 3.0 && length > 99.0) {
+        if (length < 3.0 || length > 99.0) {
             answer = answer - 1.0;
         }
 
         // width checking
-        if (width < 3.0 && width > 99.0) {
+        if (width < 3.0 || width > 99.0) {
             answer = answer - 10.0;
         }
 
         // height checking
-        if (height < 3.0 && height > 99.0) {
+        if (height < 3.0 || height > 99.0) {
             answer = answer - 100.0;
         }
 
