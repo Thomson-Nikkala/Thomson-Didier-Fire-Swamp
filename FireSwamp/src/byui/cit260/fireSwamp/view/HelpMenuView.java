@@ -39,7 +39,7 @@ public class HelpMenuView {
         do {
             //prompt for and get player's name
             String menuOption = this.getMenuOption();
-            if (menuOption.toUpperCase().equals("X")) {
+            if (menuOption.toUpperCase().equals("B")) {
                 return;
             }
 
@@ -61,12 +61,10 @@ public class HelpMenuView {
             value = keyboard.nextLine();
             value = value.trim();
             
-            if (value.length() < 1) {
+            if (value.length() < 1) 
                 System.out.println("\nInvalid value: value can not be blank");
-                continue;
-            }
-            
-            break;
+            else
+                valid = true;
         }
         
         return value;
@@ -89,9 +87,6 @@ public class HelpMenuView {
             case "D":
                 this.displayHelpDangers();
                 break;
-            case "B":
-                this.goBack();
-                break;
             default:
                 System.out.println("\n*** Invalid selection *** Try again");
                 break;
@@ -105,7 +100,8 @@ public class HelpMenuView {
     }
 
     private void displayHelpInventory() {
-        System.out.println("\n*** displayHelpInventory() function called ***");
+        HelpInventoryView helpInventory = new HelpInventoryView();
+        helpInventory.displayMenu();
     }
 
     private void displayHelpClues() {

@@ -46,7 +46,7 @@ public class GameMenuView {
         do {
             //prompt for and get player's name
             String menuOption = this.getMenuOption();
-            if (menuOption.toUpperCase().equals("X")) {
+            if (menuOption.toUpperCase().equals("B")) {
                 return;
             }
 
@@ -68,12 +68,10 @@ public class GameMenuView {
             value = keyboard.nextLine();
             value = value.trim();
             
-            if (value.length() < 1) {
+            if (value.length() < 1)
                 System.out.println("\nInvalid value: value can not be blank");
-                continue;
-            }
-            
-            break;
+            else
+                valid = true;
         }
              
         return value;
@@ -116,9 +114,6 @@ public class GameMenuView {
                 break;
             case "H":
                 this.callHelpMenu();
-                break;
-            case "B":
-                this.goBack();
                 break;
          
             default:
