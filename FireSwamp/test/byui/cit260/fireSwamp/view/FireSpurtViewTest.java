@@ -13,8 +13,9 @@ public class FireSpurtViewTest {
     }
 
     @Test
-    public void testSomeMethod() {
-        System.out.println("Try generateFloat function");
+    public void testFireSpurtView() {
+        System.out.println("FireSpurtView");
+        // use constructor with parameters
         FireSpurtView instance = new FireSpurtView(79.1, 73.9, 99.0);
         double expResult = 192.9;
         double result = instance.getVolumeGuessed();
