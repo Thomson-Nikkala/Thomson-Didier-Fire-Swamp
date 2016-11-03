@@ -136,7 +136,7 @@ public class FireSpurtView {
         boolean valid = false;
 
         while (!valid) {
-            System.out.print("\n" + this.promptGuess);
+            System.out.println("\n" + this.promptGuess);
 
             value = keyboard.nextDouble();
 
@@ -146,6 +146,7 @@ public class FireSpurtView {
                 valid = true;
             }
              */
+            valid = true;
         }
 
         return value;
