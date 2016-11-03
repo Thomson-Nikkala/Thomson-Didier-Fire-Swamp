@@ -15,10 +15,13 @@ public class FireSpurtViewTest {
     @Test
     public void testSomeMethod() {
         System.out.println("Try generateFloat function");
-        FireSpurtView instance = new FireSpurtView();
-        double expResult = 3.14;
-        double result = instance.generateFloat();
-        assert assertEquals(expResult, result, 0.01);
+        FireSpurtView instance = new FireSpurtView(79.1, 73.9, 99.0);
+        double expResult = 192.9;
+        double result = instance.getVolumeGuessed();
+        System.out.println("\n expected result = " + expResult);
+        System.out.println("\n result = " + result);
+        assertEquals(expResult, result, 0.1);
+
     }
 
 }

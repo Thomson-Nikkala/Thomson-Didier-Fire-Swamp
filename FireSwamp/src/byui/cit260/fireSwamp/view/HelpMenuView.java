@@ -1,7 +1,7 @@
-/** *************************************************
+/***************************************************
  * HelpMenuView Class                              *
  *                                                 *
- ************************************************** */
+ ***************************************************/
 package byui.cit260.fireSwamp.view;
 
 import java.util.Scanner;
@@ -11,12 +11,12 @@ import java.util.Scanner;
  * @authors Didier Jourdain and Nikkala Thomson
  */
 public class HelpMenuView {
-
-    private String prompt;
+    
+    private String prompt;   
 
     // Constructor
     public HelpMenuView() {
-
+        
         this.prompt = "Please enter your choice: ";
         // display the banner when view is created
         this.displayBanner();
@@ -24,18 +24,17 @@ public class HelpMenuView {
 
     private void displayBanner() {
         System.out.println(
-            "\n******************************************************"
-            + "\n* HELP MENU                                          *"
-            + "\n* M - Movements                                      *"
-            + "\n* I - Inventory management                           *"
-            + "\n* C - Clues                                          *"
-            + "\n* D - Dangers                                        *"
-            + "\n* B - Back                                           *"
-            + "\n******************************************************");
+                    "\n******************************************************"
+                 +  "\n* HELP MENU                                          *"
+                 +  "\n* M - Movements                                      *"
+                 +  "\n* I - Inventory management                           *"
+                 +  "\n* C - Clues                                          *"
+                 +  "\n* D - Dangers                                        *"
+                 +  "\n* B - Back                                           *"
+                 +  "\n******************************************************");
     }
-
     public void displayMenu() {
-
+        
         boolean done = false;
         do {
             //prompt for and get player's name
@@ -47,35 +46,34 @@ public class HelpMenuView {
             done = this.doAction(menuOption);
 
         } while (!done);
-
+        
     }
-
+    
     private String getMenuOption() {
-
+        
         Scanner keyboard = new Scanner(System.in);
         String value = "";
         boolean valid = false;
-
+        
         while (!valid) {
             System.out.print("\n" + this.prompt);
-
+            
             value = keyboard.nextLine();
             value = value.trim();
-
-            if (value.length() < 1) {
+            
+            if (value.length() < 1) 
                 System.out.println("\nInvalid value: value can not be blank");
-            } else {
+            else
                 valid = true;
-            }
         }
-
+        
         return value;
     }
 
     private boolean doAction(String choice) {
-
+        
         choice = choice.toUpperCase();
-
+        
         switch (choice) {
             case "M":
                 this.displayHelpMovement();
@@ -93,7 +91,7 @@ public class HelpMenuView {
                 System.out.println("\n*** Invalid selection *** Try again");
                 break;
         }
-
+        
         return false;
     }
 
@@ -117,5 +115,5 @@ public class HelpMenuView {
     private void goBack() {
         System.out.println("\n*** goBack() function called ***");
     }
-
+    
 }
