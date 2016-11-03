@@ -12,7 +12,7 @@ import java.util.Scanner;
  */
 public class GameMenuView {
     
-    private String prompt; 
+    private final String prompt; 
 
     public GameMenuView() {
         

@@ -37,7 +37,7 @@ public class HelpMenuView {
         
         boolean done = false;
         do {
-            //prompt for and get player's name
+            //prompt for and get player's menu choice
             String menuOption = this.getMenuOption();
             if (menuOption.toUpperCase().equals("B")) {
                 return;
