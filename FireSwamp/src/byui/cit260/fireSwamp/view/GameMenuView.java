@@ -10,20 +10,11 @@ import java.util.Scanner;
  *
  * @authors Didier Jourdain and Nikkala Thomson
  */
-public class GameMenuView {
-    
-    private final String prompt; 
+public class GameMenuView extends View {
 
     public GameMenuView() {
-        
-        this.prompt = "Please enter your choice: ";
-        // display the banner when view is created
-        this.displayBanner();
-    }
     
-    private void displayBanner() {
-        System.out.println(
-                    "\n******************************************************"
+              super("\n******************************************************"
                  +  "\n* GAME MENU                                          *"
                  +  "\n* V - View map                                       *"
                  +  "\n* O - lOok                                           *"
@@ -37,47 +28,12 @@ public class GameMenuView {
                  +  "\n* G - save Game                                      *"
                  +  "\n* H - Help                                           *"
                  +  "\n* B - Back                                           *"
-                 +  "\n******************************************************");
+                 +  "\n******************************************************"
+                 +  "\n\n Enter command: ");
     }
     
-    public void displayMenu() {
-        
-        boolean done = false;
-        do {
-            //prompt for and get player's name
-            String menuOption = this.getMenuOption();
-            if (menuOption.toUpperCase().equals("B")) {
-                return;
-            }
-
-            done = this.doAction(menuOption);
-
-        } while (!done);
-        
-    }
-   
-      private String getMenuOption() {
-        
-        Scanner keyboard = new Scanner(System.in);
-        String value = "";
-        boolean valid = false;
-        
-        while (!valid) {
-            System.out.print("\n" + this.prompt);
-            
-            value = keyboard.nextLine();
-            value = value.trim();
-            
-            if (value.length() < 1)
-                System.out.println("\nInvalid value: value can not be blank");
-            else
-                valid = true;
-        }
-             
-        return value;
-    }
-        
-        private boolean doAction(String choice) {
+        @Override
+        public boolean doAction(String choice) {
         
         choice = choice.toUpperCase();
         
@@ -166,7 +122,7 @@ public class GameMenuView {
 
     private void callHelpMenu() {
         HelpMenuView helpMenu = new HelpMenuView();
-        helpMenu.displayMenu();
+        helpMenu.display();
     }
 
     private void goBack() {

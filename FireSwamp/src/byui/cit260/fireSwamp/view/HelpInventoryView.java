@@ -11,35 +11,11 @@ import java.util.Scanner;
  *
  * @author maraa
  */
-class HelpInventoryView {
+class HelpInventoryView extends View {
     
-    private String prompt;
-
     public HelpInventoryView() {
-        prompt = "Enter your choice: ";
-        // display the banner when view is created
-        this.displayBanner();
-    }
-    
-    
 
-    void displayMenu() {
-        boolean done = false;
-        do {
-            //prompt for and get player's name
-            String menuOption = this.getMenuOption();
-            if (menuOption.toUpperCase().equals("B")) {
-                return;
-            }
-
-            done = this.doAction(menuOption);
-
-        } while (!done);
-    }
-    
-    private void displayBanner() {
-        System.out.println(
-                    "\n******************************************************"
+        super("\n******************************************************"
                  +  "\n* INVENTORY MENU                                     *"
                  +  "\n* R - Rope                                           *"
                  +  "\n* S - Stick                                          *"
@@ -47,31 +23,12 @@ class HelpInventoryView {
                  +  "\n* W - Bucket of Water                                *"
                  +  "\n* M - Map                                            *"
                  +  "\n* B - Back                                           *"
-                 +  "\n******************************************************");
+                 +  "\n******************************************************"
+                + "\n\n Enter command: ");
     }
 
-    private String getMenuOption() {
-        
-        Scanner keyboard = new Scanner(System.in);
-        String value = "";
-        boolean valid = false;
-        
-        while (!valid) {
-            System.out.print("\n" + this.prompt);
-            
-            value = keyboard.nextLine();
-            value = value.trim();
-            
-            if (value.length() < 1)
-                System.out.println("\nInvalid value: value can not be blank");
-            else
-                valid = true;
-        }
-             
-        return value;
-    }
-
-    private boolean doAction(String choice) {
+    @Override
+    public boolean doAction(String choice) {
         
         choice = choice.toUpperCase();
         

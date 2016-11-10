@@ -13,65 +13,27 @@ import java.util.Scanner;
  *
  * @authors Didier Jourdain and Nikkala Thomson
  */
-public class MainMenuView {
+public class MainMenuView extends View {
 
-    private String menu;
-    private String prompt;
-    
+    //Constructor
     public MainMenuView() {
-        this.menu = "\n"
+        super("\n"
                   + "\n------------------------------------------------------"
                   + "\n| Main Menu                                          |"
                   + "\n------------------------------------------------------"
                   + "\nN - Start new game"
                   + "\nL - Load saved game"
                   + "\nX - eXit game"
-                  + "\n------------------------------------------------------";
-        
-        this.prompt = this.menu + "\n\nPLease enter your choice: ";
-        
+                  + "\n------------------------------------------------------"
+                  + "\n\nEnter command: ");
     }
 
-    public void displayMainMenuView() {
+    @Override
+    public boolean doAction(String value) {
         
-        boolean done = false;
-        do {
-            String menuOption = this.getMenuOption();
-            if (menuOption.toUpperCase().equals("X"))
-                return;
-            
-            done = this.doAction(menuOption);
-        } while (!done);
-    }
-
-    private String getMenuOption() {
+        value = value.toUpperCase();
         
-        Scanner keyboard = new Scanner(System.in);
-        String value = "";
-        boolean valid = false;
-        
-        while (!valid) {
-            System.out.print("\n" + this.prompt);
-            
-            value = keyboard.nextLine();
-            value = value.trim();
-            
-            if (value.length() < 1) {
-                System.out.println("\nInvalid value: value can not be blank");
-                continue;
-            }
-            
-            break;
-        }
-        
-        return value;
-    }
-
-    private boolean doAction(String choice) {
-        
-        choice = choice.toUpperCase();
-        
-        switch (choice) {
+        switch (value) {
             case "N":
                 this.startNewGame();
                 break;
@@ -96,14 +58,15 @@ public class MainMenuView {
     }
 
     private void exitGame() {
-        System.out.println("*** exitGame() function called");
+        System.out.println("Do you wish to save the game before exiting?  Y/N");
+        //More to come here
+        System.exit(0);
     }
 
     private void startNewGame() {
         GameControl.createNewGame(FireSwamp.getPlayer());
-        
         GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayMenu();
+        gameMenu.display();
     }
     
 }
