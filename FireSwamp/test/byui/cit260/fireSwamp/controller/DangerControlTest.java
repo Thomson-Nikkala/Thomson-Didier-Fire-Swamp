@@ -72,7 +72,7 @@ public class DangerControlTest {
         DangerControl instance = new DangerControl();
         double expResult = -111.0;
         double result = instance.calcFireSpurtAnswer(length, width, height);
-        assertEquals(expResult, result, 0.0);
+        assertEquals(expResult, result, 0.01);
 
         System.out.println("calcFireSpurtAnswer with L<3, W=0, H= 0");
         length = 2.9;

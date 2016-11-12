@@ -28,6 +28,7 @@ public class GameMenuView extends View {
                  +  "\n* G - save Game                                      *"
                  +  "\n* H - Help                                           *"
                  +  "\n* B - Back                                           *"
+                 +  "\n* P - Win Game (for testing purposes)                *"
                  +  "\n******************************************************"
                  +  "\n\n Enter command: ");
     }
@@ -71,7 +72,9 @@ public class GameMenuView extends View {
             case "H":
                 this.callHelpMenu();
                 break;
-         
+            case "P":
+                this.callWinGameView();
+                break;
             default:
                 System.out.println("\n*** Invalid selection *** Try again");
                 break;
@@ -127,6 +130,11 @@ public class GameMenuView extends View {
 
     private void goBack() {
         System.out.println("*** goBack() function called");
+    }
+
+    private void callWinGameView() {
+        WinGameView winGame = new WinGameView();
+        winGame.display();
     }
         
  
