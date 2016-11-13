@@ -2,13 +2,14 @@
  * LoseMenuView Class                              *
  *                                                 *
  ***************************************************/
+
 package byui.cit260.fireSwamp.view;
 
 import java.util.Scanner;
 
 /**
  *
- * @author Nikkala
+ * @author Nikkala Thomson
  */
 
 public class LoseMenuView extends View {
