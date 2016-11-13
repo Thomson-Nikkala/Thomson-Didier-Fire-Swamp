@@ -66,7 +66,7 @@ public class LightningSandView extends View {
                 validInput = true;
                 
             } catch (Exception e) {
-                System.out.println ("\nPlease enter a number.");
+                System.out.println ("\nPlease enter your answer to two decimal places.");
             }
             
         }
@@ -78,11 +78,11 @@ public class LightningSandView extends View {
     
     @Override
     public boolean doAction(String value) {
-        double input = Double.parseDouble(value);
+        double userAnswer = Double.parseDouble(value);
         DangerControl newDanger = new DangerControl();
         double correctAnswer = newDanger.calcLightningSandAnswer(diameter);
         
-        return (correctAnswer == input);
+        return (Math.abs(userAnswer - correctAnswer) < 0.01);
     }
     
 }
