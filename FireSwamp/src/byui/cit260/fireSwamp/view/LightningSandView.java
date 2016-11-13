@@ -22,15 +22,16 @@ public class LightningSandView extends View {
     public void display() {
         
         //Randomize diameter
-        Random r = new Random();
-        diameter = r.nextInt(5)+3;
-        
+        double diameter = Math.random()*29 + 1;  //diameter will be [1..30)
+       
         //Display problem
         
         System.out.println(" You see a pit of lightning sand in front of you."
         + "\n To avoid being swallowed up by the sand, you must calculate the"
         + "\n distance you will need to walk around one side of the pit.  "
-        + "\n The distance across the pit is " + diameter + ".");
+        + "\n The distance across the pit is ");
+        System.out.printf("%.2f", diameter);
+        System.out.printf(".");
                 
         //Collect input
         String input = getInput();
@@ -42,8 +43,10 @@ public class LightningSandView extends View {
         if (isCorrect) {
             System.out.println("You made it across");
         } else {
-            //Check for rope
-            System.err.println("You were consumed by the lightning sand");
+            //Check for rope to be added later
+            System.err.println("Alas, that's incorrect, and you have no rope. You are consumed by the lightning sand.");
+            LoseMenuView loseView = new LoseMenuView();
+            loseView.display();
         }
     }
     
@@ -76,10 +79,10 @@ public class LightningSandView extends View {
     @Override
     public boolean doAction(String value) {
         double input = Double.parseDouble(value);
-        DangerControl dc = new DangerControl();
-        double actualAnswer = dc.calcLightningSandAnswer(diameter);
+        DangerControl newDanger = new DangerControl();
+        double correctAnswer = newDanger.calcLightningSandAnswer(diameter);
         
-        return ((int)actualAnswer == (int)input);
+        return (correctAnswer == input);
     }
     
 }
