@@ -6,6 +6,7 @@ package byui.cit260.fireSwamp.model;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Random;
 
 /**
  *
@@ -13,31 +14,54 @@ import java.util.Objects;
  */
 public class Map implements Serializable{
     
-    private int mapRows;
-    private int mapColumns;
+    public static final int ROWS = 5;
+    public static final int COLUMNS = 5;
+    private Location[][] matrix = new Location[ROWS][COLUMNS];
     private Location mapEntrance;
     private Location mapExit;
 
     //constructor
     public Map() {
     }
+    
+    public void init() {
+        
+        Random rand = new Random();
+        
+        for (int row = 0; row < ROWS; row++) {
+            for (int col = 0; col < COLUMNS; col++) {
+                int randLocation = rand.nextInt(LocationType.values().length);
+                
+                if (randLocation == 1) {
+                    // create a flamespurt challenge
+                }
+                
+                if (randLocation == 2) {
+                    // create a ROUS challenge
+                }
+                
+                if (randLocation == 3) {
+                    // create a lightningsand challenge
+                }
+                
+                Location location = new Location();
+                location.setLocationColumn(col);
+                location.setLocationRow(row);
+                location.setLocationVisited(false);
+                
+                
+                
+                location.setLocationType(LocationType.values()[randLocation]);
+                
+                matrix[row][col] = location;
+            }
+        }
+    }
 
     //getters and setters
 
-    public int getMapRows() {
-        return mapRows;
-    }
-
-    public void setMapRows(int mapRows) {
-        this.mapRows = mapRows;
-    }
-
-    public int getMapColumns() {
-        return mapColumns;
-    }
-
-    public void setMapColumns(int mapColumns) {
-        this.mapColumns = mapColumns;
+    public Location getLocationAt(int row, int col) {
+        return matrix[row][col];
     }
 
     public Location getMapEntrance() {
@@ -61,8 +85,6 @@ public class Map implements Serializable{
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + this.mapRows;
-        hash = 97 * hash + this.mapColumns;
         hash = 97 * hash + Objects.hashCode(this.mapEntrance);
         hash = 97 * hash + Objects.hashCode(this.mapExit);
         return hash;
@@ -79,12 +101,6 @@ public class Map implements Serializable{
             return false;
         }
         final Map other = (Map) obj;
-        if (this.mapRows != other.mapRows) {
-            return false;
-        }
-        if (this.mapColumns != other.mapColumns) {
-            return false;
-        }
         if (!Objects.equals(this.mapEntrance, other.mapEntrance)) {
             return false;
         }
@@ -98,7 +114,7 @@ public class Map implements Serializable{
 
     @Override
     public String toString() {
-        return "Map{" + "mapRows=" + mapRows + ", mapColumns=" + mapColumns + ", mapEntrance=" + mapEntrance + ", mapExit=" + mapExit + '}';
+        return "Map{" + ", mapEntrance=" + mapEntrance + ", mapExit=" + mapExit + '}';
     }
        
 }

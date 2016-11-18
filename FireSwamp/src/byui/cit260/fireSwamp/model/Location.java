@@ -16,8 +16,18 @@ public class Location implements Serializable {
     // class instance variables
     private int locationRow;
     private int locationColumn;
-    private Boolean locationVisited;
+    private boolean locationVisited;
     private String locationDescription;
+    private LocationType locationType;
+    private Item item;
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
 
     // Default constructor
     public Location() {
@@ -25,6 +35,22 @@ public class Location implements Serializable {
     
     public int getLocationRow() {
         return locationRow;
+    }
+
+    public boolean isLocationVisited() {
+        return locationVisited;
+    }
+
+    public void setLocationVisited(boolean locationVisited) {
+        this.locationVisited = locationVisited;
+    }
+
+    public LocationType getLocationType() {
+        return locationType;
+    }
+
+    public void setLocationType(LocationType locationType) {
+        this.locationType = locationType;
     }
 
     public void setLocationRow(int locationRow) {
@@ -39,7 +65,7 @@ public class Location implements Serializable {
         this.locationColumn = locationColumn;
     }
 
-    public Boolean getLocationVisited() {
+    public boolean getLocationVisited() {
         return locationVisited;
     }
 
@@ -96,6 +122,5 @@ public class Location implements Serializable {
     public String toString() {
         return "Location{" + "locationRow=" + locationRow + ", locationColumn=" + locationColumn + ", locationVisited=" + locationVisited + ", locationDescription=" + locationDescription + '}';
     }
-    
     
 }

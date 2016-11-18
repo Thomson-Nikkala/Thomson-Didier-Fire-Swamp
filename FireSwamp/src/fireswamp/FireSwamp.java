@@ -28,13 +28,11 @@ public class FireSwamp {
      * @param player
      */
     public static void setPlayer(Player player) {
-        System.out.println("\n*** setPlayer called ***");
+        FireSwamp.player = player;
     }
 
-    //@TODO change the return type to Player?
-    public static String getPlayer() {
-        System.out.println("\n*** getPlayer called ***");
-        return "hello";
+    public static Player getPlayer() {
+        return FireSwamp.player;
     }
 
     public static void main(String[] args) {

@@ -4,6 +4,8 @@
  ***************************************************/
 package byui.cit260.fireSwamp.view;
 
+import byui.cit260.fireSwamp.model.Map;
+import fireswamp.FireSwamp;
 import java.util.Scanner;
 
 /**
@@ -84,7 +86,20 @@ public class GameMenuView extends View {
     }    
 
     private void displayMap() {
-       System.out.println("*** displayMap() function called"); 
+       Map map = FireSwamp.getCurrentGame().getGameMap();
+       
+        for (int row = 0; row < Map.ROWS; row++) {
+            for (int col = 0; col < Map.COLUMNS;  col++) {
+                char locationType = map.getLocationAt(row,col).getLocationType().toString().charAt(0);
+                System.out.print(locationType);
+                if (map.getLocationAt(row, col).getItem() != null) {
+                    System.out.print(map.getLocationAt(row, col).getItem().getItemName().charAt(0));
+                }
+                System.out.print("  ");
+            }
+            System.out.println(" ");
+        }
+        
     }
 
     private void look() {
