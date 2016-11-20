@@ -6,6 +6,9 @@
 package byui.cit260.fireSwamp.view;
 
 import byui.cit260.fireSwamp.controller.DangerControl;
+import byui.cit260.fireSwamp.controller.InventoryControl;
+import byui.cit260.fireSwamp.model.Item;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -43,7 +46,9 @@ public class LightningSandView extends View {
         if (isCorrect) {
             System.out.println("You made it across");
         } else {
-            //Check for rope to be added later
+            //Check for rope (itemType 1) 
+
+            
             System.err.println("Alas, that's incorrect, and you have no rope. You are consumed by the lightning sand.");
             LoseMenuView loseView = new LoseMenuView();
             loseView.display();
