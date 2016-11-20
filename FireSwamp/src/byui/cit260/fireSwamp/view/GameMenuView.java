@@ -4,8 +4,11 @@
  ***************************************************/
 package byui.cit260.fireSwamp.view;
 
+import byui.cit260.fireSwamp.controller.InventoryControl;
+import byui.cit260.fireSwamp.model.Item;
 import byui.cit260.fireSwamp.model.Map;
 import fireswamp.FireSwamp;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -101,6 +104,30 @@ public class GameMenuView extends View {
         }
         
         map.mapStatistics();
+        
+          //this temporary section is for testing the checkInventory function
+            ArrayList<Item> inventory = new ArrayList();
+            InventoryControl inControl = new InventoryControl();
+          
+            Item rope = new Item();
+            rope.setItemType(1);
+            rope.setItemDescription("A sturdy rope");
+            rope.setItemName("rope");
+            rope.setQuantity(1);
+            inventory.add(rope);
+            
+            Item potion = new Item();
+            potion.setItemType(3);
+            potion.setItemDescription("A healing potion");
+            potion.setItemName("potion");
+            potion.setQuantity(1);
+            inventory.add(potion);
+            
+            int ropePositionInList = inControl.checkInventory(inventory, 3);
+            System.out.println("\n inventory position is " + ropePositionInList);
+            
+            //end of testing checkInventory function
+        
         
     }
 
