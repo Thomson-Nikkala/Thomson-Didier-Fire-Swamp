@@ -17,7 +17,7 @@ public class Player implements Serializable{
     // class instance variables
     private String playerName;
     private char playerGender;
-    private Item playerInventory;
+    private Item[] playerInventory;
     private Location playerPosition;
     private boolean playerIsAlive;
 
@@ -41,11 +41,11 @@ public class Player implements Serializable{
         this.playerGender = playerGender;
     }
 
-    public Item getPlayerInventory() {
+    public Item[] getPlayerInventory() {
         return playerInventory;
     }
 
-    public void setPlayerInventory(Item playerInventory) {
+    public void setPlayerInventory(Item[] playerInventory) {
         this.playerInventory = playerInventory;
     }
 
