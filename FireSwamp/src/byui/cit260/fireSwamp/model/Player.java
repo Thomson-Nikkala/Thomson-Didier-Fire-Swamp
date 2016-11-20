@@ -5,6 +5,7 @@
 package byui.cit260.fireSwamp.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -17,12 +18,16 @@ public class Player implements Serializable{
     // class instance variables
     private String playerName;
     private char playerGender;
-    private Item[] playerInventory;
+    private ArrayList<Item> playerInventory = new ArrayList();
     private Location playerPosition;
     private boolean playerIsAlive;
 
     // default constructor
     public Player() {
+    }
+
+    public void addPlayerInventory(Item item) {
+        this.playerInventory.add(item);
     }
     
     public String getPlayerName() {
@@ -41,13 +46,9 @@ public class Player implements Serializable{
         this.playerGender = playerGender;
     }
 
-    public Item[] getPlayerInventory() {
-        return playerInventory;
-    }
+    
 
-    public void setPlayerInventory(Item[] playerInventory) {
-        this.playerInventory = playerInventory;
-    }
+    
 
     public Location getPlayerPosition() {
         return playerPosition;

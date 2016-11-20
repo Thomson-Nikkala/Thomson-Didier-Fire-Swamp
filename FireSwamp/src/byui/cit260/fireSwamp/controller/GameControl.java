@@ -86,22 +86,26 @@ public class GameControl {
         FireSwamp.setPlayer(player);
         
         //initialize inventory
-        Item[] emptyInventory;
-        emptyInventory = new Item[3];
-        emptyInventory[0].setItemType(0);
-        emptyInventory[0].setItemName("Rope");
-        emptyInventory[0].setItemDescription("A rope that you can use to pull yourself out of the lightning sand.");
-        emptyInventory[0].setQuantity(0);
-        emptyInventory[1].setItemType(1);
-        emptyInventory[1].setItemName("Water");
-        emptyInventory[1].setItemDescription("A bucket of water that you can use to douse a fire spurt.");
-        emptyInventory[1].setQuantity(0);
-        emptyInventory[2].setItemType(2);
-        emptyInventory[2].setItemName("Potion");
-        emptyInventory[2].setItemDescription("A healing potion that you can use to heal yourself from an ROUS bite.");
-        emptyInventory[2].setQuantity(0);
+        Item emptyInventory = new Item();
+        emptyInventory.setItemType(0);
+        emptyInventory.setItemName("Rope");
+        emptyInventory.setItemDescription("A rope that you can use to pull yourself out of the lightning sand.");
+        emptyInventory.setQuantity(0);
+        player.addPlayerInventory(emptyInventory);
+        
+        emptyInventory.setItemType(1);
+        emptyInventory.setItemName("Water");
+        emptyInventory.setItemDescription("A bucket of water that you can use to douse a fire spurt.");
+        emptyInventory.setQuantity(0);
+        player.addPlayerInventory(emptyInventory);
+        
+        emptyInventory.setItemType(2);
+        emptyInventory.setItemName("Potion");
+        emptyInventory.setItemDescription("A healing potion that you can use to heal yourself from an ROUS bite.");
+        emptyInventory.setQuantity(0);
+        player.addPlayerInventory(emptyInventory);
         //set inventory
-        player.setPlayerInventory(emptyInventory);
+        
         
         return player;
     }
