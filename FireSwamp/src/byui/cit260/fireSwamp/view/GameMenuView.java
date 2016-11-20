@@ -100,6 +100,8 @@ public class GameMenuView extends View {
             System.out.println(" ");
         }
         
+        map.mapStatistics();
+        
     }
 
     private void look() {
