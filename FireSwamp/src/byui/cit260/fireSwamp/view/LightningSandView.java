@@ -7,6 +7,7 @@ package byui.cit260.fireSwamp.view;
 
 import byui.cit260.fireSwamp.controller.DangerControl;
 import byui.cit260.fireSwamp.controller.InventoryControl;
+import byui.cit260.fireSwamp.exceptions.DangerControlException;
 import byui.cit260.fireSwamp.model.Item;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -70,8 +71,8 @@ public class LightningSandView extends View {
                 Double.parseDouble(input);
                 validInput = true;
                 
-            } catch (Exception e) {
-                System.out.println ("\nPlease enter your answer to two decimal places.");
+            } catch (NumberFormatException nfe) {
+                System.out.println ("\nPlease enter a valid number.");
             }
             
         }
@@ -85,9 +86,13 @@ public class LightningSandView extends View {
     public boolean doAction(String value) {
         double userAnswer = Double.parseDouble(value);
         DangerControl newDanger = new DangerControl();
-        double correctAnswer = newDanger.calcLightningSandAnswer(diameter);
-        
-        return (Math.abs(userAnswer - correctAnswer) < 0.01);
+       try {
+           double correctAnswer = newDanger.calcLightningSandAnswer(diameter); 
+           return (Math.abs(userAnswer - correctAnswer) < 0.01);
+       } catch (DangerControlException de) {
+          System.out.println(de.getMessage());
+          return false;
+       }    
     }
     
 }

@@ -6,6 +6,7 @@
 package byui.cit260.fireSwamp.view;
 
 import byui.cit260.fireSwamp.controller.DangerControl;
+import byui.cit260.fireSwamp.exceptions.DangerControlException;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -65,12 +66,12 @@ public class RousView extends View {
             input = input.trim();
             input = input.toUpperCase();
             
-            try {
+             try {
                 Double.parseDouble(input);
                 validInput = true;
                 
-            } catch (Exception e) {
-                System.out.println ("\nPlease enter your answer to two decimal places.");
+            } catch (NumberFormatException nfe) {
+                System.out.println ("\nPlease enter a valid number.");
             }
             
         }
@@ -84,9 +85,15 @@ public class RousView extends View {
     public boolean doAction(String value) {
         double userAnswer = Double.parseDouble(value);
         DangerControl newDanger = new DangerControl();
-        double correctAnswer = newDanger.calcRousAnswer(length);
+        try {
+            double correctAnswer = newDanger.calcRousAnswer(length);
+            return (Math.abs(userAnswer - correctAnswer) < 0.01);
+        }
+        catch (DangerControlException de) {
+          System.out.println(de.getMessage());
+          return false;
+       }    
         
-        return (Math.abs(userAnswer - correctAnswer) < 0.01);
     }
 
 }

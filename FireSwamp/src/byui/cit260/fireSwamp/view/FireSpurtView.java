@@ -6,6 +6,7 @@
 package byui.cit260.fireSwamp.view;
 
 import byui.cit260.fireSwamp.controller.DangerControl;
+import byui.cit260.fireSwamp.exceptions.DangerControlException;
 import java.util.Scanner;
 
 /**
@@ -22,7 +23,7 @@ public class FireSpurtView {
     private double volumeGuessed;
     private double volumeComputed;
 
-    public FireSpurtView(double length, double width, double height) {
+    public FireSpurtView(double length, double width, double height) throws DangerControlException {
 
         double volume;
         this.pyramidLength = length;
@@ -42,11 +43,11 @@ public class FireSpurtView {
 
         this.volumeGuessed = 192.901;
         DangerControl fireSpurtDanger = new DangerControl();
-        volume = fireSpurtDanger.calcFireSpurtAnswer(this.pyramidLength, this.pyramidWidth, this.pyramidHeight);
+            volume = fireSpurtDanger.calcFireSpurtAnswer(this.pyramidLength, this.pyramidWidth, this.pyramidHeight);
         this.doAction(this.volumeGuessed, this.volumeComputed);
     }
 
-    public FireSpurtView() {
+    public FireSpurtView() throws DangerControlException {
 
         double volume;
         this.pyramidLength = this.generateFloat();
