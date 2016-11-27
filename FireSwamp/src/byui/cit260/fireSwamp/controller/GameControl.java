@@ -86,10 +86,5 @@ public class GameControl {
         FireSwamp.setPlayer(player);
       
         return player;
-    }
-
-    public static void createNewGame(String playerName) {
-        System.out.println("\n createNewGame() function called ***");
-    }
-
+    }    
 }

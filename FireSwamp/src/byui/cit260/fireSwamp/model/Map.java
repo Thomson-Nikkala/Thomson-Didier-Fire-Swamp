@@ -4,6 +4,7 @@
  ***************************************************/
 package byui.cit260.fireSwamp.model;
 
+import byui.cit260.fireSwamp.enums.DangerType;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.Random;
@@ -30,7 +31,7 @@ public class Map implements Serializable{
         
         for (int row = 0; row < ROWS; row++) {
             for (int col = 0; col < COLUMNS; col++) {
-                int randLocation = rand.nextInt(LocationType.values().length);
+                int randLocation = rand.nextInt(DangerType.values().length);
                 
                 if (randLocation == 1) {
                     // create a flamespurt challenge
@@ -51,7 +52,7 @@ public class Map implements Serializable{
                 
                 
                 
-                location.setLocationType(LocationType.values()[randLocation]);
+                location.setLocationType(DangerType.values()[randLocation]);
                 
                 matrix[row][col] = location;
             }
@@ -72,7 +73,7 @@ public class Map implements Serializable{
         int[] totalFlameSpurtCol = new int[COLUMNS];
         int[] totalLightningSandCol = new int[COLUMNS];
         int[] totalnumROUSCol = new int[COLUMNS];
-        LocationType dangerFound;
+        DangerType dangerFound;
         
         for (int col = 0; col < COLUMNS; col++) {
             totalSafeCol[col] = 0;

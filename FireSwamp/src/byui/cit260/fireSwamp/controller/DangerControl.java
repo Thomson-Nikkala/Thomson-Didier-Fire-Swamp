@@ -24,8 +24,6 @@ public class DangerControl {
 
     public double calcFireSpurtAnswer(double length, double width, double height) throws DangerControlException {
 
-        double answer = 0.0;
-
         // length checking
         if (length < 3.0 || length > 99.0) {
             throw new DangerControlException("Length must be between 3 and 99.");
@@ -53,6 +51,17 @@ public class DangerControl {
         } else {
            throw new DangerControlException("Length must be between 1 and 15.");
         }
+    }
+    
+    public double generateDouble(double seed) {
+
+        double aDouble;
+        aDouble = Math.random() * seed;
+        aDouble += 3;
+        aDouble = aDouble * 10;
+        aDouble = (Math.ceil(aDouble)) / 10;
+
+        return aDouble;
     }
 
 }

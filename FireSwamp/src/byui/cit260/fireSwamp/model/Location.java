@@ -4,6 +4,7 @@
  ***************************************************/
 package byui.cit260.fireSwamp.model;
 
+import byui.cit260.fireSwamp.enums.DangerType;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -18,7 +19,7 @@ public class Location implements Serializable {
     private int locationColumn;
     private boolean locationVisited;
     private String locationDescription;
-    private LocationType locationType;
+    private DangerType dangerType;
     private Item item;
 
     public Item getItem() {
@@ -45,12 +46,12 @@ public class Location implements Serializable {
         this.locationVisited = locationVisited;
     }
 
-    public LocationType getLocationType() {
-        return locationType;
+    public DangerType getLocationType() {
+        return dangerType;
     }
 
-    public void setLocationType(LocationType locationType) {
-        this.locationType = locationType;
+    public void setLocationType(DangerType dangerType) {
+        this.dangerType = dangerType;
     }
 
     public void setLocationRow(int locationRow) {

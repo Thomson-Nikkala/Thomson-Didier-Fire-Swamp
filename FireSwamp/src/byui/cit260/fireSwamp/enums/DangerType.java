@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package byui.cit260.fireSwamp.model;
+package byui.cit260.fireSwamp.enums;
 
 /**
  *
- * @author maraa
+ * @author Didier Jourdain
  */
-public enum LocationType {
+public enum DangerType {
     NONE, FLAMESPURT, ROUS, LIGHTNINGSAND
 }
