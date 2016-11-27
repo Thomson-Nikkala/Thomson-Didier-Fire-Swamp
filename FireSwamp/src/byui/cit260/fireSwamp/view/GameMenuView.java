@@ -14,7 +14,6 @@ import byui.cit260.fireSwamp.model.Map;
 import byui.cit260.fireSwamp.model.Player;
 import fireswamp.FireSwamp;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  *
@@ -95,6 +94,53 @@ public class GameMenuView extends View {
 
     private void displayMap() {
        Map map = FireSwamp.getCurrentGame().getGameMap();
+       final int gridRow = Map.ROWS * 4 + 1;
+       final int gridCol = Map.COLUMNS * 4 + 1;
+       char [][] grid = new char [gridRow][gridCol];
+           
+       // Prepare empty grid 
+       for (int row = 0; row < gridRow; row++) 
+            for (int col = 0; col < gridCol; col++) {
+                if (row % 4 == 0)
+                    grid[row][col] = '+';
+                else if (col % 4 == 0)
+                    grid[row][col] = '|';
+                else
+                    grid[row][col] = ' ';
+            }
+       
+        // Draw grid heading
+        int stepper = 1;
+        for (int col = 0; col < gridCol; col++) {
+            if (col == 0)
+                System.out.print("   ");
+            else if (col == (4 * stepper - 2)) {
+                System.out.print(stepper);
+                stepper++;
+            }
+            else
+                System.out.print(' ');
+        }
+        System.out.println();
+        
+        // Draw grid
+        stepper = 1;
+        for (int row = 0; row < gridRow; row++) {
+           for (int col = 0; col < gridCol; col++) {
+               if (col == 0)
+                   if (row == ((4 * stepper) -2)) {
+                       System.out.print(stepper + "  +");
+                       stepper++;
+                   }
+                   else
+                   {
+                       System.out.print("   |");
+                   }
+               else
+                   System.out.print(grid[row][col]);
+           }
+           System.out.println();
+       }
        
         for (int row = 0; row < Map.ROWS; row++) {
             for (int col = 0; col < Map.COLUMNS;  col++) {
@@ -109,9 +155,14 @@ public class GameMenuView extends View {
         }
         
         Location playerLoc = FireSwamp.getPlayer().getPlayerPosition();
-        System.out.println("\n** " + FireSwamp.getPlayer().getPlayerName()
-                         + " is at row " + playerLoc.getLocationRow()
-                         + " and at column " + playerLoc.getLocationColumn());
+        int playerRowPos = playerLoc.getLocationRow();
+        int playerColPos = playerLoc.getLocationColumn();
+        playerRowPos++;
+        playerColPos++;
+        System.out.println("\n** " + 
+                FireSwamp.getPlayer().getPlayerName()
+                         + " is at row " + playerRowPos
+                         + " and at column " + playerColPos);
         
         map.mapStatistics();
         

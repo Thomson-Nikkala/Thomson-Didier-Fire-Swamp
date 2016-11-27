@@ -4,7 +4,6 @@
  ************************************************** */
 package byui.cit260.fireSwamp.controller;
 
-import byui.cit260.fireSwamp.exceptions.GameControlException;
 import byui.cit260.fireSwamp.model.Game;
 import byui.cit260.fireSwamp.model.Item;
 import byui.cit260.fireSwamp.model.Location;
@@ -40,15 +39,13 @@ public class GameControl {
         
         ArrayList<Item> items = new ArrayList<>();
         
-        Item rope;
-        rope = new Item();
+        Item rope = new Item();
         rope.setItemDescription("A sturdy rope");
         rope.setItemName("rope");
         rope.setQuantity(1);
         items.add(rope);
         
         Item rope2 = new Item();
-        rope2 = new Item();
         rope2.setItemDescription("A sturdy rope");
         rope2.setItemName("rope2");
         rope2.setQuantity(1);
