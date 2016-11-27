@@ -101,9 +101,13 @@ public class GameMenuView extends View {
        // Prepare empty grid 
        for (int row = 0; row < gridRow; row++) 
             for (int col = 0; col < gridCol; col++) {
-                if (row % 4 == 0)
+                if ((row == 0 || row == gridRow - 1) && col != 0)
+                    grid[row][col] = '-';
+                else if (row % 4 == 0 && row != 0)
                     grid[row][col] = '+';
-                else if (col % 4 == 0)
+                else if (col % 4 == 0 && col != 0)
+                    grid[row][col] = '|';
+                else if (col == 0 || col == gridCol - 1)
                     grid[row][col] = '|';
                 else
                     grid[row][col] = ' ';
@@ -129,7 +133,7 @@ public class GameMenuView extends View {
            for (int col = 0; col < gridCol; col++) {
                if (col == 0)
                    if (row == ((4 * stepper) -2)) {
-                       System.out.print(stepper + "  +");
+                       System.out.print(stepper + "  |");
                        stepper++;
                    }
                    else
