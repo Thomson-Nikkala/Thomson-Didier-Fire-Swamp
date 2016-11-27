@@ -33,6 +33,8 @@ public class MapControl {
                 else {
                     playerLocation.setLocationRow(playerLocation.getLocationRow()- 1);
                     FireSwamp.getPlayer().setPlayerPosition(playerLocation);
+                    System.out.println("\n** " + FireSwamp.getPlayer().getPlayerName()
+                                     + " moved " + direction.toString());
                 }
                 break;
             case SOUTH:
@@ -45,6 +47,8 @@ public class MapControl {
                 else {
                     playerLocation.setLocationRow(playerLocation.getLocationRow()+ 1);
                     FireSwamp.getPlayer().setPlayerPosition(playerLocation);
+                    System.out.println("\n** " + FireSwamp.getPlayer().getPlayerName()
+                                     + " moved " + direction.toString());
                 }
                 break;
             case WEST:
@@ -57,6 +61,8 @@ public class MapControl {
                 else {
                     playerLocation.setLocationColumn(playerLocation.getLocationColumn() - 1);
                     FireSwamp.getPlayer().setPlayerPosition(playerLocation);
+                    System.out.println("\n** " + FireSwamp.getPlayer().getPlayerName()
+                                     + " moved " + direction.toString());
                 }
                 break;
             case EAST:
@@ -69,6 +75,8 @@ public class MapControl {
                 else {
                     playerLocation.setLocationColumn(playerLocation.getLocationColumn() + 1);
                     FireSwamp.getPlayer().setPlayerPosition(playerLocation);
+                    System.out.println("\n** " + FireSwamp.getPlayer().getPlayerName()
+                                     + " moved " + direction.toString());
                 }
                 break;
         }

@@ -109,7 +109,8 @@ public class GameMenuView extends View {
         }
         
         Location playerLoc = FireSwamp.getPlayer().getPlayerPosition();
-        System.out.println("The player is at row " + playerLoc.getLocationRow()
+        System.out.println("\n** " + FireSwamp.getPlayer().getPlayerName()
+                         + " is at row " + playerLoc.getLocationRow()
                          + " and at column " + playerLoc.getLocationColumn());
         
         map.mapStatistics();
