@@ -25,7 +25,7 @@ public class MapControl {
         switch (direction) {
             case NORTH:
                 if (playerLocation.getLocationRow()== 0) {
-                    throw new MapControlException("Can not go "
+                    throw new MapControlException("\n## Can not go "
                                                 + direction.toString()
                                                 + " because that location is outside "
                                                 + "the bounds of the map.");
@@ -39,7 +39,7 @@ public class MapControl {
                 break;
             case SOUTH:
                 if (playerLocation.getLocationRow()== Map.ROWS - 1) {
-                    throw new MapControlException("Can not go "
+                    throw new MapControlException("\n## Can not go "
                                                 + direction.toString()
                                                 + " because that location is outside "
                                                 + "the bounds of the map.");
@@ -53,7 +53,7 @@ public class MapControl {
                 break;
             case WEST:
                 if (playerLocation.getLocationColumn() == 0) {
-                    throw new MapControlException("Can not go "
+                    throw new MapControlException("\n## Can not go "
                                                 + direction.toString()
                                                 + " because that location is outside "
                                                 + "the bounds of the map.");
@@ -67,7 +67,7 @@ public class MapControl {
                 break;
             case EAST:
                 if (playerLocation.getLocationColumn() == Map.COLUMNS - 1) {
-                    throw new MapControlException("Can not go "
+                    throw new MapControlException("\n## Can not go "
                                                 + direction.toString()
                                                 + " because that location is outside "
                                                 + "the bounds of the map.");
