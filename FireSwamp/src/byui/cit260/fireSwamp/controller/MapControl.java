@@ -27,7 +27,7 @@ public class MapControl {
                 if (playerLocation.getLocationRow()== 0) {
                     throw new MapControlException("Can not go "
                                                 + direction.toString()
-                                                + "because that location is outside "
+                                                + " because that location is outside "
                                                 + "the bounds of the map.");
                 }
                 else {
@@ -36,10 +36,10 @@ public class MapControl {
                 }
                 break;
             case SOUTH:
-                if (playerLocation.getLocationRow()== map.ROWS - 1) {
+                if (playerLocation.getLocationRow()== Map.ROWS - 1) {
                     throw new MapControlException("Can not go "
                                                 + direction.toString()
-                                                + "because that location is outside "
+                                                + " because that location is outside "
                                                 + "the bounds of the map.");
                 }
                 else {
@@ -51,7 +51,7 @@ public class MapControl {
                 if (playerLocation.getLocationColumn() == 0) {
                     throw new MapControlException("Can not go "
                                                 + direction.toString()
-                                                + "because that location is outside "
+                                                + " because that location is outside "
                                                 + "the bounds of the map.");
                 }
                 else {
@@ -60,10 +60,10 @@ public class MapControl {
                 }
                 break;
             case EAST:
-                if (playerLocation.getLocationColumn() == map.COLUMNS - 1) {
+                if (playerLocation.getLocationColumn() == Map.COLUMNS - 1) {
                     throw new MapControlException("Can not go "
                                                 + direction.toString()
-                                                + "because that location is outside "
+                                                + " because that location is outside "
                                                 + "the bounds of the map.");
                 }
                 else {
@@ -75,8 +75,8 @@ public class MapControl {
         
     }
     
-    public static void movePlayerStartingLocation(Player player, Location startingLocation) 
-                        throws MapControlException {
+    public void movePlayerStartingLocation(Player player, Location startingLocation) {
+       player.setPlayerPosition(startingLocation);
         
     }
         

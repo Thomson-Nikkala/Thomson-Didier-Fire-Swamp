@@ -5,8 +5,13 @@
 package byui.cit260.fireSwamp.view;
 
 import byui.cit260.fireSwamp.controller.InventoryControl;
+import byui.cit260.fireSwamp.controller.MapControl;
+import byui.cit260.fireSwamp.enums.Direction;
+import byui.cit260.fireSwamp.exceptions.MapControlException;
 import byui.cit260.fireSwamp.model.Item;
+import byui.cit260.fireSwamp.model.Location;
 import byui.cit260.fireSwamp.model.Map;
+import byui.cit260.fireSwamp.model.Player;
 import fireswamp.FireSwamp;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -103,6 +108,10 @@ public class GameMenuView extends View {
             System.out.println(" ");
         }
         
+        Location playerLoc = FireSwamp.getPlayer().getPlayerPosition();
+        System.out.println("The player is at row " + playerLoc.getLocationRow()
+                         + " and at column " + playerLoc.getLocationColumn());
+        
         map.mapStatistics();
         
           //this temporary section is for testing the checkInventory function
@@ -148,19 +157,45 @@ public class GameMenuView extends View {
     }
 
     private void moveNorth() {
-        System.out.println("*** moveNorth() function called");
+        Map map = FireSwamp.getCurrentGame().getGameMap();
+        Player player = FireSwamp.getPlayer();
+        try {
+            MapControl.movePlayerDirection(player, Direction.NORTH);
+        } catch (MapControlException me) {
+            System.out.println(me.getMessage());
+        }
+        
+        
     }
 
     private void moveEast() {
-        System.out.println("*** moveEast() function called");
+        Map map = FireSwamp.getCurrentGame().getGameMap();
+        Player player = FireSwamp.getPlayer();
+        try {
+            MapControl.movePlayerDirection(player, Direction.EAST);
+        } catch (MapControlException me) {
+            System.out.println(me.getMessage());
+        }
     }
 
     private void moveWest() {
-        System.out.println("*** moveWest() function called");
+        Map map = FireSwamp.getCurrentGame().getGameMap();
+        Player player = FireSwamp.getPlayer();
+        try {
+            MapControl.movePlayerDirection(player, Direction.WEST);
+        } catch (MapControlException me) {
+            System.out.println(me.getMessage());
+        }
     }
 
     private void moveSouth() {
-        System.out.println("*** moveSouth() function called");
+        Map map = FireSwamp.getCurrentGame().getGameMap();
+        Player player = FireSwamp.getPlayer();
+        try {
+            MapControl.movePlayerDirection(player, Direction.SOUTH);
+        } catch (MapControlException me) {
+            System.out.println(me.getMessage());
+        }
     }
 
     private void saveGame() {

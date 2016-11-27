@@ -6,6 +6,9 @@ package byui.cit260.fireSwamp.view;
 
 
 import byui.cit260.fireSwamp.controller.GameControl;
+import byui.cit260.fireSwamp.controller.MapControl;
+import byui.cit260.fireSwamp.exceptions.MapControlException;
+import byui.cit260.fireSwamp.model.Location;
 import fireswamp.FireSwamp;
 import java.util.Scanner;
 
@@ -35,7 +38,11 @@ public class MainMenuView extends View {
         
         switch (value) {
             case "N":
-                this.startNewGame();
+                try {
+                    this.startNewGame();
+                } catch (MapControlException me) {
+                    System.out.println("me.getMessage()");
+                }
                 break;
             case "L":
                 this.loadSavedGame();
@@ -63,9 +70,13 @@ public class MainMenuView extends View {
         System.exit(0);
     }
 
-    private void startNewGame() {
+    private void startNewGame() throws MapControlException {
         GameControl gc = new GameControl();
         gc.createNewGame(FireSwamp.getPlayer());
+        Location initPos = new Location();
+        initPos.setLocationColumn(0);
+        initPos.setLocationRow(3);
+        FireSwamp.getPlayer().setPlayerPosition(initPos);
         GameMenuView gameMenu = new GameMenuView();
         gameMenu.display();
     }

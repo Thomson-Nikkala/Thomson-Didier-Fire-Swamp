@@ -27,8 +27,9 @@ public class Map implements Serializable{
     
     public void init() {
         
-        Random rand = new Random();
         
+        
+        Random rand = new Random();
         for (int row = 0; row < ROWS; row++) {
             for (int col = 0; col < COLUMNS; col++) {
                 int randLocation = rand.nextInt(DangerType.values().length);
