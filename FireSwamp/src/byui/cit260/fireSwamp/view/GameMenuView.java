@@ -7,6 +7,7 @@ package byui.cit260.fireSwamp.view;
 import byui.cit260.fireSwamp.controller.InventoryControl;
 import byui.cit260.fireSwamp.controller.MapControl;
 import byui.cit260.fireSwamp.enums.Direction;
+import byui.cit260.fireSwamp.exceptions.InventoryControlException;
 import byui.cit260.fireSwamp.exceptions.MapControlException;
 import byui.cit260.fireSwamp.model.Item;
 import byui.cit260.fireSwamp.model.Location;
@@ -188,8 +189,12 @@ public class GameMenuView extends View {
             potion.setQuantity(1);
             inventory.add(potion);
             
-            int ropePositionInList = inControl.checkInventory(inventory, 3);
-            System.out.println("\n inventory position is " + ropePositionInList);
+           try {
+               int ropePositionInList = inControl.checkInventory(inventory, 3);
+               System.out.println("\n inventory position is " + ropePositionInList); 
+           }
+           catch (InventoryControlException ice) {
+                System.out.println(ice.getMessage()); }
             
             //end of testing checkInventory function
         
