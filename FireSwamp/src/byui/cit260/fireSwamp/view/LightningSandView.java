@@ -8,6 +8,7 @@ package byui.cit260.fireSwamp.view;
 import byui.cit260.fireSwamp.controller.DangerControl;
 import byui.cit260.fireSwamp.controller.InventoryControl;
 import byui.cit260.fireSwamp.exceptions.DangerControlException;
+import byui.cit260.fireSwamp.exceptions.InventoryControlException;
 import byui.cit260.fireSwamp.model.Item;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -23,7 +24,7 @@ public class LightningSandView extends View {
     private double diameter;
     
     @Override
-    public void display() {
+    public void display(ArrayList<Item> inventory) {
         
         //Randomize diameter
         double diameter = Math.random()*29 + 1;  //diameter will be [1..30)
@@ -48,11 +49,14 @@ public class LightningSandView extends View {
             System.out.println("You made it across");
         } else {
             //Check for rope (itemType 1) 
-
-            
-            System.err.println("Alas, that's incorrect, and you have no rope. You are consumed by the lightning sand.");
-            LoseMenuView loseView = new LoseMenuView();
-            loseView.display();
+            InventoryControl inControl = new InventoryControl();
+            try {
+                inControl.checkInventory(inventory,1);
+            } catch (InventoryControlException ice) {
+                System.out.println(ice.getMessage());
+                LoseMenuView loseView = new LoseMenuView();
+                loseView.display();
+            }
         }
     }
     
