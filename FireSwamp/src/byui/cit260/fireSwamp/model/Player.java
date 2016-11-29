@@ -7,6 +7,7 @@ package byui.cit260.fireSwamp.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -26,6 +27,10 @@ public class Player implements Serializable{
     public Player() {
     }
 
+    public ArrayList<Item> getPlayerInventory() {
+        return playerInventory;
+    }
+    
     public void addPlayerInventory(Item item) {
         this.playerInventory.add(item);
     }
