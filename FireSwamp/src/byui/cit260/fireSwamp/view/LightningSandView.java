@@ -54,6 +54,8 @@ public class LightningSandView extends View {
                 inControl.checkInventory(inventory, 1);
             } catch (InventoryControlException ice) {
                 System.out.println(ice.getMessage());
+                System.out.println("Alas, that's incorrect, and you have no rope "
+                             + " to help pull you out.");
                 LoseMenuView loseView = new LoseMenuView();
                 loseView.display();
             }

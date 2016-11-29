@@ -6,9 +6,14 @@
 package byui.cit260.fireSwamp.view;
 
 import byui.cit260.fireSwamp.controller.DangerControl;
+import byui.cit260.fireSwamp.controller.InventoryControl;
 import byui.cit260.fireSwamp.exceptions.DangerControlException;
+import byui.cit260.fireSwamp.exceptions.InventoryControlException;
+import byui.cit260.fireSwamp.model.Item;
+import fireswamp.FireSwamp;
+import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.Random;
+
 
 /**
  *
@@ -23,7 +28,7 @@ public class RousView extends View {
     public void display() {
         
         //Randomize lenth
-        double length = Math.random()*12 + 3;  //ROUS length will be [3..15) feet
+        length = Math.random()*12 + 3;  //ROUS length will be [3..15) feet
        
         //Display problem
         
@@ -46,13 +51,22 @@ public class RousView extends View {
         if (isCorrect) {
             System.out.println("You successfully jump over the ROUS.");
         } else {
-            //Check for healing potion to be added later
+            //Check for healing potion (itemType 3)
+            InventoryControl inControl = new InventoryControl();
+            try {
+                ArrayList<Item> inventory = FireSwamp.getPlayer().getPlayerInventory();
+                inControl.checkInventory(inventory, 3);
+            } catch (InventoryControlException ice) {
+                System.out.println(ice.getMessage());
+                System.out.println("You have no healing potion to save you from the ROUS bite. ");
+                LoseMenuView loseView = new LoseMenuView();
+                loseView.display();
+            }
+            
             System.err.println("Alas, that's incorrect, and you have no healing potion. You are bitten by the ROUS and perish.");
             LoseMenuView loseView = new LoseMenuView();
             loseView.display();
-        }
-        
-        
+        }  
     }
     
     @Override
@@ -72,12 +86,9 @@ public class RousView extends View {
                 
             } catch (NumberFormatException nfe) {
                 System.out.println ("\nPlease enter a valid number.");
-            }
-            
+            }  
         }
-        
-        return input;        
-        
+        return input;          
     }
     
     

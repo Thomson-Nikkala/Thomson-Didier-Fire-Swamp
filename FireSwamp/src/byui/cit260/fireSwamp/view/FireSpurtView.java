@@ -1,7 +1,12 @@
 package byui.cit260.fireSwamp.view;
 
 import byui.cit260.fireSwamp.controller.DangerControl;
+import byui.cit260.fireSwamp.controller.InventoryControl;
 import byui.cit260.fireSwamp.exceptions.DangerControlException;
+import byui.cit260.fireSwamp.exceptions.InventoryControlException;
+import byui.cit260.fireSwamp.model.Item;
+import fireswamp.FireSwamp;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -53,10 +58,18 @@ public class FireSpurtView extends View {
             System.out.println("You made it across");
         } else {
             //Check for bucket of water (itemType 2) 
-
-            
-            System.out.println("Alas, that's incorrect, and you have no bucket "
+            InventoryControl inControl = new InventoryControl();
+            try {
+                ArrayList<Item> inventory = FireSwamp.getPlayer().getPlayerInventory();
+                inControl.checkInventory(inventory, 2);
+            } catch (InventoryControlException ice) {
+                System.out.println(ice.getMessage());
+                System.out.println("Alas, that's incorrect, and you have no bucket "
                              + " of water to cover the flames who roast you.");
+                LoseMenuView loseView = new LoseMenuView();
+                loseView.display();
+            }
+            
             LoseMenuView loseView = new LoseMenuView();
             loseView.display();
         }
