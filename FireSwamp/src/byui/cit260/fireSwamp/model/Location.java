@@ -19,7 +19,7 @@ public class Location implements Serializable {
     private int locationColumn;
     private boolean locationVisited;
     private String locationDescription;
-    private DangerType dangerType;
+    private DangerType dangerType;   //see the enum 
     private Item item;
 
     public Item getItem() {

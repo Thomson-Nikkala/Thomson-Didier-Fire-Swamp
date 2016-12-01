@@ -88,4 +88,11 @@ public class MapControl {
         
     }
         
+    
+    public boolean checkLook (Location testLocation) {
+        return true;
+    }
+    
+    
+    
 }

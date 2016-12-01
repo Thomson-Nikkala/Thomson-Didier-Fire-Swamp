@@ -5,8 +5,11 @@
 package byui.cit260.fireSwamp.view;
 
 import byui.cit260.fireSwamp.controller.GameControl;
+import byui.cit260.fireSwamp.exceptions.GameControlException;
 import byui.cit260.fireSwamp.model.Player;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,7 +18,7 @@ import java.util.Scanner;
 public class StartProgramView extends View {
 
     // Constructor
-    public StartProgramView() {
+    public StartProgramView() throws GameControlException {
 
         super(
             "\n******************************************************"
@@ -30,19 +33,17 @@ public class StartProgramView extends View {
     }
     
     @Override
-    public boolean doAction(String value) {
+    public boolean doAction(String value) throws GameControlException {
 
         if (value.length() < 2) {
-            System.out.println("\nInvalid player name: "
+            throw new GameControlException ("\nInvalid player name: "
                 + "The name must be greater than one character in length");
-            return false;
         }
 
         Player player = GameControl.createPlayer(value);
 
         if (player == null) {
-            System.out.println("\nError creating the player.");
-            return false;
+            throw new GameControlException("\nError creating the player.");
         }
 
         this.displayNextView(player);
@@ -55,13 +56,17 @@ public class StartProgramView extends View {
         System.out.println(
             "\n==============================================="
             + "\n     Welcome to the game " + player.getPlayerName()
-            + "\n       We hope you have a lot of fun!"
+            + "\n     We hope you have a lot of fun!"
             + "\n==============================================="
         );
 
         MainMenuView mainMenuView = new MainMenuView();
 
-        mainMenuView.display();
+        try {
+            mainMenuView.display();
+        } catch (GameControlException ex) {
+            Logger.getLogger(StartProgramView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

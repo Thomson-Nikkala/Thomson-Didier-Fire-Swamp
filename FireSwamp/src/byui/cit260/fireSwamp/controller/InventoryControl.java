@@ -20,7 +20,7 @@ public class InventoryControl {
     * checks if the desired item is present in the inventory
     * if it is present, it returns the position of the item in the list (index)
     **********************************************/
-        public int checkInventory(ArrayList<Item> inventory, int itemType) throws InventoryControlException {
+    public int checkInventory(ArrayList<Item> inventory, int itemType) throws InventoryControlException {
 
         //for each loop
         for (Item item : inventory) {
@@ -33,4 +33,7 @@ public class InventoryControl {
         throw new InventoryControlException("Item not found in inventory.");
     }   
     
+    
+        
+        
 }

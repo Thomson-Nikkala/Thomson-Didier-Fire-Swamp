@@ -1,5 +1,6 @@
 package byui.cit260.fireSwamp.view;
 
+import byui.cit260.fireSwamp.exceptions.GameControlException;
 import java.util.Scanner;
 
 /**
@@ -20,7 +21,7 @@ public abstract class View implements ViewInterface {
     }
     
     @Override
-    public void display() {
+    public void display() throws GameControlException {
         
         boolean done = false;
         do {
@@ -30,7 +31,11 @@ public abstract class View implements ViewInterface {
                 return; // exit the view
             }
             //do the requested action and display the next view
-            done = this.doAction(value);
+            try {
+                done = this.doAction(value);
+            } catch (GameControlException gce) {
+                System.out.println(gce.getMessage());
+            }
 
         } while (!done);  //exit the view when done == true
         

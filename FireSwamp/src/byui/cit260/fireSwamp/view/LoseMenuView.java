@@ -5,7 +5,10 @@
 
 package byui.cit260.fireSwamp.view;
 
+import byui.cit260.fireSwamp.exceptions.GameControlException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -38,8 +41,12 @@ public class LoseMenuView extends View {
     }
 
     private void tryAgain() {
-        StartProgramView newProgram = new StartProgramView();
-        newProgram.display();
+        try {
+            StartProgramView newProgram = new StartProgramView();
+            newProgram.display();
+        } catch (GameControlException ex) {
+            Logger.getLogger(LoseMenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void exitGame() {

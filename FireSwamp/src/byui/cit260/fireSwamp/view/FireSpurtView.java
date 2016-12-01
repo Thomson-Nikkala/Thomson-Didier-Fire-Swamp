@@ -3,11 +3,14 @@ package byui.cit260.fireSwamp.view;
 import byui.cit260.fireSwamp.controller.DangerControl;
 import byui.cit260.fireSwamp.controller.InventoryControl;
 import byui.cit260.fireSwamp.exceptions.DangerControlException;
+import byui.cit260.fireSwamp.exceptions.GameControlException;
 import byui.cit260.fireSwamp.exceptions.InventoryControlException;
 import byui.cit260.fireSwamp.model.Item;
 import fireswamp.FireSwamp;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -67,11 +70,19 @@ public class FireSpurtView extends View {
                 System.out.println("Alas, that's incorrect, and you have no bucket "
                              + " of water to cover the flames who roast you.");
                 LoseMenuView loseView = new LoseMenuView();
-                loseView.display();
+                try {
+                    loseView.display();
+                } catch (GameControlException ex) {
+                    Logger.getLogger(FireSpurtView.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             
             LoseMenuView loseView = new LoseMenuView();
-            loseView.display();
+            try {
+                loseView.display();
+            } catch (GameControlException ex) {
+                Logger.getLogger(FireSpurtView.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

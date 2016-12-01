@@ -1,5 +1,7 @@
 package byui.cit260.fireSwamp.view;
 
+import byui.cit260.fireSwamp.exceptions.GameControlException;
+
 /**
  *
  * @authors Nikkala Thomson and Didier Jourdain
@@ -7,8 +9,8 @@ package byui.cit260.fireSwamp.view;
 
 public interface ViewInterface {
     
-    public void display();
+    public void display() throws GameControlException;
     public String getInput();
-    public boolean doAction(String value);
+    public boolean doAction(String value) throws GameControlException;
     
-}
+} 

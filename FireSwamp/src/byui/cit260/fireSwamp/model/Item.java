@@ -15,7 +15,6 @@ public class Item implements Serializable{
     
     private int itemType;
     private String itemName;
-    private int quantity;
     private String itemDescription;
 
     // Default constructor
@@ -38,14 +37,6 @@ public class Item implements Serializable{
         this.itemName = itemName;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
     public String getItemDescription() {
         return itemDescription;
     }
@@ -59,7 +50,6 @@ public class Item implements Serializable{
         int hash = 5;
         hash = 89 * hash + this.itemType;
         hash = 89 * hash + Objects.hashCode(this.itemName);
-        hash = 89 * hash + this.quantity;
         hash = 89 * hash + Objects.hashCode(this.itemDescription);
         return hash;
     }
@@ -79,9 +69,6 @@ public class Item implements Serializable{
         if (this.itemType != other.itemType) {
             return false;
         }
-        if (this.quantity != other.quantity) {
-            return false;
-        }
         if (!Objects.equals(this.itemName, other.itemName)) {
             return false;
         }
@@ -93,7 +80,7 @@ public class Item implements Serializable{
 
     @Override
     public String toString() {
-        return "Item{" + "itemType=" + itemType + ", itemName=" + itemName + ", quantity=" + quantity + ", itemDescription=" + itemDescription + '}';
+        return "Item{" + "itemType=" + itemType + ", itemName=" + itemName + ", itemDescription=" + itemDescription + '}';
     }
     
     

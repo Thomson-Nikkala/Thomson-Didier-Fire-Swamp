@@ -8,11 +8,14 @@ package byui.cit260.fireSwamp.view;
 import byui.cit260.fireSwamp.controller.DangerControl;
 import byui.cit260.fireSwamp.controller.InventoryControl;
 import byui.cit260.fireSwamp.exceptions.DangerControlException;
+import byui.cit260.fireSwamp.exceptions.GameControlException;
 import byui.cit260.fireSwamp.exceptions.InventoryControlException;
 import byui.cit260.fireSwamp.model.Item;
 import fireswamp.FireSwamp;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -60,12 +63,20 @@ public class RousView extends View {
                 System.out.println(ice.getMessage());
                 System.out.println("You have no healing potion to save you from the ROUS bite. ");
                 LoseMenuView loseView = new LoseMenuView();
-                loseView.display();
+                try {
+                    loseView.display();
+                } catch (GameControlException ex) {
+                    Logger.getLogger(RousView.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             
             System.err.println("Alas, that's incorrect, and you have no healing potion. You are bitten by the ROUS and perish.");
             LoseMenuView loseView = new LoseMenuView();
-            loseView.display();
+            try {
+                loseView.display();
+            } catch (GameControlException ex) {
+                Logger.getLogger(RousView.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }  
     }
     

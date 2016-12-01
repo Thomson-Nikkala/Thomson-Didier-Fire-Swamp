@@ -7,10 +7,13 @@ package byui.cit260.fireSwamp.view;
 
 import byui.cit260.fireSwamp.controller.GameControl;
 import byui.cit260.fireSwamp.controller.MapControl;
+import byui.cit260.fireSwamp.exceptions.GameControlException;
 import byui.cit260.fireSwamp.exceptions.MapControlException;
 import byui.cit260.fireSwamp.model.Location;
 import fireswamp.FireSwamp;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -78,7 +81,11 @@ public class MainMenuView extends View {
         initPos.setLocationRow(3);
         FireSwamp.getPlayer().setPlayerPosition(initPos);
         GameMenuView gameMenu = new GameMenuView();
-        gameMenu.display();
+        try {
+            gameMenu.display();
+        } catch (GameControlException ex) {
+            Logger.getLogger(MainMenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

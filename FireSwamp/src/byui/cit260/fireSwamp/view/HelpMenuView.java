@@ -4,7 +4,10 @@
  ***************************************************/
 package byui.cit260.fireSwamp.view;
 
+import byui.cit260.fireSwamp.exceptions.GameControlException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -58,7 +61,11 @@ public class HelpMenuView extends View {
 
     private void displayHelpInventory() {
         HelpInventoryView helpInventory = new HelpInventoryView();
-        helpInventory.display();
+        try {
+            helpInventory.display();
+        } catch (GameControlException ex) {
+            Logger.getLogger(HelpMenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void displayHelpClues() {

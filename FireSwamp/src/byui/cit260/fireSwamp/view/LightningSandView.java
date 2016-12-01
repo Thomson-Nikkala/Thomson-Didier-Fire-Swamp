@@ -7,6 +7,7 @@ package byui.cit260.fireSwamp.view;
 import byui.cit260.fireSwamp.controller.DangerControl;
 import byui.cit260.fireSwamp.controller.InventoryControl;
 import byui.cit260.fireSwamp.exceptions.DangerControlException;
+import byui.cit260.fireSwamp.exceptions.GameControlException;
 import byui.cit260.fireSwamp.exceptions.InventoryControlException;
 import byui.cit260.fireSwamp.model.Item;
 import fireswamp.FireSwamp;
@@ -14,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -57,7 +60,11 @@ public class LightningSandView extends View {
                 System.out.println("Alas, that's incorrect, and you have no rope "
                              + " to help pull you out.");
                 LoseMenuView loseView = new LoseMenuView();
-                loseView.display();
+                try {
+                    loseView.display();
+                } catch (GameControlException ex) {
+                    Logger.getLogger(LightningSandView.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     }

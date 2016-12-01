@@ -7,6 +7,7 @@ package byui.cit260.fireSwamp.view;
 import byui.cit260.fireSwamp.controller.InventoryControl;
 import byui.cit260.fireSwamp.controller.MapControl;
 import byui.cit260.fireSwamp.enums.Direction;
+import byui.cit260.fireSwamp.exceptions.GameControlException;
 import byui.cit260.fireSwamp.exceptions.InventoryControlException;
 import byui.cit260.fireSwamp.exceptions.MapControlException;
 import byui.cit260.fireSwamp.model.Item;
@@ -15,6 +16,8 @@ import byui.cit260.fireSwamp.model.Map;
 import byui.cit260.fireSwamp.model.Player;
 import fireswamp.FireSwamp;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -179,18 +182,16 @@ public class GameMenuView extends View {
             rope.setItemType(1);
             rope.setItemDescription("A sturdy rope");
             rope.setItemName("rope");
-            rope.setQuantity(1);
             inventory.add(rope);
             
             Item potion = new Item();
-            potion.setItemType(3);
+            potion.setItemType(2);
             potion.setItemDescription("A healing potion");
             potion.setItemName("potion");
-            potion.setQuantity(1);
             inventory.add(potion);
             
            try {
-               int ropePositionInList = inControl.checkInventory(inventory, 3);
+               int ropePositionInList = inControl.checkInventory(inventory, 1);
                System.out.println("\n inventory position is " + ropePositionInList); 
            }
            catch (InventoryControlException ice) {
@@ -201,14 +202,18 @@ public class GameMenuView extends View {
         
     }
 
+    
+    //look function checks for the sandy soil that indicates lightning sand
     private void look() {
         System.out.println("*** look() function called");
     }
 
+    //listen functiono checks for popping sound that precedes a flame spurt
     private void listen() {
         System.out.println("*** listen() function called");
     }
 
+    //smell function checks for the wet dog smell of a ROUS
     private void smell() {
        System.out.println("*** smell() function called");
     }
@@ -265,7 +270,11 @@ public class GameMenuView extends View {
 
     private void callHelpMenu() {
         HelpMenuView helpMenu = new HelpMenuView();
-        helpMenu.display();
+        try {
+            helpMenu.display();
+        } catch (GameControlException gce) {
+            System.out.println(gce.getMessage());
+        }
     }
 
     private void goBack() {
@@ -274,7 +283,11 @@ public class GameMenuView extends View {
 
     private void callWinGameView() {
         WinGameView winGame = new WinGameView();
-        winGame.display();
+        try {
+            winGame.display();
+        } catch (GameControlException ex) {
+            Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
         
  
