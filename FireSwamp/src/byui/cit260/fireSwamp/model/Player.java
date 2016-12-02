@@ -6,8 +6,6 @@ package byui.cit260.fireSwamp.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -50,11 +48,7 @@ public class Player implements Serializable{
     public void setPlayerGender(char playerGender) {
         this.playerGender = playerGender;
     }
-
     
-
-    
-
     public Location getPlayerPosition() {
         return playerPosition;
     }

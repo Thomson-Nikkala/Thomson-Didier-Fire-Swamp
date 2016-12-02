@@ -7,6 +7,7 @@ package byui.cit260.fireSwamp.view;
 import byui.cit260.fireSwamp.controller.InventoryControl;
 import byui.cit260.fireSwamp.controller.MapControl;
 import byui.cit260.fireSwamp.enums.Direction;
+import byui.cit260.fireSwamp.enums.ItemType;
 import byui.cit260.fireSwamp.exceptions.GameControlException;
 import byui.cit260.fireSwamp.exceptions.InventoryControlException;
 import byui.cit260.fireSwamp.exceptions.MapControlException;
@@ -89,7 +90,7 @@ public class GameMenuView extends View {
                 this.callWinGameView();
                 break;
             default:
-                System.out.println("\n*** Invalid selection *** Try again");
+                this.console.println("\n*** Invalid selection *** Try again");
                 break;
         }
         
@@ -121,15 +122,15 @@ public class GameMenuView extends View {
         int stepper = 1;
         for (int col = 0; col < gridCol; col++) {
             if (col == 0)
-                System.out.print("   ");
+                this.console.print("   ");
             else if (col == (4 * stepper - 2)) {
-                System.out.print(stepper);
+                this.console.print(stepper);
                 stepper++;
             }
             else
-                System.out.print(' ');
+                this.console.print(' ');
         }
-        System.out.println();
+        this.console.println();
         
         // Draw grid
         stepper = 1;
@@ -137,29 +138,29 @@ public class GameMenuView extends View {
            for (int col = 0; col < gridCol; col++) {
                if (col == 0)
                    if (row == ((4 * stepper) -2)) {
-                       System.out.print(stepper + "  |");
+                       this.console.print(stepper + "  |");
                        stepper++;
                    }
                    else
                    {
-                       System.out.print("   |");
+                       this.console.print("   |");
                    }
                else
-                   System.out.print(grid[row][col]);
+                   this.console.print(grid[row][col]);
            }
-           System.out.println();
+           this.console.println();
        }
        
         for (int row = 0; row < Map.ROWS; row++) {
             for (int col = 0; col < Map.COLUMNS;  col++) {
                 char locationType = map.getLocationAt(row,col).getLocationType().toString().charAt(0);
-                System.out.print(locationType);
+                this.console.print(locationType);
                 if (map.getLocationAt(row, col).getItem() != null) {
-                    System.out.print(map.getLocationAt(row, col).getItem().getItemName().charAt(0));
+                    this.console.print(map.getLocationAt(row, col).getItem().getItemName().charAt(0));
                 }
-                System.out.print("  ");
+                this.console.print("  ");
             }
-            System.out.println(" ");
+            this.console.println(" ");
         }
         
         Location playerLoc = FireSwamp.getPlayer().getPlayerPosition();
@@ -167,7 +168,7 @@ public class GameMenuView extends View {
         int playerColPos = playerLoc.getLocationColumn();
         playerRowPos++;
         playerColPos++;
-        System.out.println("\n** " + 
+        this.console.println("\n** " + 
                 FireSwamp.getPlayer().getPlayerName()
                          + " is at row " + playerRowPos
                          + " and at column " + playerColPos);
@@ -179,23 +180,23 @@ public class GameMenuView extends View {
             InventoryControl inControl = new InventoryControl();
           
             Item rope = new Item();
-            rope.setItemType(1);
+            rope.setItemType(ItemType.ROPE);
             rope.setItemDescription("A sturdy rope");
             rope.setItemName("rope");
             inventory.add(rope);
             
             Item potion = new Item();
-            potion.setItemType(2);
+            potion.setItemType(ItemType.POTION);
             potion.setItemDescription("A healing potion");
             potion.setItemName("potion");
             inventory.add(potion);
             
            try {
-               int ropePositionInList = inControl.checkInventory(inventory, 1);
-               System.out.println("\n inventory position is " + ropePositionInList); 
+               int ropePositionInList = inControl.checkInventory(inventory, ItemType.ROPE);
+               this.console.println("\n inventory position is " + ropePositionInList); 
            }
            catch (InventoryControlException ice) {
-                System.out.println(ice.getMessage()); }
+                this.console.println(ice.getMessage()); }
             
             //end of testing checkInventory function
         
@@ -205,21 +206,21 @@ public class GameMenuView extends View {
     
     //look function checks for the sandy soil that indicates lightning sand
     private void look() {
-        System.out.println("*** look() function called");
+        this.console.println("*** look() function called");
     }
 
     //listen functiono checks for popping sound that precedes a flame spurt
     private void listen() {
-        System.out.println("*** listen() function called");
+        this.console.println("*** listen() function called");
     }
 
     //smell function checks for the wet dog smell of a ROUS
     private void smell() {
-       System.out.println("*** smell() function called");
+       this.console.println("*** smell() function called");
     }
 
     private void takeItem() {
-       System.out.println("*** takeItem() function called");
+       this.console.println("*** takeItem() function called");
     }
 
     private void moveNorth() {
@@ -228,7 +229,7 @@ public class GameMenuView extends View {
         try {
             MapControl.movePlayerDirection(player, Direction.NORTH);
         } catch (MapControlException me) {
-            System.out.println(me.getMessage());
+            this.console.println(me.getMessage());
         }
         
         
@@ -240,7 +241,7 @@ public class GameMenuView extends View {
         try {
             MapControl.movePlayerDirection(player, Direction.EAST);
         } catch (MapControlException me) {
-            System.out.println(me.getMessage());
+            this.console.println(me.getMessage());
         }
     }
 
@@ -250,7 +251,7 @@ public class GameMenuView extends View {
         try {
             MapControl.movePlayerDirection(player, Direction.WEST);
         } catch (MapControlException me) {
-            System.out.println(me.getMessage());
+            this.console.println(me.getMessage());
         }
     }
 
@@ -260,12 +261,12 @@ public class GameMenuView extends View {
         try {
             MapControl.movePlayerDirection(player, Direction.SOUTH);
         } catch (MapControlException me) {
-            System.out.println(me.getMessage());
+            this.console.println(me.getMessage());
         }
     }
 
     private void saveGame() {
-        System.out.println("*** saveGame() function called");
+        this.console.println("*** saveGame() function called");
     }
 
     private void callHelpMenu() {
@@ -273,12 +274,12 @@ public class GameMenuView extends View {
         try {
             helpMenu.display();
         } catch (GameControlException gce) {
-            System.out.println(gce.getMessage());
+            this.console.println(gce.getMessage());
         }
     }
 
     private void goBack() {
-        System.out.println("*** goBack() function called");
+        this.console.println("*** goBack() function called");
     }
 
     private void callWinGameView() {

@@ -1,7 +1,12 @@
 package byui.cit260.fireSwamp.view;
 
 import byui.cit260.fireSwamp.exceptions.GameControlException;
-import java.util.Scanner;
+import fireswamp.FireSwamp;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -10,14 +15,17 @@ import java.util.Scanner;
 
 public abstract class View implements ViewInterface {
  
-    protected String displayMessage;
+    protected String message;
+    
+    protected final BufferedReader keyboard = FireSwamp.getInFile();
+    protected final PrintWriter console = FireSwamp.getOutFile();
     
     public View() {
         
     }
     
     public View(String message) {
-        this.displayMessage = message;
+        this.message = message;
     }
     
     @Override
@@ -34,7 +42,7 @@ public abstract class View implements ViewInterface {
             try {
                 done = this.doAction(value);
             } catch (GameControlException gce) {
-                System.out.println(gce.getMessage());
+                ErrorView.display(this.getClass().getName(), gce.getMessage());
             }
 
         } while (!done);  //exit the view when done == true
@@ -44,29 +52,32 @@ public abstract class View implements ViewInterface {
     @Override
     public String getInput() {
         
-        Scanner keyboard = new Scanner(System.in);
-        String value = null;
+        
+        String input = null;
         boolean valid = false;
         
-        //while a valid input has not been retrieved
         while (!valid) {
             
-            //prompt for player input
-            System.out.print("\n" + this.displayMessage);
-           
-            //get the value entered from the keyboard
-            value = keyboard.nextLine();
-            value = value.trim();
-            
-            if (value.length() < 1) { //blank value entered
-                System.out.println("\nInvalid value: value can not be blank");
-                continue;
+            try {
+                //prompt for player input
+                this.console.println(this.message);
+                
+                input = this.keyboard.readLine();
+                input = input.trim();
+                
+                if (input.length() < 1) {
+                    this.console.println("\nInvalid value: value can not be blank");
+                }
+                
+                
+                
+                break;
+            } catch (IOException ex) {
+                Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            break;
         }
              
-        return value;  //return the input
+        return input;
     }
     
 }

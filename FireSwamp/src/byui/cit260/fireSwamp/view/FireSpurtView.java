@@ -2,13 +2,14 @@ package byui.cit260.fireSwamp.view;
 
 import byui.cit260.fireSwamp.controller.DangerControl;
 import byui.cit260.fireSwamp.controller.InventoryControl;
+import byui.cit260.fireSwamp.enums.ItemType;
 import byui.cit260.fireSwamp.exceptions.DangerControlException;
 import byui.cit260.fireSwamp.exceptions.GameControlException;
 import byui.cit260.fireSwamp.exceptions.InventoryControlException;
 import byui.cit260.fireSwamp.model.Item;
 import fireswamp.FireSwamp;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,14 +42,13 @@ public class FireSpurtView extends View {
     
     @Override
     public void display() {
-        //Display problem        
-        System.out.println("\n** To avoid your demise, answer this math problem:"
-                        +  "\n****************************************************");
-        
-        System.out.println("\n>>   What is the volume of a Pyramid of"
-                         + "\n>>   " + pyramidLength + " feet long,"
-                         + "\n>>   " + pyramidWidth + " feet wide, and"
-                         + "\n>>   " + pyramidHeight + " feet tall ?");
+        //Display the problem to be solved
+        this.console.println("\n** To avoid your demise, answer this math problem:"
+                           + "\n****************************************************"
+                           + "\n>>   What is the volume of a Pyramid of"
+                           + "\n>>   " + pyramidLength + " feet long,"
+                           + "\n>>   " + pyramidWidth + " feet wide, and"
+                           + "\n>>   " + pyramidHeight + " feet tall ?");
         
         //Collect input
         String input = getInput();
@@ -58,16 +58,16 @@ public class FireSpurtView extends View {
         
         //Display results
         if (isCorrect) {
-            System.out.println("You made it across");
+            this.console.println("You made it across");
         } else {
             //Check for bucket of water (itemType 2) 
             InventoryControl inControl = new InventoryControl();
             try {
                 ArrayList<Item> inventory = FireSwamp.getPlayer().getPlayerInventory();
-                inControl.checkInventory(inventory, 2);
+                inControl.checkInventory(inventory, ItemType.BUCKET);
             } catch (InventoryControlException ice) {
-                System.out.println(ice.getMessage());
-                System.out.println("Alas, that's incorrect, and you have no bucket "
+                ErrorView.display(this.getClass().getName(), ice.getMessage());
+                this.console.println("Alas, that's incorrect, and you have no bucket "
                              + " of water to cover the flames who roast you.");
                 LoseMenuView loseView = new LoseMenuView();
                 try {
@@ -88,21 +88,28 @@ public class FireSpurtView extends View {
 
     @Override
     public String getInput() {
-        Scanner in = new Scanner(System.in);  //get infile for keyboard
-        String input = " ";  //value to be returned
-        boolean validInput = false; //initialize to not valid
+                
+        String input = null;  //value to be returned
+        boolean valid = false; //initialize to not valid
         
-        while (!validInput) {
-            input = in.nextLine();
-            input = input.trim();
-            input = input.toUpperCase();
+        while (!valid) {
+            try {
+                input = this.keyboard.readLine();
+                input = input.trim();
+                input = input.toUpperCase();
+            
+            } catch (IOException ex) {
+                Logger.getLogger(FireSpurtView.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
             try {
                 Double.parseDouble(input);
             } catch (NumberFormatException nf) {
-                System.out.println ("\nPlease enter a valid number.");
-                return " ";
+                this.console.println ("\nPlease enter a valid number.");
+                return null;
             }
+            
+            valid = true;
         }
         
         return input;
@@ -117,7 +124,8 @@ public class FireSpurtView extends View {
            double correctAnswer = newDanger.calcFireSpurtAnswer(pyramidLength, pyramidWidth, pyramidHeight); 
            return (Math.abs(userAnswer - correctAnswer) < 0.01);
        } catch (DangerControlException de) {
-          System.out.println(de.getMessage());
+          ErrorView.display(this.getClass().getName(),
+                            de.getMessage());
           return false;
        }    
     }
@@ -154,8 +162,4 @@ public class FireSpurtView extends View {
         this.volumeGuessed = volumeGuessed;
     }
     
-  
-
-   
-
 }

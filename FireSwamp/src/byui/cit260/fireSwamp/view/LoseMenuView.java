@@ -34,7 +34,7 @@ public class LoseMenuView extends View {
         } else if (choice.compareTo("X") == 0) {
             this.exitGame();
         } else {
-            System.out.println("\n*** Invalid selection *** Try again");
+            this.console.println("\n*** Invalid selection *** Try again");
         }           
         
         return false;

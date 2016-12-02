@@ -4,6 +4,7 @@
  ***************************************************/
 package byui.cit260.fireSwamp.model;
 
+import byui.cit260.fireSwamp.enums.ItemType;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -13,7 +14,7 @@ import java.util.Objects;
  */
 public class Item implements Serializable{
     
-    private int itemType;
+    private ItemType itemType;
     private String itemName;
     private String itemDescription;
 
@@ -21,11 +22,11 @@ public class Item implements Serializable{
     public Item() {
     }
     
-    public int getItemType() {
+    public ItemType getItemType() {
         return itemType;
     }
 
-    public void setItemType(int itemType) {
+    public void setItemType(ItemType itemType) {
         this.itemType = itemType;
     }
 
@@ -48,9 +49,9 @@ public class Item implements Serializable{
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 89 * hash + this.itemType;
-        hash = 89 * hash + Objects.hashCode(this.itemName);
-        hash = 89 * hash + Objects.hashCode(this.itemDescription);
+        hash = 17 * hash + Objects.hashCode(this.itemType);
+        hash = 17 * hash + Objects.hashCode(this.itemName);
+        hash = 17 * hash + Objects.hashCode(this.itemDescription);
         return hash;
     }
 
@@ -82,7 +83,5 @@ public class Item implements Serializable{
     public String toString() {
         return "Item{" + "itemType=" + itemType + ", itemName=" + itemName + ", itemDescription=" + itemDescription + '}';
     }
-    
-    
     
 }

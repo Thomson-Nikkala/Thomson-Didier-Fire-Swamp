@@ -53,7 +53,7 @@ public class StartProgramView extends View {
 
     private void displayNextView(Player player) {
 
-        System.out.println(
+        this.console.println(
             "\n==============================================="
             + "\n     Welcome to the game " + player.getPlayerName()
             + "\n     We hope you have a lot of fun!"

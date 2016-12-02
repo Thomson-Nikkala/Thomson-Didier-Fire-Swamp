@@ -9,6 +9,7 @@ package byui.cit260.fireSwamp.controller;
  * @authors Didier Jourdain and Nikkala Thomson
  */
 
+import byui.cit260.fireSwamp.enums.ItemType;
 import byui.cit260.fireSwamp.exceptions.InventoryControlException;
 import byui.cit260.fireSwamp.model.Item;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class InventoryControl {
     * checks if the desired item is present in the inventory
     * if it is present, it returns the position of the item in the list (index)
     **********************************************/
-    public int checkInventory(ArrayList<Item> inventory, int itemType) throws InventoryControlException {
+    public int checkInventory(ArrayList<Item> inventory, ItemType itemType) throws InventoryControlException {
 
         //for each loop
         for (Item item : inventory) {
