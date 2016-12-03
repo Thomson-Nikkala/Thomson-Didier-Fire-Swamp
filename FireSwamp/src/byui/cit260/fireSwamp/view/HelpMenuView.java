@@ -5,7 +5,6 @@
 package byui.cit260.fireSwamp.view;
 
 import byui.cit260.fireSwamp.exceptions.GameControlException;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -48,7 +47,7 @@ public class HelpMenuView extends View {
                 this.displayHelpDangers();
                 break;
             default:
-                System.out.println("\n*** Invalid selection *** Try again");
+                ErrorView.display(this.getClass().getName(), "\n*** Invalid selection *** Try again");
                 break;
         }
         
@@ -56,7 +55,7 @@ public class HelpMenuView extends View {
     }
 
     private void displayHelpMovement() {
-        System.out.println("\n*** displayHelpMovement() function called ***");
+        this.console.println("\n*** displayHelpMovement() function called ***");
     }
 
     private void displayHelpInventory() {
@@ -69,15 +68,15 @@ public class HelpMenuView extends View {
     }
 
     private void displayHelpClues() {
-        System.out.println("\n*** displayHelpClues() function called ***");
+        this.console.println("\n*** displayHelpClues() function called ***");
     }
 
     private void displayHelpDangers() {
-        System.out.println("\n*** displayHelpDangers() function called ***");
+        this.console.println("\n*** displayHelpDangers() function called ***");
     }
 
     private void goBack() {
-        System.out.println("\n*** goBack() function called ***");
+        this.console.println("\n*** goBack() function called ***");
     }
     
 }

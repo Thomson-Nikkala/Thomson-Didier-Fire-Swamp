@@ -80,7 +80,7 @@ public class FireSwamp {
             FireSwamp.inFile =
                     new BufferedReader(new InputStreamReader(System.in));
             FireSwamp.outFile =
-                    new PrintWriter(System.out, true);
+                    new PrintWriter(this.console, true);
             // open log file
             String filePath = "log.txt";
             FireSwamp.logFile = new PrintWriter(filePath);
@@ -92,7 +92,7 @@ public class FireSwamp {
         
         } catch (Throwable e) {
             
-            System.out.println("Exception: " + e.toString() +
+            this.console.println("Exception: " + e.toString() +
                                "\nCause: " + e.getCause() +
                                "\nMessage: " + e.getMessage());
         }        
@@ -109,7 +109,7 @@ public class FireSwamp {
 
                              
             } catch (IOException ex) {
-                System.out.print("Error closing files");
+                this.console.print("Error closing files");
             }
             
         }

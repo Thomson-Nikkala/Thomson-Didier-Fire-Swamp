@@ -44,7 +44,7 @@ public class MainMenuView extends View {
                 try {
                     this.startNewGame();
                 } catch (MapControlException me) {
-                    System.out.println("me.getMessage()");
+                    ErrorView.display(this.getClass().getName(), me.getMessage());
                 }
                 break;
             case "L":
@@ -54,7 +54,7 @@ public class MainMenuView extends View {
                 this.exitGame();
                 break;
             default:
-                System.out.println("\n*** Invalid selection *** Try again");
+                ErrorView.display(this.getClass().getName(), "\n*** Invalid selection *** Try again");
                 break;
         }
         
@@ -64,11 +64,11 @@ public class MainMenuView extends View {
 
 
     private void loadSavedGame() {
-        System.out.println("*** loadSavedGame() function called");
+        this.console.println("*** loadSavedGame() function called");
     }
 
     private void exitGame() {
-        System.out.println("Do you wish to save the game before exiting?  Y/N");
+        this.console.println("Do you wish to save the game before exiting?  Y/N");
         //More to come here
         System.exit(0);
     }

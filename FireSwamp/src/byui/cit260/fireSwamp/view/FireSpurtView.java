@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Didier Jourdain and Nikkala Thomson
+ * @authors Didier Jourdain and Nikkala Thomson
  */
 public class FireSpurtView extends View {
 
@@ -66,8 +66,7 @@ public class FireSpurtView extends View {
                 ArrayList<Item> inventory = FireSwamp.getPlayer().getPlayerInventory();
                 inControl.checkInventory(inventory, ItemType.BUCKET);
             } catch (InventoryControlException ice) {
-                ErrorView.display(this.getClass().getName(), ice.getMessage());
-                this.console.println("Alas, that's incorrect, and you have no bucket "
+                ErrorView.display(this.getClass().getName(),"Alas, that's incorrect, and you have no bucket "
                              + " of water to cover the flames who roast you.");
                 LoseMenuView loseView = new LoseMenuView();
                 try {
@@ -105,7 +104,7 @@ public class FireSpurtView extends View {
             try {
                 Double.parseDouble(input);
             } catch (NumberFormatException nf) {
-                this.console.println ("\nPlease enter a valid number.");
+                ErrorView.display(this.getClass().getName(), "\nPlease enter a valid number.");
                 return null;
             }
             

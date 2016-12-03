@@ -33,7 +33,7 @@ public class MapControl {
                 else {
                     playerLocation.setLocationRow(playerLocation.getLocationRow()- 1);
                     FireSwamp.getPlayer().setPlayerPosition(playerLocation);
-                    System.out.println("\n** " + FireSwamp.getPlayer().getPlayerName()
+                    this.console.println("\n** " + FireSwamp.getPlayer().getPlayerName()
                                      + " moved " + direction.toString());
                 }
                 break;
@@ -47,7 +47,7 @@ public class MapControl {
                 else {
                     playerLocation.setLocationRow(playerLocation.getLocationRow()+ 1);
                     FireSwamp.getPlayer().setPlayerPosition(playerLocation);
-                    System.out.println("\n** " + FireSwamp.getPlayer().getPlayerName()
+                    this.console.println("\n** " + FireSwamp.getPlayer().getPlayerName()
                                      + " moved " + direction.toString());
                 }
                 break;
@@ -61,7 +61,7 @@ public class MapControl {
                 else {
                     playerLocation.setLocationColumn(playerLocation.getLocationColumn() - 1);
                     FireSwamp.getPlayer().setPlayerPosition(playerLocation);
-                    System.out.println("\n** " + FireSwamp.getPlayer().getPlayerName()
+                    this.console.println("\n** " + FireSwamp.getPlayer().getPlayerName()
                                      + " moved " + direction.toString());
                 }
                 break;
@@ -75,7 +75,7 @@ public class MapControl {
                 else {
                     playerLocation.setLocationColumn(playerLocation.getLocationColumn() + 1);
                     FireSwamp.getPlayer().setPlayerPosition(playerLocation);
-                    System.out.println("\n** " + FireSwamp.getPlayer().getPlayerName()
+                    this.console.println("\n** " + FireSwamp.getPlayer().getPlayerName()
                                      + " moved " + direction.toString());
                 }
                 break;

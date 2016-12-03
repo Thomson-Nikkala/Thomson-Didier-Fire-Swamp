@@ -125,16 +125,16 @@ public class Map implements Serializable{
         int GrandTotalDangers = COLUMNS * ROWS - tally;
         difficultyLevel = (GrandTotalDangers * 100) / (COLUMNS * ROWS);
         
-        System.out.println("\nThe difficulty level for this game is evaluated at: "
+        this.console.println("\nThe difficulty level for this game is evaluated at: "
                             + difficultyLevel + "%");
         if (difficultyLevel < 30)
-            System.out.println("\nPiece of cake");
+            this.console.println("\nPiece of cake");
         else if (difficultyLevel < 50)
-            System.out.println("\nYou have your chance");
+            this.console.println("\nYou have your chance");
         else if (difficultyLevel < 70)
-            System.out.println("\nI hope you're good in math!");
+            this.console.println("\nI hope you're good in math!");
         else
-            System.out.println("\nYou better be good in math, or bring someone who is.");
+            this.console.println("\nYou better be good in math, or bring someone who is.");
     }
 
     //getters and setters

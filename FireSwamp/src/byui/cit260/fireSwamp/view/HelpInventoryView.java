@@ -48,7 +48,7 @@ class HelpInventoryView extends View {
                 break;
          
             default:
-                System.out.println("\n*** Invalid selection *** Try again");
+                ErrorView.display(this.getClass().getName(), "\n*** Invalid selection *** Try again");
                 break;
         }
         
@@ -56,27 +56,27 @@ class HelpInventoryView extends View {
     }
 
     private void displayRope() {
-        System.out.println("*** displayRope() function called ***");
+        this.console.println("*** displayRope() function called ***");
     }
 
     private void displayLook() {
-        System.out.println("*** displayLook() function called ***");
+        this.console.println("*** displayLook() function called ***");
     }
 
     private void displayHealingPotion() {
-        System.out.println("*** displayHealingPotion() function called ***");
+        this.console.println("*** displayHealingPotion() function called ***");
     }
 
     private void displayBucketOfWater() {
-        System.out.println("*** displayBucketOfWater() function called ***");
+        this.console.println("*** displayBucketOfWater() function called ***");
     }
 
     private void displayMap() {
-        System.out.println("*** displayMap() function called ***");
+        this.console.println("*** displayMap() function called ***");
     }
 
     private void goBack() {
-        System.out.println("*** goBack() function called ***");
+        this.console.println("*** goBack() function called ***");
     }
     
 }
