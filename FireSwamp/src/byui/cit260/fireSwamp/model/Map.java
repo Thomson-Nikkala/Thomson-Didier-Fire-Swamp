@@ -25,9 +25,7 @@ public class Map implements Serializable{
     public Map() {
     }
     
-    public void init() {
-        
-        
+    public void init() {  
         
         Random rand = new Random();
         for (int row = 0; row < ROWS; row++) {
@@ -50,9 +48,6 @@ public class Map implements Serializable{
                 location.setLocationColumn(col);
                 location.setLocationRow(row);
                 location.setLocationVisited(false);
-                
-                
-                
                 location.setLocationType(DangerType.values()[randLocation]);
                 
                 matrix[row][col] = location;
