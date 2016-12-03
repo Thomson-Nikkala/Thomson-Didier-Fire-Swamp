@@ -39,7 +39,6 @@ public class GameMenuView extends View {
                  +  "\n* E - move East                                      *"
                  +  "\n* W - move West                                      *"
                  +  "\n* S - move South                                     *"
-                 +  "\n* G - save Game                                      *"
                  +  "\n* H - Help                                           *"
                  +  "\n* B - Back                                           *"
                  +  "\n* P - Win Game (for testing purposes)                *"
@@ -79,9 +78,6 @@ public class GameMenuView extends View {
                 break;
             case "S":
                 this.moveSouth();
-                break;
-            case "G":
-                this.saveGame();
                 break;
             case "H":
                 this.callHelpMenu();
@@ -263,10 +259,6 @@ public class GameMenuView extends View {
         } catch (MapControlException me) {
             this.console.println(me.getMessage());
         }
-    }
-
-    private void saveGame() {
-        this.console.println("*** saveGame() function called");
     }
 
     private void callHelpMenu() {

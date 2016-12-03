@@ -5,13 +5,17 @@
 package byui.cit260.fireSwamp.controller;
 
 import byui.cit260.fireSwamp.enums.ItemType;
-import static byui.cit260.fireSwamp.enums.ItemType.ROPE;
+import byui.cit260.fireSwamp.exceptions.GameControlException;
 import byui.cit260.fireSwamp.model.Game;
 import byui.cit260.fireSwamp.model.Item;
 import byui.cit260.fireSwamp.model.Location;
 import byui.cit260.fireSwamp.model.Map;
 import byui.cit260.fireSwamp.model.Player;
 import fireswamp.FireSwamp;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -20,6 +24,20 @@ import java.util.Random;
  * @authors Didier Jourdain and Nikkala Thomson
  */
 public class GameControl {
+
+    public static void getSavedGame(String filePath) throws GameControlException {
+        Game game = null;
+        
+        try ( FileInputStream fips = new FileInputStream(filePath)) {
+            ObjectInputStream input = new ObjectInputStream(fips);
+            
+            game = (Game) input.readObject();  //read the game object from the file
+        } catch(Exception e) {
+            throw new GameControlException(e.getMessage());
+        }
+        
+        FireSwamp.setCurrentGame(game);  //save in FireSwamp
+    }
     
     public void createNewGame(Player player) {
         
@@ -125,4 +143,18 @@ public class GameControl {
       
         return player;
     }    
-}
+    
+    public static void saveGame(Game game, String filepath) throws GameControlException {
+        
+        try(FileOutputStream fops = new FileOutputStream(filepath)) {
+            ObjectOutputStream output = new ObjectOutputStream(fops);
+            
+            output.writeObject(game); //write the game object out to file
+        }
+        
+        catch(Exception e) {
+            throw new GameControlException(e.getMessage());
+        }
+        
+    }
+}   

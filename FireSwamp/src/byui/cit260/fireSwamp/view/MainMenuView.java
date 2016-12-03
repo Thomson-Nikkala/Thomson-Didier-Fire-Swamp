@@ -29,6 +29,7 @@ public class MainMenuView extends View {
                   + "\n------------------------------------------------------"
                   + "\nN - Start new game"
                   + "\nL - Load saved game"
+                  + "\nS - Save game"
                   + "\nX - eXit game"
                   + "\n------------------------------------------------------"
                   + "\n\nEnter command: ");
@@ -40,17 +41,20 @@ public class MainMenuView extends View {
         value = value.toUpperCase();
         
         switch (value) {
-            case "N":
+            case "N":  // Start new game
                 try {
                     this.startNewGame();
                 } catch (MapControlException me) {
                     ErrorView.display(this.getClass().getName(), me.getMessage());
                 }
                 break;
-            case "L":
+            case "L":  // Load saved game
                 this.loadSavedGame();
                 break;
-            case "X":
+            case "S":  // save Game
+                this.saveGame();
+                break;
+            case "X":  // exit Game
                 this.exitGame();
                 break;
             default:
@@ -64,7 +68,17 @@ public class MainMenuView extends View {
 
 
     private void loadSavedGame() {
-        this.console.println("*** loadSavedGame() function called");
+        // prompt for and get the name of the file to be saved
+        this.console.println("\n\nEnter the file path for the saved game (including the saved game name)");
+        
+        String filePath = this.getInput();
+        
+        try {
+            //get the saved game
+            GameControl.getSavedGame(filePath);
+        } catch (Exception ex) {
+            ErrorView.display("MainMenuView", ex.getMessage());
+        }
     }
 
     private void exitGame() {
@@ -85,6 +99,20 @@ public class MainMenuView extends View {
             gameMenu.display();
         } catch (GameControlException ex) {
             Logger.getLogger(MainMenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void saveGame() {
+        //prompt for and get the name of the file path for saving
+        this.console.println("\n\nEnter the file path for the file where the game is to be saved");
+        String filePath = this.getInput();
+        
+        try {
+            //save the game to the specified file
+            GameControl.saveGame(FireSwamp.getCurrentGame(), filePath);
+            
+        } catch (Exception ex) {
+            ErrorView.display("MainMenuView", ex.getMessage());
         }
     }
     
