@@ -25,25 +25,14 @@ public class Map implements Serializable{
     public Map() {
     }
     
-    public void init() {  
-        
+    public void init() {  //initialize matrix with rows, columns, and location type
+ 
+                
         Random rand = new Random();
         for (int row = 0; row < ROWS; row++) {
             for (int col = 0; col < COLUMNS; col++) {
-                int randLocation = rand.nextInt(DangerType.values().length);
-                
-                if (randLocation == 1) {
-                    // create a flamespurt challenge
-                }
-                
-                if (randLocation == 2) {
-                    // create a ROUS challenge
-                }
-                
-                if (randLocation == 3) {
-                    // create a lightningsand challenge
-                }
-                
+                int randLocation = rand.nextInt(DangerType.values().length);  //create new random integer between 0 and the number of danger types minus one
+              
                 Location location = new Location();
                 location.setLocationColumn(col);
                 location.setLocationRow(row);
@@ -119,7 +108,7 @@ public class Map implements Serializable{
         
         int GrandTotalDangers = COLUMNS * ROWS - tally;
         difficultyLevel = (GrandTotalDangers * 100) / (COLUMNS * ROWS);
-        
+     /* Need to transfer this section to a view layer   
         this.console.println("\nThe difficulty level for this game is evaluated at: "
                             + difficultyLevel + "%");
         if (difficultyLevel < 30)
@@ -130,6 +119,7 @@ public class Map implements Serializable{
             this.console.println("\nI hope you're good in math!");
         else
             this.console.println("\nYou better be good in math, or bring someone who is.");
+     */
     }
 
     //getters and setters
