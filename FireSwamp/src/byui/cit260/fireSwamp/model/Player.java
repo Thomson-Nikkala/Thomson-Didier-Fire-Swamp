@@ -67,12 +67,12 @@ public class Player implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.playerName);
-        hash = 23 * hash + this.playerGender;
-        hash = 23 * hash + Objects.hashCode(this.playerInventory);
-        hash = 23 * hash + Objects.hashCode(this.playerPosition);
-        hash = 23 * hash + Objects.hashCode(this.playerIsAlive);
+        int hash = 5;
+        hash = 47 * hash + Objects.hashCode(this.playerName);
+        hash = 47 * hash + this.playerGender;
+        hash = 47 * hash + Objects.hashCode(this.playerInventory);
+        hash = 47 * hash + Objects.hashCode(this.playerPosition);
+        hash = 47 * hash + (this.playerIsAlive ? 1 : 0);
         return hash;
     }
 
@@ -91,6 +91,9 @@ public class Player implements Serializable{
         if (this.playerGender != other.playerGender) {
             return false;
         }
+        if (this.playerIsAlive != other.playerIsAlive) {
+            return false;
+        }
         if (!Objects.equals(this.playerName, other.playerName)) {
             return false;
         }
@@ -100,22 +103,15 @@ public class Player implements Serializable{
         if (!Objects.equals(this.playerPosition, other.playerPosition)) {
             return false;
         }
-        if (!Objects.equals(this.playerIsAlive, other.playerIsAlive)) {
-            return false;
-        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Player{" + "playerName=" + playerName + ", playerGender=" + playerGender + ", playerInventory=" + playerInventory + ", playerPosition=" + playerPosition + ", playerIsAlive=" + playerIsAlive + '}';
+        return "Player{" + "playerName=" + playerName
+                         + ", playerGender=" + playerGender
+                         + ", playerInventory=" + playerInventory
+                         + ", playerPosition=" + playerPosition
+                         + ", playerIsAlive=" + playerIsAlive + '}';
     }
-
-    
-
-    
-    
-    
-    
-
 }

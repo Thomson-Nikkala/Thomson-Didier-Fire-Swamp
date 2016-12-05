@@ -81,7 +81,9 @@ public class Item implements Serializable{
 
     @Override
     public String toString() {
-        return "Item{" + "itemType=" + itemType + ", itemName=" + itemName + ", itemDescription=" + itemDescription + '}';
+        return "Item{" + "itemType=" + itemType
+                       + ", itemName=" + itemName
+                       + ", itemDescription=" + itemDescription + '}';
     }
     
 }

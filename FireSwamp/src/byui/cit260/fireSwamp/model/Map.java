@@ -6,8 +6,7 @@ package byui.cit260.fireSwamp.model;
 
 import byui.cit260.fireSwamp.enums.DangerType;
 import java.io.Serializable;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 
 /**
  *
@@ -143,21 +142,21 @@ public class Map implements Serializable{
     public void setMapExit(Location mapExit) {
         this.mapExit = mapExit;
     }
-    
-    //hashCode()
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.mapEntrance);
-        hash = 97 * hash + Objects.hashCode(this.mapExit);
+        int hash = 3;
+        hash = 31 * hash + Arrays.deepHashCode(this.matrix);
+        hash = 31 * hash + Objects.hashCode(this.mapEntrance);
+        hash = 31 * hash + Objects.hashCode(this.mapExit);
         return hash;
     }
- 
-    //equals()
 
     @Override
     public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
         if (obj == null) {
             return false;
         }
@@ -165,6 +164,9 @@ public class Map implements Serializable{
             return false;
         }
         final Map other = (Map) obj;
+        if (!Arrays.deepEquals(this.matrix, other.matrix)) {
+            return false;
+        }
         if (!Objects.equals(this.mapEntrance, other.mapEntrance)) {
             return false;
         }
@@ -173,12 +175,12 @@ public class Map implements Serializable{
         }
         return true;
     }
-    
-    //toString()
 
     @Override
     public String toString() {
-        return "Map{" + ", mapEntrance=" + mapEntrance + ", mapExit=" + mapExit + '}';
+        return "Map{" + "matrix=" + matrix
+                      + ", mapEntrance=" + mapEntrance
+                      + ", mapExit=" + mapExit + '}';
     }
-       
+    
 }
