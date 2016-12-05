@@ -92,6 +92,7 @@ public class MainMenuView extends View {
         }
         
         FireSwamp.setCurrentGame(game);
+        FireSwamp.setPlayer(FireSwamp.getCurrentGame().getGamePlayer());
         GameMenuView gameMenu = new GameMenuView();
         try {
             gameMenu.display();
