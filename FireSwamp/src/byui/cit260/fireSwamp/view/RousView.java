@@ -1,8 +1,7 @@
-/***************************************************
+/** *************************************************
  * RousView Class                         *
  *                                                 *
- ***************************************************/
-
+ ************************************************** */
 package byui.cit260.fireSwamp.view;
 
 import byui.cit260.fireSwamp.controller.DangerControl;
@@ -15,43 +14,39 @@ import byui.cit260.fireSwamp.model.Item;
 import fireswamp.FireSwamp;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 
 /**
  *
  * @author Nikkala
  */
-
 public class RousView extends View {
-    
+
     private double length;
-    
+
     @Override
     public void display() {
-        
+
         //Randomize lenth
-        length = Math.random()*12 + 3;  //ROUS length will be [3..15) feet
-       
+        length = Math.random() * 12 + 3;  //ROUS length will be [3..15) feet
+
         //Display problem
-        
         this.console.println(" A rodent of Unusual Size challenges you."
-        + "\n To avoid being bitten by the beast, you must jump over it."
-        + "\n The ROUS is "); 
+            + "\n To avoid being bitten by the beast, you must jump over it."
+            + "\n The ROUS is ");
         this.console.printf("%.2f", length);
         this.console.printf(" feet long. It is common knowledge that "
-        + "\n Rodents of Unusual Size are half as tall as they are long. "
-        + "\n How high will you need to jump to clear the rodent by "
-        + "\n half a foot?");
-                
+            + "\n Rodents of Unusual Size are half as tall as they are long. "
+            + "\n How high will you need to jump to clear the rodent by "
+            + "\n half a foot?");
+
         //Collect input
         String input = getInput();
-        
+
         //Validate input
         boolean isCorrect = doAction(input);
-        
+
         //Display results
         if (isCorrect) {
             this.console.println("You successfully jump over the ROUS.");
@@ -71,7 +66,7 @@ public class RousView extends View {
                     Logger.getLogger(RousView.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            
+
             System.err.println("Alas, that's incorrect, and you have no healing potion. You are bitten by the ROUS and perish.");
             LoseMenuView loseView = new LoseMenuView();
             try {
@@ -79,15 +74,15 @@ public class RousView extends View {
             } catch (GameControlException ex) {
                 Logger.getLogger(RousView.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }  
+        }
     }
-    
+
     @Override
     public String getInput() {
-        
+
         String input = " ";
         boolean valid = false; //initialize to not valid
-        
+
         while (!valid) {
             try {
                 input = this.keyboard.readLine();
@@ -96,19 +91,18 @@ public class RousView extends View {
             } catch (IOException ex) {
                 Logger.getLogger(RousView.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-             try {
+
+            try {
                 Double.parseDouble(input);
                 valid = true;
-                
+
             } catch (NumberFormatException nfe) {
                 ErrorView.display(this.getClass().getName(), "Please enter a valid number.");
-            }  
+            }
         }
-        return input;          
+        return input;
     }
-    
-    
+
     @Override
     public boolean doAction(String value) {
         double userAnswer = Double.parseDouble(value);
@@ -116,12 +110,11 @@ public class RousView extends View {
         try {
             double correctAnswer = newDanger.calcRousAnswer(length);
             return (Math.abs(userAnswer - correctAnswer) < 0.01);
+        } catch (DangerControlException de) {
+            ErrorView.display(this.getClass().getName(), de.getMessage());
+            return false;
         }
-        catch (DangerControlException de) {
-          ErrorView.display(this.getClass().getName(), de.getMessage());
-          return false;
-       }    
-        
+
     }
 
 }

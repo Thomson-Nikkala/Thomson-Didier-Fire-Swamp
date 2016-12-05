@@ -1,9 +1,8 @@
-/***************************************************
+/** *************************************************
  * MainMenuView Class                              *
  *                                                 *
- ***************************************************/
+ ************************************************** */
 package byui.cit260.fireSwamp.view;
-
 
 import byui.cit260.fireSwamp.controller.GameControl;
 import byui.cit260.fireSwamp.exceptions.GameControlException;
@@ -25,22 +24,22 @@ public class MainMenuView extends View {
     //Constructor
     public MainMenuView() {
         super("\n"
-                  + "\n------------------------------------------------------"
-                  + "\n| Main Menu                                          |"
-                  + "\n------------------------------------------------------"
-                  + "\nN - Start new game"
-                  + "\nL - Load saved game"
-                  + "\nS - Save game"
-                  + "\nX - eXit game"
-                  + "\n------------------------------------------------------"
-                  + "\n\nEnter command: ");
+            + "\n------------------------------------------------------"
+            + "\n| Main Menu                                          |"
+            + "\n------------------------------------------------------"
+            + "\nN - Start new game"
+            + "\nL - Load saved game"
+            + "\nS - Save game"
+            + "\nX - eXit game"
+            + "\n------------------------------------------------------"
+            + "\n\nEnter command: ");
     }
 
     @Override
     public boolean doAction(String value) {
-        
+
         value = value.toUpperCase();
-        
+
         switch (value) {
             case "N":  // Start new game
                 try {
@@ -49,16 +48,15 @@ public class MainMenuView extends View {
                     ErrorView.display(this.getClass().getName(), me.getMessage());
                 }
                 break;
-            case "L":  {
-            try {
-                // Load saved game
-                this.loadSavedGame();
+            case "L": {
+                try {
+                    // Load saved game
+                    this.loadSavedGame();
+                } catch (GameControlException ex) {
+                    Logger.getLogger(MainMenuView.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-            catch (GameControlException ex) {
-                Logger.getLogger(MainMenuView.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-                break;
+            break;
             case "S":  // save Game
                 this.saveGame();
                 break;
@@ -69,28 +67,26 @@ public class MainMenuView extends View {
                 ErrorView.display(this.getClass().getName(), "\n*** Invalid selection *** Try again");
                 break;
         }
-        
+
         return false;
     }
 
-
-
     private void loadSavedGame() throws GameControlException {
-        
+
         // prompt for and get the name of the file to be saved
         LoadGameView loadGameView = new LoadGameView();
         String filePath = loadGameView.getInput();
-        
+
         Game game = null;
-        
-        try( FileInputStream fips = new FileInputStream(filePath)) {
+
+        try (FileInputStream fips = new FileInputStream(filePath)) {
             ObjectInputStream input = new ObjectInputStream(fips);
-            
+
             game = (Game) input.readObject();
         } catch (Exception e) {
             throw new GameControlException(e.getMessage());
         }
-        
+
         FireSwamp.setCurrentGame(game);
         FireSwamp.setPlayer(FireSwamp.getCurrentGame().getGamePlayer());
         GameMenuView gameMenu = new GameMenuView();
@@ -99,8 +95,7 @@ public class MainMenuView extends View {
         } catch (GameControlException ex) {
             Logger.getLogger(MainMenuView.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
     }
 
     private void exitGame() {
@@ -128,14 +123,14 @@ public class MainMenuView extends View {
         //prompt for and get the name of the file path for saving
         SaveGameView saveGameView = new SaveGameView();
         String filePath = saveGameView.getInput();
-        
+
         try {
             //save the game to the specified file
             GameControl.saveGame(FireSwamp.getCurrentGame(), filePath);
-            
+
         } catch (GameControlException ex) {
             ErrorView.display("MainMenuView", ex.getMessage());
         }
     }
-    
+
 }

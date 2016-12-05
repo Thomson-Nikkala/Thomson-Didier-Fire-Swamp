@@ -1,12 +1,10 @@
-/***************************************************
+/** *************************************************
  * LoseMenuView Class                              *
  *                                                 *
- ***************************************************/
-
+ ************************************************** */
 package byui.cit260.fireSwamp.view;
 
 import byui.cit260.fireSwamp.exceptions.GameControlException;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,29 +12,28 @@ import java.util.logging.Logger;
  *
  * @author Nikkala Thomson
  */
-
 public class LoseMenuView extends View {
 
     public LoseMenuView() {
-      super("\n******************************************************"
-         +  "\n*  T - Try again                                     *"
-         +  "\n*  X - eXit game                                     *"
-         +  "\n******************************************************");
-   }
-  
+        super("\n******************************************************"
+            + "\n*  T - Try again                                     *"
+            + "\n*  X - eXit game                                     *"
+            + "\n******************************************************");
+    }
+
     @Override
     public boolean doAction(String choice) {
-        
+
         choice = choice.toUpperCase();
-        
-        if (choice.compareTo("T")==0) {
+
+        if (choice.compareTo("T") == 0) {
             this.tryAgain();
         } else if (choice.compareTo("X") == 0) {
             this.exitGame();
         } else {
             this.console.println("\n*** Invalid selection *** Try again");
-        }           
-        
+        }
+
         return false;
     }
 
@@ -53,7 +50,4 @@ public class LoseMenuView extends View {
         System.exit(0);
     }
 
-    
-} 
-   
-
+}

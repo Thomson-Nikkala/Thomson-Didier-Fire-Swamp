@@ -7,7 +7,6 @@ package byui.cit260.fireSwamp.view;
 import byui.cit260.fireSwamp.controller.GameControl;
 import byui.cit260.fireSwamp.exceptions.GameControlException;
 import byui.cit260.fireSwamp.model.Player;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,12 +30,12 @@ public class StartProgramView extends View {
             + "\n******************************************************"
             + "\n\nPlease enter your name: ");
     }
-    
+
     @Override
     public boolean doAction(String value) throws GameControlException {
 
         if (value.length() < 2) {
-            throw new GameControlException ("\nInvalid player name: "
+            throw new GameControlException("\nInvalid player name: "
                 + "The name must be greater than one character in length");
         }
 
