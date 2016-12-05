@@ -6,11 +6,13 @@ package byui.cit260.fireSwamp.view;
 
 
 import byui.cit260.fireSwamp.controller.GameControl;
-import byui.cit260.fireSwamp.controller.MapControl;
 import byui.cit260.fireSwamp.exceptions.GameControlException;
 import byui.cit260.fireSwamp.exceptions.MapControlException;
+import byui.cit260.fireSwamp.model.Game;
 import byui.cit260.fireSwamp.model.Location;
 import fireswamp.FireSwamp;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -47,8 +49,15 @@ public class MainMenuView extends View {
                     ErrorView.display(this.getClass().getName(), me.getMessage());
                 }
                 break;
-            case "L":  // Load saved game
+            case "L":  {
+            try {
+                // Load saved game
                 this.loadSavedGame();
+            }
+            catch (GameControlException ex) {
+                Logger.getLogger(MainMenuView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
                 break;
             case "S":  // save Game
                 this.saveGame();
@@ -66,18 +75,31 @@ public class MainMenuView extends View {
 
 
 
-    private void loadSavedGame() {
+    private void loadSavedGame() throws GameControlException {
+        
         // prompt for and get the name of the file to be saved
-        this.console.println("\n\nEnter the file path for the saved game (including the saved game name)");
+        LoadGameView loadGameView = new LoadGameView();
+        String filePath = loadGameView.getInput();
         
-        String filePath = this.getInput();
+        Game game = null;
         
-        try {
-            //get the saved game
-            GameControl.getSavedGame(filePath);
-        } catch (Exception ex) {
-            ErrorView.display("MainMenuView", ex.getMessage());
+        try( FileInputStream fips = new FileInputStream(filePath)) {
+            ObjectInputStream input = new ObjectInputStream(fips);
+            
+            game = (Game) input.readObject();
+        } catch (Exception e) {
+            throw new GameControlException(e.getMessage());
         }
+        
+        FireSwamp.setCurrentGame(game);
+        GameMenuView gameMenu = new GameMenuView();
+        try {
+            gameMenu.display();
+        } catch (GameControlException ex) {
+            Logger.getLogger(MainMenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }
 
     private void exitGame() {
@@ -103,14 +125,14 @@ public class MainMenuView extends View {
 
     private void saveGame() {
         //prompt for and get the name of the file path for saving
-        this.console.println("\n\nEnter the file path for the file where the game is to be saved");
-        String filePath = this.getInput();
+        SaveGameView saveGameView = new SaveGameView();
+        String filePath = saveGameView.getInput();
         
         try {
             //save the game to the specified file
             GameControl.saveGame(FireSwamp.getCurrentGame(), filePath);
             
-        } catch (Exception ex) {
+        } catch (GameControlException ex) {
             ErrorView.display("MainMenuView", ex.getMessage());
         }
     }

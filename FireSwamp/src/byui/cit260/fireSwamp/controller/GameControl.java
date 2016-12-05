@@ -12,12 +12,11 @@ import byui.cit260.fireSwamp.model.Location;
 import byui.cit260.fireSwamp.model.Map;
 import byui.cit260.fireSwamp.model.Player;
 import fireswamp.FireSwamp;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -26,13 +25,15 @@ import java.util.Random;
 public class GameControl {
 
     public static void getSavedGame(String filePath) throws GameControlException {
+        
+        
         Game game = null;
         
-        try ( FileInputStream fips = new FileInputStream(filePath)) {
-            ObjectInputStream input = new ObjectInputStream(fips);
+        try (FileInputStream fips = new FileInputStream(filePath)) {
             
-            game = (Game) input.readObject();  //read the game object from the file
-        } catch(Exception e) {
+            ObjectInputStream input = new ObjectInputStream(fips);
+            game = (Game) input.readObject(); 
+        } catch (Exception e) {
             throw new GameControlException(e.getMessage());
         }
         
