@@ -4,6 +4,7 @@
  ***************************************************/
 package byui.cit260.fireSwamp.model;
 
+import byui.cit260.fireSwamp.enums.DangerType;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -15,14 +16,11 @@ public class Danger implements Serializable{
     
     private String dangerName;
     private String dangerDescription;
-    private int dangerType;
+    private DangerType dangerType;
     
-    //constructor
-
+        
     public Danger() {
     }
-    
-    //getters and setters
 
     public String getDangerName() {
         return dangerName;
@@ -40,29 +38,28 @@ public class Danger implements Serializable{
         this.dangerDescription = dangerDescription;
     }
 
-    public int getDangerType() {
+    public DangerType getDangerType() {
         return dangerType;
     }
 
-    public void setDangerType(int dangerType) {
+    public void setDangerType(DangerType dangerType) {
         this.dangerType = dangerType;
     }
 
-    //hashCode()
-    
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.dangerName);
-        hash = 23 * hash + Objects.hashCode(this.dangerDescription);
-        hash = 23 * hash + this.dangerType;
+        hash = 37 * hash + Objects.hashCode(this.dangerName);
+        hash = 37 * hash + Objects.hashCode(this.dangerDescription);
+        hash = 37 * hash + Objects.hashCode(this.dangerType);
         return hash;
     }
 
-    //equals()
-    
     @Override
     public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
         if (obj == null) {
             return false;
         }
@@ -82,11 +79,10 @@ public class Danger implements Serializable{
         return true;
     }
 
-    //toString()
-    
     @Override
     public String toString() {
-        return "Danger{" + "dangerName=" + dangerName + ", dangerDescription=" + dangerDescription + ", dangerType=" + dangerType + '}';
-    }
-    
+        return "Danger{" + "dangerName=" + dangerName
+                         + ", dangerDescription=" + dangerDescription
+                         + ", dangerType=" + dangerType + '}';
+    }    
 }
