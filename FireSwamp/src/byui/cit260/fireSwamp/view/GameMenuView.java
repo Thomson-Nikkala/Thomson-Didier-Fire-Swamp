@@ -25,22 +25,22 @@ public class GameMenuView extends View {
 
     public GameMenuView() {
 
-        super(    "\n******************************************************"
-                + "\n* GAME MENU                                          *"
-                + "\n* V - View map                                       *"
-                + "\n* O - lOok                                           *"
-                + "\n* L - Listen                                         *"
-                + "\n* M - sMell                                          *"
-                + "\n* T - Take item                                      *"
-                + "\n* N - move North                                     *"
-                + "\n* E - move East                                      *"
-                + "\n* W - move West                                      *"
-                + "\n* S - move South                                     *"
-                + "\n* H - Help                                           *"
-                + "\n* B - Back                                           *"
-                + "\n* P - Win Game (for testing purposes)                *"
-                + "\n******************************************************"
-                + "\n\n Enter command: ");
+        super("\n******************************************************"
+            + "\n* GAME MENU                                          *"
+            + "\n* V - View map                                       *"
+            + "\n* O - lOok                                           *"
+            + "\n* L - Listen                                         *"
+            + "\n* M - sMell                                          *"
+            + "\n* T - Take item                                      *"
+            + "\n* N - move North                                     *"
+            + "\n* E - move East                                      *"
+            + "\n* W - move West                                      *"
+            + "\n* S - move South                                     *"
+            + "\n* H - Help                                           *"
+            + "\n* B - Back                                           *"
+            + "\n* P - Win Game (for testing purposes)                *"
+            + "\n******************************************************"
+            + "\n\n Enter command: ");
     }
 
     @Override
@@ -93,21 +93,20 @@ public class GameMenuView extends View {
     private void displayMap() {
 
         Map map = FireSwamp.getCurrentGame().getGameMap();
-        
+
         // Print map header
         for (int col = 0; col < Map.COLUMNS; col++) {
             int colIndex = col + 1;
             if (col == 0) {
                 this.console.print("   | " + colIndex + " |");
-            }
-            else {
+            } else {
                 this.console.printf(" " + colIndex + " |");
             }
-            
+
         }
         this.console.println();
         this.console.println("   +---+---+---+---+---|");
-        
+
         for (int row = 0; row < Map.ROWS; row++) {
             int rowIndex = row + 1;
             for (int col = 0; col < Map.COLUMNS; col++) {
@@ -118,15 +117,14 @@ public class GameMenuView extends View {
                 this.console.print(locationType);
                 if (map.getLocationAt(row, col).getItem() != null) {
                     this.console.print(map.getLocationAt(row, col).getItem().getItemName().charAt(0) + " |");
-                }
-                else {
+                } else {
                     this.console.print("  |");
                 }
-                
+
             }
             this.console.println();
             this.console.println("   +---+---+---+---+---|");
-            
+
         }
 
         Location playerLoc = FireSwamp.getPlayer().getPlayerPosition();
@@ -135,14 +133,14 @@ public class GameMenuView extends View {
         playerRowPos++;
         playerColPos++;
         this.console.println("\n** "
-                + FireSwamp.getPlayer().getPlayerName()
-                + " is at row " + playerRowPos
-                + " and at column " + playerColPos);
+            + FireSwamp.getPlayer().getPlayerName()
+            + " is at row " + playerRowPos
+            + " and at column " + playerColPos);
 
         map.mapStatistics();
 
         //this temporary section is for testing the checkInventory function
-        ArrayList<Item> inventory = new ArrayList();
+        ArrayList<Item> inventory = new ArrayList<Item>();
         InventoryControl inControl = new InventoryControl();
 
         Item rope = new Item();
@@ -160,8 +158,7 @@ public class GameMenuView extends View {
         try {
             int ropePositionInList = inControl.checkInventory(inventory, ItemType.ROPE);
             this.console.println("\n inventory position is " + ropePositionInList);
-        }
-        catch (InventoryControlException ice) {
+        } catch (InventoryControlException ice) {
             this.console.println(ice.getMessage());
         }
 
@@ -192,8 +189,7 @@ public class GameMenuView extends View {
         Player player = FireSwamp.getPlayer();
         try {
             MovementControl.movePlayerDirection(player, Direction.NORTH);
-        }
-        catch (MovementControlException me) {
+        } catch (MovementControlException me) {
             this.console.println(me.getMessage());
         }
 
@@ -204,8 +200,7 @@ public class GameMenuView extends View {
         Player player = FireSwamp.getPlayer();
         try {
             MovementControl.movePlayerDirection(player, Direction.EAST);
-        }
-        catch (MovementControlException me) {
+        } catch (MovementControlException me) {
             this.console.println(me.getMessage());
         }
     }
@@ -215,8 +210,7 @@ public class GameMenuView extends View {
         Player player = FireSwamp.getPlayer();
         try {
             MovementControl.movePlayerDirection(player, Direction.WEST);
-        }
-        catch (MovementControlException me) {
+        } catch (MovementControlException me) {
             this.console.println(me.getMessage());
         }
     }
@@ -226,8 +220,7 @@ public class GameMenuView extends View {
         Player player = FireSwamp.getPlayer();
         try {
             MovementControl.movePlayerDirection(player, Direction.SOUTH);
-        }
-        catch (MovementControlException me) {
+        } catch (MovementControlException me) {
             this.console.println(me.getMessage());
         }
     }
@@ -236,8 +229,7 @@ public class GameMenuView extends View {
         HelpMenuView helpMenu = new HelpMenuView();
         try {
             helpMenu.display();
-        }
-        catch (GameControlException gce) {
+        } catch (GameControlException gce) {
             this.console.println(gce.getMessage());
         }
     }
@@ -250,8 +242,7 @@ public class GameMenuView extends View {
         WinGameView winGame = new WinGameView();
         try {
             winGame.display();
-        }
-        catch (GameControlException ex) {
+        } catch (GameControlException ex) {
             Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

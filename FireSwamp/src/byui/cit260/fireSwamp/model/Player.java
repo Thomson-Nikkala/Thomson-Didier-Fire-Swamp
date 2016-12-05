@@ -1,7 +1,7 @@
-/***************************************************
+/** *************************************************
  * Player Class                                    *
  *                                                 *
- ***************************************************/
+ ************************************************** */
 package byui.cit260.fireSwamp.model;
 
 import java.io.Serializable;
@@ -12,12 +12,12 @@ import java.util.Objects;
  *
  * @authors Didier Jourdain and Nikkala Thomson
  */
-public class Player implements Serializable{
-    
+public class Player implements Serializable {
+
     // class instance variables
     private String playerName;
     private char playerGender;
-    private ArrayList<Item> playerInventory = new ArrayList();
+    private ArrayList<Item> playerInventory = new ArrayList<Item>();
     private Location playerPosition;
     private boolean playerIsAlive;
 
@@ -28,11 +28,11 @@ public class Player implements Serializable{
     public ArrayList<Item> getPlayerInventory() {
         return playerInventory;
     }
-    
+
     public void addPlayerInventory(Item item) {
         this.playerInventory.add(item);
     }
-    
+
     public String getPlayerName() {
         return playerName;
     }
@@ -48,7 +48,7 @@ public class Player implements Serializable{
     public void setPlayerGender(char playerGender) {
         this.playerGender = playerGender;
     }
-    
+
     public Location getPlayerPosition() {
         return playerPosition;
     }
@@ -109,9 +109,9 @@ public class Player implements Serializable{
     @Override
     public String toString() {
         return "Player{" + "playerName=" + playerName
-                         + ", playerGender=" + playerGender
-                         + ", playerInventory=" + playerInventory
-                         + ", playerPosition=" + playerPosition
-                         + ", playerIsAlive=" + playerIsAlive + '}';
+            + ", playerGender=" + playerGender
+            + ", playerInventory=" + playerInventory
+            + ", playerPosition=" + playerPosition
+            + ", playerIsAlive=" + playerIsAlive + '}';
     }
 }
