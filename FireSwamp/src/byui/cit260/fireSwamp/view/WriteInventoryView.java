@@ -6,6 +6,7 @@ import byui.cit260.fireSwamp.model.Item;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,7 +15,7 @@ import java.io.PrintWriter;
 
 class WriteInventoryView {
     
-    public static void writeInventory(Game game, String filepath) throws GameControlException {
+    public static void writeInventory(ArrayList<Item> itemList, String filepath) throws GameControlException {
         
        
         try (PrintWriter output = new PrintWriter(filepath))
@@ -23,9 +24,9 @@ class WriteInventoryView {
                 String header = "Your inventory contains:";
                 output.println(header);
                 
-                //for (Item item : game.gameItemList) {
-                //    output.println(item.itemName);
-                //}
+                for (Item item : itemList) {
+                    output.println(item.itemName);  //I had to make itemName public for this to work.  Why?
+                }
                 output.flush();
             }
         
