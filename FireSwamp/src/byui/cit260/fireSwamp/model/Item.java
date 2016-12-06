@@ -15,7 +15,7 @@ import java.util.Objects;
 public class Item implements Serializable{
     
     private ItemType itemType;
-    public String itemName;
+    private String itemName;
     private String itemDescription;
 
     // Default constructor

@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @author Nikkala
  */
 
-class WriteInventoryView {
+public class WriteInventoryView extends View {
     
     public static void writeInventory(ArrayList<Item> itemList, String filepath) throws GameControlException {
         
@@ -25,7 +25,7 @@ class WriteInventoryView {
                 output.println(header);
                 
                 for (Item item : itemList) {
-                    output.println(item.itemName);  //I had to make itemName public for this to work.  Why?
+                    output.println(item.getItemName());  
                 }
                 output.flush();
             }
@@ -35,5 +35,9 @@ class WriteInventoryView {
         }
         
     }
-    
+   
+    @Override
+    public boolean doAction(String value) {
+        return false;
+    }
 }
