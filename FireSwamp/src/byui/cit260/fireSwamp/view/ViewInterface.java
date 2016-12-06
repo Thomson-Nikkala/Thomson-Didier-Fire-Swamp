@@ -11,6 +11,13 @@ public interface ViewInterface {
     
     public void display() throws GameControlException;
     public String getInput();
+
+    /**
+     *
+     * @param value
+     * @return
+     * @throws GameControlException
+     */
     public boolean doAction(String value) throws GameControlException;
     
 } 

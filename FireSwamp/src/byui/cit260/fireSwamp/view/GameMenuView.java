@@ -32,6 +32,7 @@ public class GameMenuView extends View {
             + "\n* L - Listen                                         *"
             + "\n* M - sMell                                          *"
             + "\n* T - Take item                                      *"
+            + "\n* I - write Inventory to file (Nikkala week 12)      *"
             + "\n* N - move North                                     *"
             + "\n* E - move East                                      *"
             + "\n* W - move West                                      *"
@@ -63,6 +64,9 @@ public class GameMenuView extends View {
                 break;
             case "T":
                 this.takeItem();
+                break;
+            case "I":
+                this.writeInventory();
                 break;
             case "N":
                 this.moveNorth();
@@ -244,6 +248,19 @@ public class GameMenuView extends View {
             winGame.display();
         } catch (GameControlException ex) {
             Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void writeInventory() {  
+        
+        this.console.println("Enter the file path (including filename) for where the inventory list is to be saved:");
+        String filePath = this.getInput();
+        
+        try {
+            //save inventory list to specified file
+            WriteInventoryView.writeInventory(FireSwamp.getCurrentGame(), filePath);
+        } catch (GameControlException gce) {
+            ErrorView.display("GameMenuView", gce.getMessage());
         }
     }
 
