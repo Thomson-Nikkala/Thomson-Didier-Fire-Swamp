@@ -3,9 +3,7 @@ package byui.cit260.fireSwamp.view;
 import byui.cit260.fireSwamp.exceptions.GameControlException;
 import byui.cit260.fireSwamp.model.Game;
 import byui.cit260.fireSwamp.model.Item;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 /**
@@ -18,18 +16,23 @@ class WriteInventoryView {
     public static void writeInventory(Game game, String filepath) throws GameControlException {
         
         try( FileOutputStream fops = new FileOutputStream(filepath)) {
-            ObjectOutputStream output = new ObjectOutputStream(fops);
-            
+                        
             //write the inventory to the file
-            output.writeChars("Your inventory contains:");
-            for (Item item : game.gameItemList) {
-                output.writeChars("\n" + item.itemName);
-            }
-            
+            String header = "Your inventory contains:";
+            // get the header in bytes
+            byte[] headerInBytes = header.getBytes();
+            fops.write(headerInBytes);
+			
+            //for (Item item : game.gameItemList) {
+            //   output.writeChars("\n" + item.itemName);
+            //}
+            fops.flush();
+            fops.close();
         }
         catch(Exception e) {
             throw new GameControlException(e.getMessage());
         }
+        
     }
     
 }
