@@ -113,7 +113,7 @@ public class GameControl {
 
         Random rand = new Random();
 
-        for (Item item : items) {
+        items.forEach((item) -> {
             boolean placed = false;
             while (!placed) {
                 int randomRow = rand.nextInt(Map.ROWS);
@@ -125,7 +125,7 @@ public class GameControl {
                     placed = true;
                 }
             }
-        }
+        });
     }
 
     public static Player createPlayer(String name) {

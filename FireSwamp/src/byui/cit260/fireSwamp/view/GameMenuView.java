@@ -185,7 +185,30 @@ public class GameMenuView extends View {
     }
 
     private void takeItem() {
-        this.console.println("*** takeItem() function called");
+        Map map = FireSwamp.getCurrentGame().getGameMap();
+        Location location = FireSwamp.getPlayer().getPlayerPosition();
+        ArrayList<Item> inventory = FireSwamp.getPlayer().getPlayerInventory();
+        
+        boolean isItem = false;
+        
+        //check if there is an item at the current location 
+        try {  
+            isItem = MapControl.checkForItem(location);
+        //if not, print error message   
+        } catch (MapControlException mce) {
+            this.console.println(mce.getMessage());
+        }
+
+        //if there is, add a copy of that item to the inventory, then delete it from the location
+        if (isItem) {
+            try {
+                InventoryControl.addItemToInventory(location.getItem(), inventory);
+            } catch (InventoryControlException ex) {
+                this.console.println(ex.getMessage());
+            }
+           MapControl.deleteItemFromLocation(location);
+        }
+        
     }
 
     private void moveNorth() {
