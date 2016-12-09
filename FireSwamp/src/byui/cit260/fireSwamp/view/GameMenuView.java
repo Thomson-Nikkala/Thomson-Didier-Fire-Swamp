@@ -100,6 +100,7 @@ public class GameMenuView extends View {
         Map map = FireSwamp.getCurrentGame().getGameMap();
 
         // Print map header
+        this.console.println();
         for (int col = 0; col < Map.COLUMNS; col++) {
             int colIndex = col + 1;
             if (col == 0) {

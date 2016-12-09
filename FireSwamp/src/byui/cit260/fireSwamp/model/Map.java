@@ -41,6 +41,19 @@ public class Map implements Serializable{
                 matrix[row][col] = location;
             }
         }
+        
+        //initialize starting location (2,0) middle of leftmost row
+        //empty of dangers and visited
+        
+        Location startLocation = new Location();
+        startLocation.setLocationColumn(0);
+        startLocation.setLocationRow(2);
+        startLocation.setLocationVisited(true);
+        startLocation.setLocationType(DangerType.values()[0]);
+        matrix[2][0]=startLocation;
+        
+        //set exit
+        
     }
     
     

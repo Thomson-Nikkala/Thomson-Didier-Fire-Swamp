@@ -100,7 +100,7 @@ public class MainMenuView extends View {
 
     private void exitGame() {
         this.console.println("Do you wish to save the game before exiting?  Y/N");
-        //More to come here
+        this.saveGame();
         System.exit(0);
     }
 
@@ -108,8 +108,8 @@ public class MainMenuView extends View {
         GameControl gc = new GameControl();
         gc.createNewGame(FireSwamp.getPlayer());
         Location initPos = new Location();
-        initPos.setLocationColumn(0);
-        initPos.setLocationRow(3);
+        initPos.setLocationColumn(0);  //start in the middle of the left column
+        initPos.setLocationRow(2);
         FireSwamp.getPlayer().setPlayerPosition(initPos);
         GameMenuView gameMenu = new GameMenuView();
         try {
