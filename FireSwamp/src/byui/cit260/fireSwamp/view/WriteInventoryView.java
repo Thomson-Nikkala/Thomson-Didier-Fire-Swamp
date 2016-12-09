@@ -18,17 +18,17 @@ public class WriteInventoryView extends View {
         try (PrintWriter output = new PrintWriter(filepath))
             //write the inventory to the file
             {   
+                //write header
                 String header = "Your inventory contains:";
                 output.println(header);
                 //if itemList is not empty, write each item on a new line
                 if (itemList.isEmpty()) {
-                    
-                } else { 
+                    //do nothing
+                } else {   //write items
                     for (Item item: itemList) {                        
                         output.println(item.getItemName());
                     }                   
                 }   
-                 
                 output.flush();
             }
         

@@ -13,6 +13,7 @@ import byui.cit260.fireSwamp.model.Location;
 import byui.cit260.fireSwamp.model.Map;
 import byui.cit260.fireSwamp.model.Player;
 import fireswamp.FireSwamp;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -275,9 +276,30 @@ public class GameMenuView extends View {
     }
 
     private void writeInventory() {  
+        String filePath = null;
+        boolean valid = false;
         
         this.console.println("Enter the file path (including filename) for where the inventory list is to be saved:");
-        String filePath = this.getInput();
+        while (!valid) {            
+            try {
+                //prompt for player input
+
+                filePath = this.keyboard.readLine();
+                filePath = filePath.trim();
+
+                if (filePath.length() < 1) {
+                    this.console.println("\nInvalid value: value can not be blank");
+                }
+                else {
+                    valid = true;
+                }
+
+            }
+            catch (IOException ex) {
+                Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+      
         
         try {
             //save inventory list to specified file
