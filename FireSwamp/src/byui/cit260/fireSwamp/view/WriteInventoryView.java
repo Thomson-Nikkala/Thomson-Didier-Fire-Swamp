@@ -1,10 +1,7 @@
 package byui.cit260.fireSwamp.view;
 
 import byui.cit260.fireSwamp.exceptions.GameControlException;
-import byui.cit260.fireSwamp.model.Game;
 import byui.cit260.fireSwamp.model.Item;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -23,9 +20,12 @@ public class WriteInventoryView extends View {
             {
                 String header = "Your inventory contains:";
                 output.println(header);
-                
-                for (Item item : itemList) {
-                    output.println(item.getItemName());  
+                //if itemList is not empty, write each item on a new line
+                if (!(itemList.isEmpty())){
+                    itemList.forEach((item) -> {
+                        output.println(item.getItemName());
+                    });
+                    
                 }
                 output.flush();
             }
