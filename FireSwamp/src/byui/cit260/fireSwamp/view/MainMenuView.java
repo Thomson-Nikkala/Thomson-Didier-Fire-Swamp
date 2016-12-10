@@ -9,8 +9,7 @@ import byui.cit260.fireSwamp.exceptions.GameControlException;
 import byui.cit260.fireSwamp.exceptions.MapControlException;
 import byui.cit260.fireSwamp.model.*;
 import fireswamp.FireSwamp;
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -98,9 +97,20 @@ public class MainMenuView extends View {
     }
 
     private void exitGame() {
-        this.console.println("Do you wish to save the game before exiting?  Y/N");
-        this.saveGame();
-        System.exit(0);
+        try {
+            this.console.println("Do you wish to save the game before exiting?  Y/N");
+            String answer = null;
+            answer = this.keyboard.readLine();
+            answer.trim();
+            if ((answer.toUpperCase().charAt(0)) == 'Y') {
+                this.saveGame();
+            }
+            
+            System.exit(0);
+        }
+        catch (IOException ex) {
+            Logger.getLogger(MainMenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void startNewGame() throws MapControlException {

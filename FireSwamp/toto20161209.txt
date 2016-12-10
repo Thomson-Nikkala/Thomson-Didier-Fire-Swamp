@@ -1,0 +1,88 @@
+		Map Statistics Report
+		---------------------
+
+Dangers :
+---------
+
+	R.O.U.S in the swamp:         7
+	Flamespurts in the swamp:     6
+	Lightning Sands in the swamp: 2
+	R.O.U.S are located at:
+		row: 1 column: 3
+		row: 1 column: 4
+		row: 4 column: 1
+		row: 4 column: 2
+		row: 5 column: 1
+		row: 5 column: 2
+		row: 5 column: 4
+	Lightning Sands are located at:
+		row: 1 column: 5
+		row: 5 column: 3
+	Flamespurts are located at:
+		row: 2 column: 1
+		row: 2 column: 2
+		row: 2 column: 3
+		row: 3 column: 2
+		row: 3 column: 3
+		row: 4 column: 3
+
+	There are 10 "safe" places in the swamp located at:
+		row: 1 column: 1
+		row: 1 column: 2
+		row: 2 column: 4
+		row: 2 column: 5
+		row: 3 column: 1
+		row: 3 column: 4
+		row: 3 column: 5
+		row: 4 column: 4
+		row: 4 column: 5
+		row: 5 column: 5
+Adding the total number of dangers and the danger free zone should yield 25.
+This swamp is infested by 15 deadly dangers.
+This swamp has only 10 danger free spots.
+
+
+Items that can help you in crossing the swamp :
+	Ropes :  3
+	Bucket : 3
+	Potion : 3
+	Ropes can be found at:
+		row: 3 column: 5
+		row: 4 column: 3
+		row: 5 column: 1
+	Buckets can be found at:
+		row: 3 column: 1
+		row: 5 column: 3
+		row: 5 column: 4
+	Potions can be found at:
+		row: 3 column: 2
+		row: 4 column: 4
+		row: 5 column: 5
+	There are no items at these locations :
+		row: 1 column: 1
+		row: 1 column: 2
+		row: 1 column: 3
+		row: 1 column: 4
+		row: 1 column: 5
+		row: 2 column: 1
+		row: 2 column: 2
+		row: 2 column: 3
+		row: 2 column: 4
+		row: 2 column: 5
+		row: 3 column: 3
+		row: 3 column: 4
+		row: 4 column: 1
+		row: 4 column: 2
+		row: 4 column: 5
+		row: 5 column: 2
+
+
+	The map is a grid of 5 X 5.
+	The game starts at row 4 and column 1.
+
+
+	To win the game you have to get to row 4 and column 5 without dying on the way!
+
+
+		Using the information on this report is considered cheating!
+		But I haven't included the answer to the dangers questions. Never will!
