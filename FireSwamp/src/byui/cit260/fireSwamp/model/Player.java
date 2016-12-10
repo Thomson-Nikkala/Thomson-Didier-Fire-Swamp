@@ -25,6 +25,10 @@ public class Player implements Serializable {
     public Player() {
     }
 
+    public void setPlayerInventory(ArrayList<Item> playerInventory) {
+        this.playerInventory = playerInventory;
+    }
+
     public ArrayList<Item> getPlayerInventory() {
         return playerInventory;
     }

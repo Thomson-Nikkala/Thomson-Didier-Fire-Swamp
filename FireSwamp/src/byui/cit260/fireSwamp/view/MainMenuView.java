@@ -7,8 +7,7 @@ package byui.cit260.fireSwamp.view;
 import byui.cit260.fireSwamp.controller.GameControl;
 import byui.cit260.fireSwamp.exceptions.GameControlException;
 import byui.cit260.fireSwamp.exceptions.MapControlException;
-import byui.cit260.fireSwamp.model.Game;
-import byui.cit260.fireSwamp.model.Location;
+import byui.cit260.fireSwamp.model.*;
 import fireswamp.FireSwamp;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
@@ -106,11 +105,10 @@ public class MainMenuView extends View {
 
     private void startNewGame() throws MapControlException {
         GameControl gc = new GameControl();
-        gc.createNewGame(FireSwamp.getPlayer());
-        Location initPos = new Location();
-        initPos.setLocationColumn(0);  //start in the middle of the left column
-        initPos.setLocationRow(2);
-        FireSwamp.getPlayer().setPlayerPosition(initPos);
+        Player player = FireSwamp.getPlayer();
+        gc.createNewGame(player);
+        player.setPlayerPosition(FireSwamp.getCurrentGame().getGameMap().getMapEntrance());
+        
         GameMenuView gameMenu = new GameMenuView();
         try {
             gameMenu.display();

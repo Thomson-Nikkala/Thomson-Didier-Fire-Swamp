@@ -34,6 +34,7 @@ public class GameMenuView extends View {
             + "\n* M - sMell                                          *"
             + "\n* T - Take item                                      *"
             + "\n* I - write Inventory to file (Nikkala week 12)      *"
+            + "\n* D - write map stats to file (Didier week 12)       *"
             + "\n* N - move North                                     *"
             + "\n* E - move East                                      *"
             + "\n* W - move West                                      *"
@@ -87,6 +88,9 @@ public class GameMenuView extends View {
             case "P":
                 this.callWinGameView();
                 break;
+            case "D":
+                this.mapStats();
+                break;
             default:
                 this.console.println("\n*** Invalid selection *** Try again");
                 break;
@@ -121,7 +125,7 @@ public class GameMenuView extends View {
                     this.console.print(rowIndex + "  |");
                 }
                 this.console.print(locationType);
-                if (map.getLocationAt(row, col).getItem() != null) {
+                if (map.getLocationAt(row, col).getItem().getItemType() != ItemType.NONE) {
                     this.console.print(map.getLocationAt(row, col).getItem().getItemName().charAt(0) + " |");
                 } else {
                     this.console.print("  |");
@@ -133,20 +137,19 @@ public class GameMenuView extends View {
 
         }
 
-        Location playerLoc = FireSwamp.getPlayer().getPlayerPosition();
-        int playerRowPos = playerLoc.getLocationRow();
-        int playerColPos = playerLoc.getLocationColumn();
-        playerRowPos++;
-        playerColPos++;
-        this.console.println("\n** "
-            + FireSwamp.getPlayer().getPlayerName()
-            + " is at row " + playerRowPos
-            + " and at column " + playerColPos);
+        if (FireSwamp.getPlayer().getPlayerPosition() != null) {
+            Location playerLoc = FireSwamp.getPlayer().getPlayerPosition();
+            this.console.println("\n** "
+                               + FireSwamp.getPlayer().getPlayerName()
+                               + " is at row " + playerLoc.getLocationRowForPeople()
+                               + " and at column " + playerLoc.getLocationColumnForPeople());
+        }
+        
 
-        map.mapStatistics();
+        //map.mapStatistics();
 
         //this temporary section is for testing the checkInventory function
-        ArrayList<Item> inventory = new ArrayList<Item>();
+        ArrayList<Item> inventory = new ArrayList<>();
         InventoryControl inControl = new InventoryControl();
 
         Item rope = new Item();
@@ -160,11 +163,14 @@ public class GameMenuView extends View {
         potion.setItemDescription("A healing potion");
         potion.setItemName("potion");
         inventory.add(potion);
+        
+        FireSwamp.getPlayer().setPlayerInventory(inventory);
 
         try {
             int ropePositionInList = inControl.checkInventory(inventory, ItemType.ROPE);
             this.console.println("\n inventory position is " + ropePositionInList);
-        } catch (InventoryControlException ice) {
+        }
+        catch (InventoryControlException ice) {
             this.console.println(ice.getMessage());
         }
 
@@ -311,5 +317,17 @@ public class GameMenuView extends View {
             
         }
     }
-
+    
+        private void mapStats() {
+        try {
+            String filePath = null;
+            MapDetailsView mapDetailsView = new MapDetailsView();
+            filePath = mapDetailsView.getInput();
+            
+            mapDetailsView.MapDetailsReport(filePath);
+        }
+        catch (GameControlException ex) {
+            Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
 }

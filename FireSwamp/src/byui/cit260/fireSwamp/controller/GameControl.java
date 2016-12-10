@@ -45,12 +45,36 @@ public class GameControl {
 
         Map map = new Map();
         map.init();
+        
+        map.setMapEntrance(map.getLocationAt(3, 0));
+        map.setMapExit(map.getLocationAt(3, 4));
 
         currentGame.setGameMap(map);
-
+        
         createAndAssignItems(map);
-
+        
+        itemEmptyAutofill(map);
+        
         FireSwamp.setCurrentGame(currentGame);
+    }
+    
+    private void itemEmptyAutofill(Map map) {
+        
+        for (int row = 0; row < Map.ROWS; row++) {
+            for (int col = 0; col < Map.COLUMNS; col++) {
+                
+                
+                Location location = map.getLocationAt(row, col);
+                if (location.getItem() == null) {
+                    
+                    Item noItem = new Item();
+                    noItem.setItemDescription("no item");
+                    noItem.setItemName("none");
+                    noItem.setItemType(ItemType.NONE);
+                    location.setItem(noItem);
+                }
+            }
+        }
     }
 
     private void createAndAssignItems(Map map) {
@@ -113,7 +137,7 @@ public class GameControl {
 
         Random rand = new Random();
 
-        items.forEach((item) -> {
+        for (Item item : items) {
             boolean placed = false;
             while (!placed) {
                 int randomRow = rand.nextInt(Map.ROWS);
@@ -125,7 +149,7 @@ public class GameControl {
                     placed = true;
                 }
             }
-        });
+        }
     }
 
     public static Player createPlayer(String name) {

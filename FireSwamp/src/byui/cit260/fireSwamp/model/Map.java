@@ -1,5 +1,5 @@
 /***************************************************
- * Item Class                                    *
+ * Map Class                                    *
  *                                                 *
  ***************************************************/
 package byui.cit260.fireSwamp.model;
@@ -30,13 +30,14 @@ public class Map implements Serializable{
         Random rand = new Random();
         for (int row = 0; row < ROWS; row++) {
             for (int col = 0; col < COLUMNS; col++) {
-                int randLocation = rand.nextInt(DangerType.values().length);  //create new random integer between 0 and the number of danger types minus one
+                //create new random integer between 0 and the number of danger types minus one
+                int randLocation = rand.nextInt(DangerType.values().length); 
               
                 Location location = new Location();
                 location.setLocationColumn(col);
                 location.setLocationRow(row);
                 location.setLocationVisited(false);
-                location.setLocationType(DangerType.values()[randLocation]);
+                location.setLocationType(DangerType.values()[randLocation]);                
                 
                 matrix[row][col] = location;
             }
@@ -50,9 +51,9 @@ public class Map implements Serializable{
         startLocation.setLocationRow(2);
         startLocation.setLocationVisited(true);
         startLocation.setLocationType(DangerType.values()[0]);
-        matrix[2][0]=startLocation;
+        matrix[2][0] = startLocation;
         
-        //set exit
+        this.mapEntrance = startLocation;
         
     }
     

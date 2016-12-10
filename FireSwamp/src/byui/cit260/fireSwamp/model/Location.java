@@ -37,6 +37,10 @@ public class Location implements Serializable {
     public int getLocationRow() {
         return locationRow;
     }
+    
+    public int getLocationRowForPeople() {
+        return locationRow + 1;
+    }
 
     public boolean isLocationVisited() {
         return locationVisited;
@@ -60,6 +64,10 @@ public class Location implements Serializable {
 
     public int getLocationColumn() {
         return locationColumn;
+    }
+    
+    public int getLocationColumnForPeople() {
+        return locationColumn + 1;
     }
 
     public void setLocationColumn(int locationColumn) {
