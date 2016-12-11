@@ -179,17 +179,32 @@ public class GameMenuView extends View {
 
     //look function checks for the sandy soil that indicates lightning sand
     private void look() {
-        this.console.println("*** look() function called");
+        try {
+            this.console.println(MapControl.checkLook(FireSwamp.getPlayer().getPlayerPosition(),
+                    FireSwamp.getCurrentGame().getGameMap()));
+        } catch (MapControlException ex) {
+            Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     //listen functiono checks for popping sound that precedes a flame spurt
     private void listen() {
-        this.console.println("*** listen() function called");
+        try {
+            this.console.println(MapControl.checkListen(FireSwamp.getPlayer().getPlayerPosition(),
+                    FireSwamp.getCurrentGame().getGameMap()));
+        } catch (MapControlException ex) {
+            Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     //smell function checks for the wet dog smell of a ROUS
     private void smell() {
-        this.console.println("*** smell() function called");
+        try {
+            this.console.println(MapControl.checkSmell(FireSwamp.getPlayer().getPlayerPosition(),
+                      FireSwamp.getCurrentGame().getGameMap()));
+        } catch (MapControlException ex) {
+            Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void takeItem() {
