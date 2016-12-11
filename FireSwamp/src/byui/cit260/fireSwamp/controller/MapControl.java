@@ -119,25 +119,25 @@ public class MapControl {
         //check west
         if (row > 0) {
             if (map.getLocationAt(row-1, col).getLocationType() == DangerType.FLAMESPURT) {
-                string = string + "\nYou hear .";
+                string = string + "\nYou hear a popping noise to the west .";
             }
         }
         //check east
         if (row < (Map.ROWS-1)) {
             if (map.getLocationAt(row+1, col).getLocationType() == DangerType.FLAMESPURT) {
-                string = string + "\nYou see a strange patch of sand to the east.";
+                string = string + "\nYou hear a popping noise to the east.";
             }
         }
         //check north
         if (col > 0) {
             if (map.getLocationAt(row, col-1).getLocationType() == DangerType.FLAMESPURT) {
-                string = string + "\nYou see a strange patch of sand to the north.";
+                string = string + "\nYou see a popping noise to the north.";
             }   
         }
         //check south
         if (col < (Map.COLUMNS-1)) {
             if (map.getLocationAt(row, col+1).getLocationType() == DangerType.FLAMESPURT) {
-                string = string + "\nYou see a strange patch of sand to the south.";
+                string = string + "\nYou see a popping noise to the south.";
             }           
         }
         return string;
