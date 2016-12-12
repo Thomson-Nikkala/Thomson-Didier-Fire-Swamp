@@ -203,7 +203,7 @@ public class Map implements Serializable{
 
     @Override
     public String toString() {
-        return "Map{" + "matrix=" + Arrays.toString(matrix)
+        return "Map{" + "matrix=" + matrix
                       + ", mapEntrance=" + mapEntrance
                       + ", mapExit=" + mapExit + '}';
     }
