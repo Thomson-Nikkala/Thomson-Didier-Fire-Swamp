@@ -22,9 +22,13 @@ import java.util.logging.Logger;
  * @author Nikkala Thomson
  */
 public class LightningSandView extends View {
-
+    
     private double diameter;
-
+    
+    public LightningSandView(double diameter) {
+        this.diameter = diameter;
+    }
+    
     @Override
     public void display() {
 

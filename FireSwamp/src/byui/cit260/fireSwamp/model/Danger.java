@@ -18,10 +18,15 @@ public class Danger implements Serializable{
     private String dangerDescription;
     private DangerType dangerType;
     
-        
+    /***********************************************/
+
+    // Constructor
     public Danger() {
     }
-
+    
+    /***********************************************/
+    
+    // Getters and Setters functions    
     public String getDangerName() {
         return dangerName;
     }
@@ -46,6 +51,8 @@ public class Danger implements Serializable{
         this.dangerType = dangerType;
     }
 
+    /***********************************************/
+    
     @Override
     public int hashCode() {
         int hash = 7;
@@ -55,6 +62,8 @@ public class Danger implements Serializable{
         return hash;
     }
 
+    /***********************************************/
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -79,6 +88,8 @@ public class Danger implements Serializable{
         return true;
     }
 
+    /***********************************************/
+    
     @Override
     public String toString() {
         return "Danger{" + "dangerName=" + dangerName

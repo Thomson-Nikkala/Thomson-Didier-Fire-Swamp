@@ -5,6 +5,7 @@
 package byui.cit260.fireSwamp.controller;
 
 import byui.cit260.fireSwamp.enums.DangerType;
+import byui.cit260.fireSwamp.enums.ItemType;
 import byui.cit260.fireSwamp.exceptions.MapControlException;
 import byui.cit260.fireSwamp.model.Item;
 import byui.cit260.fireSwamp.model.Location;
@@ -13,35 +14,28 @@ import byui.cit260.fireSwamp.model.Player;
 
 /**
  *
- * @authors Didier Jourdain
+ * @authors Didier Jourdain and Nikkala Thomson
  */
 public class MapControl {
-
-    public void movePlayerStartingLocation(Player player, Location startingLocation) {
-        player.setPlayerPosition(startingLocation);
-
-    }
 
     /**
      *
      * @param location
-     * @throws MapControlException
+     * @return
      */
-    public static boolean checkForItem(Location location) throws MapControlException {
-        Item item = location.getItem();
-        if (item == null) {
-            throw new MapControlException("There is no item at this location.");
-        } 
-        return true;
+    public static boolean checkForItem(Location location) {
+        return (location.getItem().getItemType() == ItemType.NONE);
     }
     
     
     public static void deleteItemFromLocation(Location location) {
-        location.setItem(null);
+        Item item = new Item();
+        item.setItemType(ItemType.NONE);
+        location.setItem(item);
     }
     
     public static String checkLook(Location testLocation, Map map) throws MapControlException {
-        String string = "";
+        String string = "\nYou see nothing strange, yet.";
         
         //check for nearby LightningSand
         int row = testLocation.getLocationRow();
@@ -76,7 +70,7 @@ public class MapControl {
     }
     
     public static String checkSmell(Location testLocation, Map map) throws MapControlException{
-        String string = "";
+        String string = "You smell no particular odor.";
         //check for nearby ROUS
         int row = testLocation.getLocationRow();
         int col = testLocation.getLocationColumn();
@@ -110,7 +104,7 @@ public class MapControl {
     }
     
     public static String checkListen(Location testLocation, Map map) throws MapControlException {
-        String string = "";
+        String string = "\nYou just hear your own breathing. Calm down.";
         //check for nearby Fire Spurt
         //check for nearby LightningSand
         int row = testLocation.getLocationRow();

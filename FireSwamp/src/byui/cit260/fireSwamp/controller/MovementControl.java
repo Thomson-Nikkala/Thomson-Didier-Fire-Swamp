@@ -4,9 +4,12 @@
  ***************************************************/
 package byui.cit260.fireSwamp.controller;
 
+import byui.cit260.fireSwamp.enums.DangerType;
 import byui.cit260.fireSwamp.enums.Direction;
+import byui.cit260.fireSwamp.exceptions.DangerControlException;
 import byui.cit260.fireSwamp.exceptions.MovementControlException;
 import byui.cit260.fireSwamp.model.*;
+import byui.cit260.fireSwamp.view.*;
 import fireswamp.FireSwamp;
 
 /**
@@ -17,10 +20,11 @@ public class MovementControl {
     
     
     public static void movePlayerDirection(Player player, Direction direction) 
-                        throws MovementControlException {
+                        throws MovementControlException, DangerControlException {
         
         Map map = FireSwamp.getCurrentGame().getGameMap();
         Location playerLocation = FireSwamp.getPlayer().getPlayerPosition();
+        
         switch (direction) {
             case NORTH:
                 if (playerLocation.getLocationRow()== 0) {
@@ -32,8 +36,6 @@ public class MovementControl {
                 else {
                     playerLocation.setLocationRow(playerLocation.getLocationRow()- 1);
                     FireSwamp.getPlayer().setPlayerPosition(playerLocation);
-                /*    this.console.println("\n** " + FireSwamp.getPlayer().getPlayerName()
-                                     + " moved " + direction.toString()); */
                 }
                 break;
             case SOUTH:
@@ -46,8 +48,6 @@ public class MovementControl {
                 else {
                     playerLocation.setLocationRow(playerLocation.getLocationRow()+ 1);
                     FireSwamp.getPlayer().setPlayerPosition(playerLocation);
-                /*    this.console.println("\n** " + FireSwamp.getPlayer().getPlayerName()
-                                     + " moved " + direction.toString()); */
                 }
                 break;
             case WEST:
@@ -60,8 +60,6 @@ public class MovementControl {
                 else {
                     playerLocation.setLocationColumn(playerLocation.getLocationColumn() - 1);
                     FireSwamp.getPlayer().setPlayerPosition(playerLocation);
-                 /*    this.console.println("\n** " + FireSwamp.getPlayer().getPlayerName()
-                                     + " moved " + direction.toString());  */
                 }
                 break;
             case EAST:
@@ -74,10 +72,44 @@ public class MovementControl {
                 else {
                     playerLocation.setLocationColumn(playerLocation.getLocationColumn() + 1);
                     FireSwamp.getPlayer().setPlayerPosition(playerLocation);
-                /*    this.console.println("\n** " + FireSwamp.getPlayer().getPlayerName()
-                                     + " moved " + direction.toString()); */
                 }
                 break;
+        }
+        
+        int row = playerLocation.getLocationRow();
+        int col = playerLocation.getLocationColumn();
+        DangerType whatDanger = map.getLocationAt(row, col).getDanger().getDangerType();   
+        
+        if (whatDanger != DangerType.NONE) {
+            
+            switch (whatDanger) {
+                
+                case FLAMESPURT:
+                    DangerControl fsDangerControl = new DangerControl();
+                    double fsLength = fsDangerControl.generateDouble(3, 99);
+                    double fsWidth = fsDangerControl.generateDouble(3, 99);
+                    double fsHeight = fsDangerControl.generateDouble(3, 99);
+                    FlameSpurtView fsvChallenge = new FlameSpurtView(fsLength, fsWidth, fsHeight);
+                    fsvChallenge.display();
+                    break;
+                case ROUS:
+                    DangerControl rousDangerControl = new DangerControl();
+                    double rousLength = rousDangerControl.generateDouble(1, 15);
+                    RousView rousChallenge = new RousView(rousLength);
+                    rousChallenge.display();
+                    break;
+                case LIGHTNINGSAND:
+                    DangerControl lsDangerControl = new DangerControl();
+                    double diameter = lsDangerControl.generateDouble(1, 30);
+                    LightningSandView lsvChallenge = new LightningSandView(diameter);
+                    lsvChallenge.display();
+                    break;
+                default:
+                    break;
+            }
+        }
+        else {
+            
         }
         
     }

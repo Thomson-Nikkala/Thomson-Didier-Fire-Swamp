@@ -19,9 +19,20 @@ public class Location implements Serializable {
     private int locationColumn;
     private boolean locationVisited;
     private String locationDescription;
-    private DangerType dangerType;   //see the enum 
+    // Need this instance variable in place of just the DangerType
+    private Danger danger;
+    /* Had to comment this out to have the danger created for each location.
+    private DangerType dangerType;  */
     private Item item;
 
+    public Danger getDanger() {
+        return danger;
+    }
+
+    public void setDanger(Danger danger) {
+        this.danger = danger;
+    }
+        
     public Item getItem() {
         return item;
     }
@@ -49,14 +60,17 @@ public class Location implements Serializable {
     public void setLocationVisited(boolean locationVisited) {
         this.locationVisited = locationVisited;
     }
-
+    
     public DangerType getLocationType() {
-        return dangerType;
-    }
+            return this.danger.getDangerType();
+        }
+    /*
+    
 
     public void setLocationType(DangerType dangerType) {
         this.dangerType = dangerType;
     }
+    */
 
     public void setLocationRow(int locationRow) {
         this.locationRow = locationRow;

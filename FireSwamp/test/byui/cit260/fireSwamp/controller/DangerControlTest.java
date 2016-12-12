@@ -84,11 +84,11 @@ public class DangerControlTest {
     }
 
     /**
-     * Test of calcFireSpurtAnswer method, of class DangerControl.
+     * Test of calcFlameSpurtAnswer method, of class DangerControl.
      */
     @Test
     public void testCalcFireSpurtAnswer() {
-        System.out.println("calcFireSpurtAnswer with L=0, W=0, H= 0");
+        System.out.println("calcFlameSpurtAnswer with L=0, W=0, H= 0");
         double length = 0.0;
         double width = 0.0;
         double height = 0.0;
@@ -96,128 +96,128 @@ public class DangerControlTest {
         double expResult = -111.0;
         double result;
         try {
-            result = instance.calcFireSpurtAnswer(length, width, height);
+            result = instance.calcFlameSpurtAnswer(length, width, height);
         assertEquals(expResult, result, 0.01);
         } catch (DangerControlException de) {
             System.out.println(de.getMessage());
         }
         
 
-        System.out.println("calcFireSpurtAnswer with L<3, W=0, H= 0");
+        System.out.println("calcFlameSpurtAnswer with L<3, W=0, H= 0");
         length = 2.9;
         width = 0.0;
         height = 0.0;
         expResult = -111.0;
         try {
-            result = instance.calcFireSpurtAnswer(length, width, height);
+            result = instance.calcFlameSpurtAnswer(length, width, height);
         assertEquals(expResult, result, 0.01);
         } catch (DangerControlException de) {
             System.out.println(de.getMessage());
         }
 
-        System.out.println("calcFireSpurtAnswer with L=15, W=20, H=50");
+        System.out.println("calcFlameSpurtAnswer with L=15, W=20, H=50");
         length = 15.0;
         width = 20.0;
         height = 50.0;
         expResult = 5000.0;
         try {
-            result = instance.calcFireSpurtAnswer(length, width, height);
+            result = instance.calcFlameSpurtAnswer(length, width, height);
         assertEquals(expResult, result, 0.01);
         } catch (DangerControlException de) {
             System.out.println(de.getMessage());
         }
 
-        System.out.println("calcFireSpurtAnswer with L<=0, W=20, H=50");
+        System.out.println("calcFlameSpurtAnswer with L<=0, W=20, H=50");
         length = -15.0;
         width = 20.0;
         height = 50.0;
         expResult = -1.0;
         try {
-            result = instance.calcFireSpurtAnswer(length, width, height);
+            result = instance.calcFlameSpurtAnswer(length, width, height);
         assertEquals(expResult, result, 0.01);
         } catch (DangerControlException de) {
             System.out.println(de.getMessage());
         }
 
-        System.out.println("calcFireSpurtAnswer with L=15, W<=0, H=50");
+        System.out.println("calcFlameSpurtAnswer with L=15, W<=0, H=50");
         length = 15.0;
         width = -20.0;
         height = 50.0;
         expResult = -10.0;
         try {
-            result = instance.calcFireSpurtAnswer(length, width, height);
+            result = instance.calcFlameSpurtAnswer(length, width, height);
         assertEquals(expResult, result, 0.01);
         } catch (DangerControlException de) {
             System.out.println(de.getMessage());
         }
 
-        System.out.println("calcFireSpurtAnswer with L=15, W=20, H<=0");
+        System.out.println("calcFlameSpurtAnswer with L=15, W=20, H<=0");
         length = 15.0;
         width = 20.0;
         height = -50.0;
         expResult = -100.0;
         try {
-            result = instance.calcFireSpurtAnswer(length, width, height);
+            result = instance.calcFlameSpurtAnswer(length, width, height);
         assertEquals(expResult, result, 0.01);
         } catch (DangerControlException de) {
             System.out.println(de.getMessage());
         }
 
-        System.out.println("calcFireSpurtAnswer with L=0, W=20, H=50");
+        System.out.println("calcFlameSpurtAnswer with L=0, W=20, H=50");
         length = 0.0;
         width = 20.0;
         height = 50.0;
         expResult = -1.0;
         try {
-            result = instance.calcFireSpurtAnswer(length, width, height);
+            result = instance.calcFlameSpurtAnswer(length, width, height);
         assertEquals(expResult, result, 0.01);
         } catch (DangerControlException de) {
             System.out.println(de.getMessage());
         }
 
-        System.out.println("calcFireSpurtAnswer with L=15, W=0, H=50");
+        System.out.println("calcFlameSpurtAnswer with L=15, W=0, H=50");
         length = 15.0;
         width = 0.0;
         height = 50.0;
         expResult = -10.0;
         try {
-            result = instance.calcFireSpurtAnswer(length, width, height);
+            result = instance.calcFlameSpurtAnswer(length, width, height);
         assertEquals(expResult, result, 0.01);
         } catch (DangerControlException de) {
             System.out.println(de.getMessage());
         }
 
-        System.out.println("calcFireSpurtAnswer with L=15, W=20, H=0");
+        System.out.println("calcFlameSpurtAnswer with L=15, W=20, H=0");
         length = 15.0;
         width = 20.0;
         height = 0.0;
         expResult = -100.0;
         try {
-            result = instance.calcFireSpurtAnswer(length, width, height);
+            result = instance.calcFlameSpurtAnswer(length, width, height);
         assertEquals(expResult, result, 0.01);
         } catch (DangerControlException de) {
             System.out.println(de.getMessage());
         }
 
-        System.out.println("calcFireSpurtAnswer with L<3, W<3, H<3");
+        System.out.println("calcFlameSpurtAnswer with L<3, W<3, H<3");
         length = 2.9;
         width = 2.9;
         height = 2.9;
         expResult = -111.0;
         try {
-            result = instance.calcFireSpurtAnswer(length, width, height);
+            result = instance.calcFlameSpurtAnswer(length, width, height);
         assertEquals(expResult, result, 0.01);
         } catch (DangerControlException de) {
             System.out.println(de.getMessage());
         }
 
-        System.out.println("calcFireSpurtAnswer with L>99, W>99, H>99");
+        System.out.println("calcFlameSpurtAnswer with L>99, W>99, H>99");
         length = 99.1;
         width = 99.1;
         height = 99.1;
         expResult = -111.0;
         try {
-            result = instance.calcFireSpurtAnswer(length, width, height);
+            result = instance.calcFlameSpurtAnswer(length, width, height);
         assertEquals(expResult, result, 0.01);
         } catch (DangerControlException de) {
             System.out.println(de.getMessage());

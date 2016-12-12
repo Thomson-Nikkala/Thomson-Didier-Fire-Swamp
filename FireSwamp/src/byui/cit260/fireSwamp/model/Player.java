@@ -17,14 +17,23 @@ public class Player implements Serializable {
     // class instance variables
     private String playerName;
     private char playerGender;
-    private ArrayList<Item> playerInventory = new ArrayList<Item>();
+    private ArrayList<Item> playerInventory = new ArrayList<>();
     private Location playerPosition;
-    private boolean playerIsAlive;
+    private boolean playerAlive;
+    private boolean playerInDanger;
 
     // default constructor
     public Player() {
     }
 
+    public boolean isPlayerInDanger() {
+        return playerInDanger;
+    }
+
+    public void setPlayerInDanger(boolean playerInDanger) {
+        this.playerInDanger = playerInDanger;
+    }
+    
     public void setPlayerInventory(ArrayList<Item> playerInventory) {
         this.playerInventory = playerInventory;
     }
@@ -61,22 +70,23 @@ public class Player implements Serializable {
         this.playerPosition = playerPosition;
     }
 
-    public boolean getPlayerIsAlive() {
-        return playerIsAlive;
+    public boolean isPlayerAlive() {
+        return playerAlive;
     }
 
-    public void setPlayerIsAlive(boolean playerIsAlive) {
-        this.playerIsAlive = playerIsAlive;
+    public void setPlayerAlive(boolean playerAlive) {
+        this.playerAlive = playerAlive;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
+        int hash = 3;
         hash = 47 * hash + Objects.hashCode(this.playerName);
         hash = 47 * hash + this.playerGender;
         hash = 47 * hash + Objects.hashCode(this.playerInventory);
         hash = 47 * hash + Objects.hashCode(this.playerPosition);
-        hash = 47 * hash + (this.playerIsAlive ? 1 : 0);
+        hash = 47 * hash + (this.playerAlive ? 1 : 0);
+        hash = 47 * hash + (this.playerInDanger ? 1 : 0);
         return hash;
     }
 
@@ -95,7 +105,10 @@ public class Player implements Serializable {
         if (this.playerGender != other.playerGender) {
             return false;
         }
-        if (this.playerIsAlive != other.playerIsAlive) {
+        if (this.playerAlive != other.playerAlive) {
+            return false;
+        }
+        if (this.playerInDanger != other.playerInDanger) {
             return false;
         }
         if (!Objects.equals(this.playerName, other.playerName)) {
@@ -113,9 +126,11 @@ public class Player implements Serializable {
     @Override
     public String toString() {
         return "Player{" + "playerName=" + playerName
-            + ", playerGender=" + playerGender
-            + ", playerInventory=" + playerInventory
-            + ", playerPosition=" + playerPosition
-            + ", playerIsAlive=" + playerIsAlive + '}';
+                         + ", playerGender=" + playerGender
+                         + ", playerInventory=" + playerInventory
+                         + ", playerPosition=" + playerPosition
+                         + ", playerAlive=" + playerAlive
+                         + ", playerInDanger=" + playerInDanger + '}';
     }
+    
 }

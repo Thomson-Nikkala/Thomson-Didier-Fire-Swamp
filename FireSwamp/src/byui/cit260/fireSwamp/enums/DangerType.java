@@ -10,5 +10,8 @@ package byui.cit260.fireSwamp.enums;
  * @author Didier Jourdain
  */
 public enum DangerType {
-    NONE, FLAMESPURT, ROUS, LIGHTNINGSAND
+    NONE,
+    FLAMESPURT,
+    ROUS,
+    LIGHTNINGSAND
 }

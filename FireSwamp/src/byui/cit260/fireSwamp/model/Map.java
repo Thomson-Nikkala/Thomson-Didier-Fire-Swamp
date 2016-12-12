@@ -4,9 +4,13 @@
  ***************************************************/
 package byui.cit260.fireSwamp.model;
 
+import byui.cit260.fireSwamp.controller.DangerControl;
 import byui.cit260.fireSwamp.enums.DangerType;
+import byui.cit260.fireSwamp.exceptions.DangerControlException;
 import java.io.Serializable;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -26,34 +30,45 @@ public class Map implements Serializable{
     
     public void init() {  //initialize matrix with rows, columns, and location type
  
-                
         Random rand = new Random();
         for (int row = 0; row < ROWS; row++) {
             for (int col = 0; col < COLUMNS; col++) {
                 //create new random integer between 0 and the number of danger types minus one
-                int randLocation = rand.nextInt(DangerType.values().length); 
+                int randLocation = rand.nextInt(DangerType.values().length);
+                Danger newDanger = new Danger();
+                
+                if (randLocation == DangerType.FLAMESPURT.ordinal()) {
+                    // create a FLAMESPURT danger
+                    newDanger.setDangerType(DangerType.FLAMESPURT);
+                    
+                }
+                else if (randLocation == DangerType.ROUS.ordinal()) {
+                    // create a ROUS danger
+                    newDanger.setDangerType(DangerType.ROUS);
+                }
+                else if (randLocation == DangerType.LIGHTNINGSAND.ordinal()) {
+                    // create a LIGHTNINGSAND danger
+                    newDanger.setDangerType(DangerType.LIGHTNINGSAND);
+                    
+                }
+                else {
+                    // create a NONE danger
+                    newDanger.setDangerType(DangerType.NONE);
+                }
               
                 Location location = new Location();
                 location.setLocationColumn(col);
                 location.setLocationRow(row);
                 location.setLocationVisited(false);
-                location.setLocationType(DangerType.values()[randLocation]);                
+                
+                location.setDanger(newDanger);
+                //location.setLocationType(DangerType.values()[randLocation]);                
                 
                 matrix[row][col] = location;
             }
         }
         
-        //initialize starting location (2,0) middle of leftmost row
-        //empty of dangers and visited
         
-        Location startLocation = new Location();
-        startLocation.setLocationColumn(0);
-        startLocation.setLocationRow(2);
-        startLocation.setLocationVisited(true);
-        startLocation.setLocationType(DangerType.values()[0]);
-        matrix[2][0] = startLocation;
-        
-        this.mapEntrance = startLocation;
         
     }
     

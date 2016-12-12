@@ -71,16 +71,44 @@ public class GameMenuView extends View {
                 this.writeInventory();
                 break;
             case "N":
+        {
+            try {
                 this.moveNorth();
+            }
+            catch (DangerControlException ex) {
+                Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
                 break;
             case "E":
+        {
+            try {
                 this.moveEast();
+            }
+            catch (DangerControlException ex) {
+                Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
                 break;
             case "W":
+        {
+            try {
                 this.moveWest();
+            }
+            catch (DangerControlException ex) {
+                Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
                 break;
             case "S":
+        {
+            try {
                 this.moveSouth();
+            }
+            catch (DangerControlException ex) {
+                Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
                 break;
             case "H":
                 this.callHelpMenu();
@@ -213,14 +241,7 @@ public class GameMenuView extends View {
         ArrayList<Item> inventory = FireSwamp.getPlayer().getPlayerInventory();
         
         boolean isItem = false;
-        
-        //check if there is an item at the current location 
-        try {  
-            isItem = MapControl.checkForItem(location);
-        //if not, print error message   
-        } catch (MapControlException mce) {
-            this.console.println(mce.getMessage());
-        }
+        isItem = MapControl.checkForItem(location);
 
         //if there is, add a copy of that item to the inventory, then delete it from the location
         if (isItem) {
@@ -234,7 +255,7 @@ public class GameMenuView extends View {
         
     }
 
-    private void moveNorth() {
+    private void moveNorth() throws DangerControlException {
         Map map = FireSwamp.getCurrentGame().getGameMap();
         Player player = FireSwamp.getPlayer();
         try {
@@ -245,7 +266,7 @@ public class GameMenuView extends View {
 
     }
 
-    private void moveEast() {
+    private void moveEast() throws DangerControlException {
         Map map = FireSwamp.getCurrentGame().getGameMap();
         Player player = FireSwamp.getPlayer();
         try {
@@ -255,7 +276,7 @@ public class GameMenuView extends View {
         }
     }
 
-    private void moveWest() {
+    private void moveWest() throws DangerControlException {
         Map map = FireSwamp.getCurrentGame().getGameMap();
         Player player = FireSwamp.getPlayer();
         try {
@@ -265,7 +286,7 @@ public class GameMenuView extends View {
         }
     }
 
-    private void moveSouth() {
+    private void moveSouth() throws DangerControlException {
         Map map = FireSwamp.getCurrentGame().getGameMap();
         Player player = FireSwamp.getPlayer();
         try {

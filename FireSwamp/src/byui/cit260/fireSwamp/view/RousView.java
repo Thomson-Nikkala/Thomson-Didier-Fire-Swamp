@@ -24,6 +24,10 @@ import java.util.logging.Logger;
 public class RousView extends View {
 
     private double length;
+    
+    public RousView(double length) {
+        this.length = length;
+    }
 
     @Override
     public void display() {

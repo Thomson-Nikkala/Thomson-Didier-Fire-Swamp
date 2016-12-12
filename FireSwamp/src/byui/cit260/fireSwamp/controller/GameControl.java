@@ -4,13 +4,10 @@
  ************************************************** */
 package byui.cit260.fireSwamp.controller;
 
+import byui.cit260.fireSwamp.enums.DangerType;
 import byui.cit260.fireSwamp.enums.ItemType;
 import byui.cit260.fireSwamp.exceptions.GameControlException;
-import byui.cit260.fireSwamp.model.Game;
-import byui.cit260.fireSwamp.model.Item;
-import byui.cit260.fireSwamp.model.Location;
-import byui.cit260.fireSwamp.model.Map;
-import byui.cit260.fireSwamp.model.Player;
+import byui.cit260.fireSwamp.model.*;
 import fireswamp.FireSwamp;
 import java.io.*;
 import java.util.ArrayList;
@@ -47,7 +44,11 @@ public class GameControl {
         map.init();
         
         map.setMapEntrance(map.getLocationAt(3, 0));
+        Danger noDanger = new Danger();
+        noDanger.setDangerType(DangerType.NONE);
+        map.getLocationAt(3, 0).setDanger(noDanger);
         map.setMapExit(map.getLocationAt(3, 4));
+        map.getLocationAt(3, 4).setDanger(noDanger);
 
         currentGame.setGameMap(map);
         

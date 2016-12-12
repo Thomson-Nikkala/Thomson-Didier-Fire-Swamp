@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  *
  * @authors Didier Jourdain and Nikkala Thomson
  */
-public class FireSpurtView extends View {
+public class FlameSpurtView extends View {
 
     private double pyramidLength;
     private double pyramidWidth;
@@ -25,7 +25,7 @@ public class FireSpurtView extends View {
     private double volumeGuessed;
     private double volumeComputed;
 
-    public FireSpurtView() throws DangerControlException {
+    public FlameSpurtView(double length, double width, double height) throws DangerControlException {
         
         super("\n************************************************************"
             + "\n**  You stand before a potential fire spurt. If you don't go"
@@ -34,10 +34,10 @@ public class FireSpurtView extends View {
         
         DangerControl dc = new DangerControl();
 
-        double volume;
-        this.pyramidLength = dc.generateDouble(96.0);
-        this.pyramidWidth = dc.generateDouble(96.0);
-        this.pyramidHeight = dc.generateDouble(96.0);
+        this.pyramidLength = length;
+        this.pyramidWidth = width;
+        this.pyramidHeight = height;
+        this.volumeComputed = dc.calcFlameSpurtAnswer(length, width, height);
     }
     
     @Override
@@ -67,12 +67,14 @@ public class FireSpurtView extends View {
                 inControl.checkInventory(inventory, ItemType.BUCKET);
             } catch (InventoryControlException ice) {
                 ErrorView.display(this.getClass().getName(),"Alas, that's incorrect, and you have no bucket "
-                             + " of water to cover the flames who roast you.");
+                             + " of water to cover the flames who roast you."
+                             + "\nThe correct answer was: "
+                             + volumeComputed + "\n");
                 LoseMenuView loseView = new LoseMenuView();
                 try {
                     loseView.display();
                 } catch (GameControlException ex) {
-                    Logger.getLogger(FireSpurtView.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(FlameSpurtView.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             
@@ -80,7 +82,7 @@ public class FireSpurtView extends View {
             try {
                 loseView.display();
             } catch (GameControlException ex) {
-                Logger.getLogger(FireSpurtView.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FlameSpurtView.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -98,7 +100,7 @@ public class FireSpurtView extends View {
                 input = input.toUpperCase();
             
             } catch (IOException ex) {
-                Logger.getLogger(FireSpurtView.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FlameSpurtView.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             try {
@@ -118,10 +120,10 @@ public class FireSpurtView extends View {
     @Override
     public boolean doAction(String value) {
         double userAnswer = Double.parseDouble(value);
-        DangerControl newDanger = new DangerControl();
+        DangerControl newDangerControl = new DangerControl();
        try {
-           double correctAnswer = newDanger.calcFireSpurtAnswer(pyramidLength, pyramidWidth, pyramidHeight); 
-           return (Math.abs(userAnswer - correctAnswer) < 0.01);
+           double correctAnswer = newDangerControl.calcFlameSpurtAnswer(pyramidLength, pyramidWidth, pyramidHeight); 
+           return (Math.abs(userAnswer - correctAnswer) < 1.0);
        } catch (DangerControlException de) {
           ErrorView.display(this.getClass().getName(),
                             de.getMessage());

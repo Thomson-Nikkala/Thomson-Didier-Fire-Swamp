@@ -22,7 +22,7 @@ public class DangerControl {
         }
     }
 
-    public double calcFireSpurtAnswer(double length, double width, double height) throws DangerControlException {
+    public double calcFlameSpurtAnswer(double length, double width, double height) throws DangerControlException {
 
         // length checking
         if (length < 3.0 || length > 99.0) {
@@ -53,11 +53,12 @@ public class DangerControl {
         }
     }
     
-    public double generateDouble(double seed) {
+    public double generateDouble(double start, double max) {
 
         double aDouble;
-        aDouble = Math.random() * seed;
-        aDouble += 3;
+        
+        aDouble = Math.random() * (max - start);
+        aDouble += start;
         aDouble = aDouble * 10;
         aDouble = (Math.ceil(aDouble)) / 10;
 
