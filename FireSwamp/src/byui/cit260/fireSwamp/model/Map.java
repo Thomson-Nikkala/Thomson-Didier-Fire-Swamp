@@ -4,13 +4,9 @@
  ***************************************************/
 package byui.cit260.fireSwamp.model;
 
-import byui.cit260.fireSwamp.controller.DangerControl;
 import byui.cit260.fireSwamp.enums.DangerType;
-import byui.cit260.fireSwamp.exceptions.DangerControlException;
 import java.io.Serializable;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -207,7 +203,7 @@ public class Map implements Serializable{
 
     @Override
     public String toString() {
-        return "Map{" + "matrix=" + matrix
+        return "Map{" + "matrix=" + Arrays.toString(matrix)
                       + ", mapEntrance=" + mapEntrance
                       + ", mapExit=" + mapExit + '}';
     }
