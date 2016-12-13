@@ -17,8 +17,10 @@ public class Map implements Serializable{
     public static final int ROWS = 5;
     public static final int COLUMNS = 5;
     private Location[][] matrix = new Location[ROWS][COLUMNS];
-    private Location mapEntrance;
-    private Location mapExit;
+    private int mapEntranceRow;
+    private int mapEntranceColumn;
+    private int mapExitRow;
+    private int mapExitColumn;
 
     //constructor
     public Map() {
@@ -62,10 +64,7 @@ public class Map implements Serializable{
                 
                 matrix[row][col] = location;
             }
-        }
-        
-        
-        
+        }     
     }
     
     
@@ -152,28 +151,48 @@ public class Map implements Serializable{
         return matrix[row][col];
     }
 
-    public Location getMapEntrance() {
-        return mapEntrance;
+    public int getMapEntranceRow() {
+        return mapEntranceRow;
     }
 
-    public void setMapEntrance(Location mapEntrance) {
-        this.mapEntrance = mapEntrance;
+    public void setMapEntranceRow(int mapEntranceRow) {
+        this.mapEntranceRow = mapEntranceRow;
     }
 
-    public Location getMapExit() {
-        return mapExit;
+    public int getMapEntranceColumn() {
+        return mapEntranceColumn;
     }
 
-    public void setMapExit(Location mapExit) {
-        this.mapExit = mapExit;
+    public void setMapEntranceColumn(int mapEntranceColumn) {
+        this.mapEntranceColumn = mapEntranceColumn;
     }
+
+     public int getMapExitRow() {
+        return mapExitRow;
+    }
+
+    public void setMapExitRow(int mapExitRow) {
+        this.mapExitRow = mapExitRow;
+    }
+
+    public int getMapExitColumn() {
+        return mapExitColumn;
+    }
+
+    public void setMapExitColumn(int mapExitColumn) {
+        this.mapExitColumn = mapExitColumn;
+    }
+
+    
 
     @Override
     public int hashCode() {
         int hash = 3;
         hash = 31 * hash + Arrays.deepHashCode(this.matrix);
-        hash = 31 * hash + Objects.hashCode(this.mapEntrance);
-        hash = 31 * hash + Objects.hashCode(this.mapExit);
+        hash = 31 * hash + Objects.hashCode(this.mapEntranceRow);
+        hash = 31 * hash + Objects.hashCode(this.mapEntranceColumn);
+        hash = 31 * hash + Objects.hashCode(this.mapExitRow);
+        hash = 31 * hash + Objects.hashCode(this.mapExitColumn);
         return hash;
     }
 
@@ -192,20 +211,22 @@ public class Map implements Serializable{
         if (!Arrays.deepEquals(this.matrix, other.matrix)) {
             return false;
         }
-        if (!Objects.equals(this.mapEntrance, other.mapEntrance)) {
+        if (!Objects.equals(this.mapEntranceRow, other.mapEntranceRow)) {
             return false;
         }
-        if (!Objects.equals(this.mapExit, other.mapExit)) {
+        if (!Objects.equals(this.mapExitRow, other.mapExitRow)) {
             return false;
         }
-        return true;
+        if (!Objects.equals(this.mapEntranceColumn, other.mapEntranceColumn)) {
+            return false;
+        }
+        return Objects.equals(this.mapExitColumn, other.mapExitColumn);
     }
 
     @Override
     public String toString() {
-        return "Map{" + "matrix=" + matrix
-                      + ", mapEntrance=" + mapEntrance
-                      + ", mapExit=" + mapExit + '}';
+        return "MapEntrance=" + mapEntranceRow + "," + mapEntranceColumn
+                      + ", mapExit=" + mapExitRow + "," + mapExitColumn + '}';
     }
     
 }

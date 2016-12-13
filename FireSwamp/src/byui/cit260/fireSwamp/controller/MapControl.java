@@ -35,7 +35,7 @@ public class MapControl {
     }
     
     public static String checkLook(Location testLocation, Map map) throws MapControlException {
-        String string = "\nYou see nothing strange, yet.";
+        String string = "\nYou see nothing strange nearby.";
         
         //check for nearby LightningSand
         int row = testLocation.getLocationRow();
@@ -44,28 +44,48 @@ public class MapControl {
         //check west
         if (row > 0) {
             if (map.getLocationAt(row-1, col).getLocationType() == DangerType.LIGHTNINGSAND) {
-                string = string + "\nYou see a strange patch of sand to the west.";
+                string = "\nYou see a strange patch of sand to the west.";
             }
         }
         //check east
         if (row < (Map.ROWS-1)) {
             if (map.getLocationAt(row+1, col).getLocationType() == DangerType.LIGHTNINGSAND) {
-                string = string + "\nYou see a strange patch of sand to the east.";
+                string = "\nYou see a strange patch of sand to the east.";
             }
         }
         //check north
         if (col > 0) {
             if (map.getLocationAt(row, col-1).getLocationType() == DangerType.LIGHTNINGSAND) {
-                string = string + "\nYou see a strange patch of sand to the north.";
+                string = "\nYou see a strange patch of sand to the north.";
             }   
         }
         //check south
         if (col < (Map.COLUMNS-1)) {
             if (map.getLocationAt(row, col+1).getLocationType() == DangerType.LIGHTNINGSAND) {
-                string = string + "\nYou see a strange patch of sand to the south.";
+                string = "\nYou see a strange patch of sand to the south.";
             }           
         }
-        //check for item at location
+        //check for item at location and print it out if it exists
+        if (testLocation.getItem()==null) {
+            string = string + "\nOn the ground, you see nothing.";
+        } else { 
+            string = string + "\nOn the ground, you see "; 
+            switch (testLocation.getItem().getItemType()) {
+                case NONE: 
+                    string = string + "nothing.";
+                    break;
+                case BUCKET:
+                    string = string + "a wooden bucket full of water.";
+                    break;
+                case POTION: 
+                    string = string + "a shimmery purple healing potion.";
+                    break;
+                case ROPE: 
+                    string = string + "a long section of sturdy rope.";
+                    break;
+                default: break;
+            }
+        }
         return string;
     }
     
@@ -78,25 +98,25 @@ public class MapControl {
         //check west
         if (row > 0) {
             if (map.getLocationAt(row-1, col).getLocationType() == DangerType.ROUS) {
-                string = string + "\nYou smell an odor reminiscent of wet dog and rotting garbage wafting from the west.";
+                string = "\nYou smell an odor reminiscent of wet dog and rotting garbage wafting from the west.";
             }
         }
         //check east
         if (row < (Map.ROWS-1)) {
             if (map.getLocationAt(row+1, col).getLocationType() == DangerType.ROUS) {
-                string = string + "\nYou smell an odor reminiscent of wet dog and rotting garbage wafting from the east.";
+                string = "\nYou smell an odor reminiscent of wet dog and rotting garbage wafting from the east.";
             }
         }
         //check north
         if (col > 0) {
             if (map.getLocationAt(row, col-1).getLocationType() == DangerType.ROUS) {
-                string = string + "\nYou smell an odor reminiscent of wet dog and rotting garbage wafting from the north.";
+                string = "\nYou smell an odor reminiscent of wet dog and rotting garbage wafting from the north.";
             }   
         }
         //check south
         if (col < (Map.COLUMNS-1)) {
             if (map.getLocationAt(row, col+1).getLocationType() == DangerType.ROUS) {
-                string = string + "\nYou smell an odor reminiscent of wet dog and rotting garbage wafting from the south.";
+                string = "\nYou smell an odor reminiscent of wet dog and rotting garbage wafting from the south.";
             }           
         }
         return string;
@@ -113,29 +133,28 @@ public class MapControl {
         //check west
         if (row > 0) {
             if (map.getLocationAt(row-1, col).getLocationType() == DangerType.FLAMESPURT) {
-                string = string + "\nYou hear a popping noise to the west .";
+                string = "\nYou hear a popping noise to the west .";
             }
         }
         //check east
         if (row < (Map.ROWS-1)) {
             if (map.getLocationAt(row+1, col).getLocationType() == DangerType.FLAMESPURT) {
-                string = string + "\nYou hear a popping noise to the east.";
+                string = "\nYou hear a popping noise to the east.";
             }
         }
         //check north
         if (col > 0) {
             if (map.getLocationAt(row, col-1).getLocationType() == DangerType.FLAMESPURT) {
-                string = string + "\nYou see a popping noise to the north.";
+                string = "\nYou see a popping noise to the north.";
             }   
         }
         //check south
         if (col < (Map.COLUMNS-1)) {
             if (map.getLocationAt(row, col+1).getLocationType() == DangerType.FLAMESPURT) {
-                string = string + "\nYou see a popping noise to the south.";
+                string = "\nYou see a popping noise to the south.";
             }           
         }
         return string;
-        
     }
 
 }

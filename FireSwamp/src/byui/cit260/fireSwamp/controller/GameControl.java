@@ -41,14 +41,28 @@ public class GameControl {
         currentGame.setGamePlayer(player);
 
         Map map = new Map();
+        
+        //initialize danger locations randomly
         map.init();
         
-        map.setMapEntrance(map.getLocationAt(3, 0));
+        //Set starting player location and remove danger if present
+        int startingRow = 2;
+        int startingColumn = 0;
+        map.setMapEntranceRow(startingRow);
+        map.setMapEntranceColumn(startingColumn);
         Danger noDanger = new Danger();
         noDanger.setDangerType(DangerType.NONE);
-        map.getLocationAt(3, 0).setDanger(noDanger);
-        map.setMapExit(map.getLocationAt(3, 4));
-        map.getLocationAt(3, 4).setDanger(noDanger);
+        map.getLocationAt(startingRow, startingColumn).setDanger(noDanger);
+        
+        //Set map exit at a random location on the last column and remove danger if present
+        int exitColumn = Map.COLUMNS - 1;
+        Random random = new Random();
+        int exitRow = random.nextInt(Map.ROWS);
+        map.setMapExitRow(exitRow);
+        map.setMapExitColumn(exitColumn);
+        Danger noDanger2 = new Danger();
+        noDanger.setDangerType(DangerType.NONE);
+        map.getLocationAt(startingRow, startingColumn).setDanger(noDanger2);
 
         currentGame.setGameMap(map);
         

@@ -21,8 +21,6 @@ public class Location implements Serializable {
     private String locationDescription;
     // Need this instance variable in place of just the DangerType
     private Danger danger;
-    /* Had to comment this out to have the danger created for each location.
-    private DangerType dangerType;  */
     private Item item;
 
     public Danger getDanger() {
