@@ -142,7 +142,8 @@ public class GameMenuView extends View {
             for (int row = 0; row < Map.ROWS; row++) {
                 int rowIndex = row + 1;
                 for (int col = 0; col < Map.COLUMNS; col++) {
-                    char locationType = map.getLocationAt(row, col).getDanger().getDangerType().toString().charAt(0);
+                    char locationType;
+                    locationType = map.getLocationAt(row, col).getDanger().getDangerType().toString().charAt(0);
                     if (col == 0) {
                         this.console.print(rowIndex + "  |");
                     }

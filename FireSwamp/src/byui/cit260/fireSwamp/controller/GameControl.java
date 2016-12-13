@@ -50,10 +50,13 @@ public class GameControl {
         int startingColumn = 0;
         map.setMapEntranceRow(startingRow);
         map.setMapEntranceColumn(startingColumn);
+        
+        
         Danger noDanger = new Danger();
         noDanger.setDangerType(DangerType.NONE);
         map.getLocationAt(startingRow, startingColumn).setDanger(noDanger);
         
+       
         //Set map exit at a random location on the last column and remove danger if present
         int exitColumn = Map.COLUMNS - 1;
         Random random = new Random();
@@ -61,7 +64,7 @@ public class GameControl {
         map.setMapExitRow(exitRow);
         map.setMapExitColumn(exitColumn);
         Danger noDanger2 = new Danger();
-        noDanger.setDangerType(DangerType.NONE);
+        noDanger2.setDangerType(DangerType.NONE);
         map.getLocationAt(startingRow, startingColumn).setDanger(noDanger2);
 
         currentGame.setGameMap(map);
