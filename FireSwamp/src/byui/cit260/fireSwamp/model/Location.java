@@ -62,14 +62,7 @@ public class Location implements Serializable {
     public DangerType getLocationType() {
             return this.danger.getDangerType();
         }
-    /*
     
-
-    public void setLocationType(DangerType dangerType) {
-        this.dangerType = dangerType;
-    }
-    */
-
     public void setLocationRow(int locationRow) {
         this.locationRow = locationRow;
     }

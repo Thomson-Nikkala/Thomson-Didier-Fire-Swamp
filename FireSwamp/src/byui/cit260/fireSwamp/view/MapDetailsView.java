@@ -215,22 +215,14 @@ public class MapDetailsView extends View {
 
         String strMapSize = "\n\n\tThe map is a grid of " + Map.ROWS + " X " + Map.COLUMNS + ".\n";
         String strMapEntrance = null;
-        if (mapReport.getMapEntrance() != null) {
-            strMapEntrance = "\tThe game starts at row " + mapReport.getMapEntrance().getLocationRowForPeople()
-                + " and column " + mapReport.getMapEntrance().getLocationColumnForPeople() + ".\n";
-        }
-        else {
-            strMapEntrance = "\tThe game starts somewhere over the rainbow.\n";
-        }
-        
+        strMapEntrance = "\tThe game starts at row " + mapReport.getMapEntranceRow()           
+         + " and column " + mapReport.getMapEntranceColumn() + ".\n";
+
         String strMapExit = null;
-        if (mapReport.getMapExit() != null) {
-            strMapExit = "\n\n\tTo win the game you have to get to row " + mapReport.getMapExit().getLocationRowForPeople()
-                + " and column " + mapReport.getMapExit().getLocationColumnForPeople() + " without dying on the way!\n";
-        }
-        else {
-            strMapExit = "\n\n\tTo win the game you have to land on the unset exit.\n";
-        }
+            strMapExit = "\n\n\tTo win the game you have to get to row " + mapReport.getMapExitRow()
+                + " and column " + mapReport.getMapExitColumn() + " without dying on the way!\n";
+        
+  
         
   
         String strDisclaimer = "\n\n\t\tUsing the information on this report is considered cheating!\n"

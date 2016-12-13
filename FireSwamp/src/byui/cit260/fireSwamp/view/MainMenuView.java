@@ -117,7 +117,10 @@ public class MainMenuView extends View {
         GameControl gc = new GameControl();
         Player player = FireSwamp.getPlayer();
         gc.createNewGame(player);
-        player.setPlayerPosition(FireSwamp.getCurrentGame().getGameMap().getMapEntrance());
+        
+        int startRow = FireSwamp.getCurrentGame().getGameMap().getMapEntranceRow();
+        int startColumn = FireSwamp.getCurrentGame().getGameMap().getMapEntranceColumn();
+        player.setPlayerPosition(FireSwamp.getCurrentGame().getGameMap().getLocationAt(startRow,startColumn));
         
         GameMenuView gameMenu = new GameMenuView();
         try {
