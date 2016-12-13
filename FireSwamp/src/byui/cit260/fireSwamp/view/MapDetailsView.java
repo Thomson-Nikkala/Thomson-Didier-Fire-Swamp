@@ -93,7 +93,7 @@ public class MapDetailsView extends View {
         for (int row = 0; row < Map.ROWS; row++) {
             for (int col = 0; col < Map.COLUMNS; col++) {
 
-                DangerType dangerFound = mapReport.getLocationAt(row, col).getLocationType();
+                DangerType dangerFound = mapReport.getLocationAt(row, col).getDanger().getDangerType();
                 switch (dangerFound) {
                     case NONE:
                         numNoDangers++;

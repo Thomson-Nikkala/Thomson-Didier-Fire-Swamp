@@ -60,7 +60,7 @@ public class Map implements Serializable{
                 location.setLocationVisited(false);
                 
                 location.setDanger(newDanger);
-                //location.setLocationType(DangerType.values()[randLocation]);                
+                              
                 
                 matrix[row][col] = location;
             }
@@ -100,7 +100,7 @@ public class Map implements Serializable{
         
         for (int row = 0; row < ROWS; row++) {
             for (int col = 0; col < COLUMNS; col++) {
-                dangerFound = matrix[row][col].getLocationType();
+                dangerFound = matrix[row][col].getDanger().getDangerType();
                 switch (dangerFound) {
                     case NONE:
                         totalSafeRow[row]++;

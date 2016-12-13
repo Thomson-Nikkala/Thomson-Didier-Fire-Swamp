@@ -19,7 +19,6 @@ public class Location implements Serializable {
     private int locationColumn;
     private boolean locationVisited;
     private String locationDescription;
-    // Need this instance variable in place of just the DangerType
     private Danger danger;
     private Item item;
 
@@ -59,10 +58,12 @@ public class Location implements Serializable {
         this.locationVisited = locationVisited;
     }
     
-    public DangerType getLocationType() {
+   /*  I'm taking this out--no longer part of class --Nikkala
+    
+            public DangerType getLocationType() {
             return this.danger.getDangerType();
         }
-    
+    */
     public void setLocationRow(int locationRow) {
         this.locationRow = locationRow;
     }
