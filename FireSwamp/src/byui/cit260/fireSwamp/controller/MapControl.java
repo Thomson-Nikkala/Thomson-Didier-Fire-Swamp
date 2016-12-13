@@ -10,7 +10,6 @@ import byui.cit260.fireSwamp.exceptions.MapControlException;
 import byui.cit260.fireSwamp.model.Item;
 import byui.cit260.fireSwamp.model.Location;
 import byui.cit260.fireSwamp.model.Map;
-import byui.cit260.fireSwamp.model.Player;
 
 /**
  *

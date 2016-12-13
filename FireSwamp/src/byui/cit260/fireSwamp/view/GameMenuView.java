@@ -1,7 +1,9 @@
-/** *************************************************
+/**
+ * *************************************************
  * GameMenuView Class                              *
  *                                                 *
- ************************************************** */
+ **************************************************
+ */
 package byui.cit260.fireSwamp.view;
 
 import byui.cit260.fireSwamp.controller.*;
@@ -27,23 +29,23 @@ public class GameMenuView extends View {
     public GameMenuView() {
 
         super("\n******************************************************"
-            + "\n* GAME MENU                                          *"
-            + "\n* V - View map                                       *"
-            + "\n* O - lOok                                           *"
-            + "\n* L - Listen                                         *"
-            + "\n* M - sMell                                          *"
-            + "\n* T - Take item                                      *"
-            + "\n* I - write Inventory to file (Nikkala week 12)      *"
-            + "\n* D - write map stats to file (Didier week 12)       *"
-            + "\n* N - move North                                     *"
-            + "\n* E - move East                                      *"
-            + "\n* W - move West                                      *"
-            + "\n* S - move South                                     *"
-            + "\n* H - Help                                           *"
-            + "\n* B - Back                                           *"
-            + "\n* P - Win Game (for testing purposes)                *"
-            + "\n******************************************************"
-            + "\n\n Enter command: ");
+                + "\n* GAME MENU                                          *"
+                + "\n* V - View map                                       *"
+                + "\n* O - lOok                                           *"
+                + "\n* L - Listen                                         *"
+                + "\n* M - sMell                                          *"
+                + "\n* T - Take item                                      *"
+                + "\n* I - write Inventory to file (Nikkala week 12)      *"
+                + "\n* D - write map stats to file (Didier week 12)       *"
+                + "\n* N - move North                                     *"
+                + "\n* E - move East                                      *"
+                + "\n* W - move West                                      *"
+                + "\n* S - move South                                     *"
+                + "\n* H - Help                                           *"
+                + "\n* B - Back                                           *"
+                + "\n* P - Win Game (for testing purposes)                *"
+                + "\n******************************************************"
+                + "\n\n Enter command: ");
     }
 
     @Override
@@ -70,46 +72,38 @@ public class GameMenuView extends View {
             case "I":
                 this.writeInventory();
                 break;
-            case "N":
-        {
-            try {
-                this.moveNorth();
+            case "N": {
+                try {
+                    this.moveNorth();
+                } catch (DangerControlException ex) {
+                    Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-            catch (DangerControlException ex) {
-                Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
+            break;
+            case "E": {
+                try {
+                    this.moveEast();
+                } catch (DangerControlException ex) {
+                    Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-        }
-                break;
-            case "E":
-        {
-            try {
-                this.moveEast();
+            break;
+            case "W": {
+                try {
+                    this.moveWest();
+                } catch (DangerControlException ex) {
+                    Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-            catch (DangerControlException ex) {
-                Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
+            break;
+            case "S": {
+                try {
+                    this.moveSouth();
+                } catch (DangerControlException ex) {
+                    Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-        }
-                break;
-            case "W":
-        {
-            try {
-                this.moveWest();
-            }
-            catch (DangerControlException ex) {
-                Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-                break;
-            case "S":
-        {
-            try {
-                this.moveSouth();
-            }
-            catch (DangerControlException ex) {
-                Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-                break;
+            break;
             case "H":
                 this.callHelpMenu();
                 break;
@@ -144,38 +138,39 @@ public class GameMenuView extends View {
         }
         this.console.println();
         this.console.println("   +---+---+---+---+---|");
+        try {
+            for (int row = 0; row < Map.ROWS; row++) {
+                int rowIndex = row + 1;
+                for (int col = 0; col < Map.COLUMNS; col++) {
+                    char locationType = map.getLocationAt(row, col).getDanger().getDangerType().toString().charAt(0);
+                    if (col == 0) {
+                        this.console.print(rowIndex + "  |");
+                    }
+                    this.console.print(locationType);
+                    if (map.getLocationAt(row, col).getItem().getItemType() != ItemType.NONE) {
+                        this.console.print(map.getLocationAt(row, col).getItem().getItemName().charAt(0) + " |");
+                    } else {
+                        this.console.print("  |");
+                    }
 
-        for (int row = 0; row < Map.ROWS; row++) {
-            int rowIndex = row + 1;
-            for (int col = 0; col < Map.COLUMNS; col++) {
-                char locationType = map.getLocationAt(row, col).getDanger().getDangerType().toString().charAt(0);
-                if (col == 0) {
-                    this.console.print(rowIndex + "  |");
                 }
-                this.console.print(locationType);
-                if (map.getLocationAt(row, col).getItem().getItemType() != ItemType.NONE) {
-                    this.console.print(map.getLocationAt(row, col).getItem().getItemName().charAt(0) + " |");
-                } else {
-                    this.console.print("  |");
-                }
+                this.console.println();
+                this.console.println("   +---+---+---+---+---|");
 
             }
-            this.console.println();
-            this.console.println("   +---+---+---+---+---|");
-
+        } catch (Exception e) {
+            Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, e);
         }
 
         if (FireSwamp.getPlayer().getPlayerPosition() != null) {
             Location playerLoc = FireSwamp.getPlayer().getPlayerPosition();
             this.console.println("\n** "
-                               + FireSwamp.getPlayer().getPlayerName()
-                               + " is at row " + playerLoc.getLocationRowForPeople()
-                               + " and at column " + playerLoc.getLocationColumnForPeople());
+                    + FireSwamp.getPlayer().getPlayerName()
+                    + " is at row " + playerLoc.getLocationRowForPeople()
+                    + " and at column " + playerLoc.getLocationColumnForPeople());
         }
-        
 
         //map.mapStatistics();
-
         //this temporary section is for testing the checkInventory function
         ArrayList<Item> inventory = new ArrayList<>();
         InventoryControl inControl = new InventoryControl();
@@ -191,14 +186,13 @@ public class GameMenuView extends View {
         potion.setItemDescription("A healing potion");
         potion.setItemName("potion");
         inventory.add(potion);
-        
+
         FireSwamp.getPlayer().setPlayerInventory(inventory);
 
         try {
             int ropePositionInList = inControl.checkInventory(inventory, ItemType.ROPE);
             this.console.println("\n inventory position is " + ropePositionInList);
-        }
-        catch (InventoryControlException ice) {
+        } catch (InventoryControlException ice) {
             this.console.println(ice.getMessage());
         }
 
@@ -229,7 +223,7 @@ public class GameMenuView extends View {
     private void smell() {
         try {
             this.console.println(MapControl.checkSmell(FireSwamp.getPlayer().getPlayerPosition(),
-                      FireSwamp.getCurrentGame().getGameMap()));
+                    FireSwamp.getCurrentGame().getGameMap()));
         } catch (MapControlException ex) {
             Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -239,7 +233,7 @@ public class GameMenuView extends View {
         Map map = FireSwamp.getCurrentGame().getGameMap();
         Location location = FireSwamp.getPlayer().getPlayerPosition();
         ArrayList<Item> inventory = FireSwamp.getPlayer().getPlayerInventory();
-        
+
         boolean isItem = false;
         isItem = MapControl.checkForItem(location);
 
@@ -250,9 +244,9 @@ public class GameMenuView extends View {
             } catch (InventoryControlException ex) {
                 this.console.println(ex.getMessage());
             }
-           MapControl.deleteItemFromLocation(location);
+            MapControl.deleteItemFromLocation(location);
         }
-        
+
     }
 
     private void moveNorth() throws DangerControlException {
@@ -318,12 +312,12 @@ public class GameMenuView extends View {
         }
     }
 
-    private void writeInventory() {  
+    private void writeInventory() {
         String filePath = null;
         boolean valid = false;
-        
+
         this.console.println("Enter the file path (including filename) for where the inventory list is to be saved:");
-        while (!valid) {            
+        while (!valid) {
             try {
                 //prompt for player input
 
@@ -332,38 +326,34 @@ public class GameMenuView extends View {
 
                 if (filePath.length() < 1) {
                     this.console.println("\nInvalid value: value can not be blank");
-                }
-                else {
+                } else {
                     valid = true;
                 }
 
-            }
-            catch (IOException ex) {
+            } catch (IOException ex) {
                 Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-      
-        
+
         try {
             //save inventory list to specified file
             WriteInventoryView.writeInventory(FireSwamp.getPlayer().getPlayerInventory(), filePath);
             this.console.println("\nInventory successfully written to file " + filePath + ".");
         } catch (GameControlException gce) {
             ErrorView.display("GameMenuView", gce.getMessage());
-            
+
         }
     }
-    
-        private void mapStats() {
+
+    private void mapStats() {
         try {
             String filePath = null;
             MapDetailsView mapDetailsView = new MapDetailsView();
             filePath = mapDetailsView.getInput();
-            
+
             mapDetailsView.MapDetailsReport(filePath);
-        }
-        catch (GameControlException ex) {
+        } catch (GameControlException ex) {
             Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
         }
-        }
+    }
 }
