@@ -210,7 +210,7 @@ public class GameMenuView extends View {
         }
     }
 
-    //listen functiono checks for popping sound that precedes a flame spurt
+    //listen function checks for popping sound that precedes a flame spurt
     private void listen() {
         try {
             this.console.println(MapControl.checkListen(FireSwamp.getPlayer().getPlayerPosition(),
@@ -320,7 +320,8 @@ public class GameMenuView extends View {
         String filePath = null;
         boolean valid = false;
 
-        this.console.println("Enter the file path (including filename) for where the inventory list is to be saved:");
+        this.console.println("Enter the filename (including path if you do not wish to save in the default path) "
+                + "for where the inventory list is to be saved:");
         while (!valid) {
             try {
                 //prompt for player input

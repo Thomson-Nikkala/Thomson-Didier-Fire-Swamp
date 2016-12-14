@@ -65,7 +65,7 @@ public class GameControl {
         map.setMapExitColumn(exitColumn);
         Danger noDanger2 = new Danger();
         noDanger2.setDangerType(DangerType.NONE);
-        map.getLocationAt(startingRow, startingColumn).setDanger(noDanger2);
+        map.getLocationAt(exitRow, exitColumn).setDanger(noDanger2);
 
         currentGame.setGameMap(map);
         
