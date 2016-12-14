@@ -31,16 +31,18 @@ public class MovementControl {
                             + direction.toString()
                             + " because that location is outside "
                             + "the bounds of the map.");
-                } else {
+                }
+                else {
+                    playerLocation.setLocationRow(playerLocation.getLocationRow() - 1);
+                    FireSwamp.getPlayer().setPlayerPosition(playerLocation);
+                    //set current location to "visited"
+                    FireSwamp.getCurrentGame().getGameMap().getLocationAt(playerLocation.getLocationRow(), playerLocation.getLocationColumn()).setLocationVisited(true);
                     //check if player has reached the exit
                     if ((playerLocation.getLocationColumn() == map.getMapExitColumn()) && (playerLocation.getLocationRow() == map.getMapExitRow())) {
                         WinGameView winView = new WinGameView();
                         winView.display();
                     }
-                    playerLocation.setLocationRow(playerLocation.getLocationRow() - 1);
-                    FireSwamp.getPlayer().setPlayerPosition(playerLocation);
-                    //set current location to "visited"
-                    FireSwamp.getCurrentGame().getGameMap().getLocationAt(playerLocation.getLocationRow(), playerLocation.getLocationColumn()).setLocationVisited(true);
+                    
                 }
                 break;
             case SOUTH:
@@ -49,16 +51,18 @@ public class MovementControl {
                             + direction.toString()
                             + " because that location is outside "
                             + "the bounds of the map.");
-                } else {
+                }
+                else {
+                    playerLocation.setLocationRow(playerLocation.getLocationRow() + 1);
+                    FireSwamp.getPlayer().setPlayerPosition(playerLocation);
+                    //set current location to "visited"
+                    FireSwamp.getCurrentGame().getGameMap().getLocationAt(playerLocation.getLocationRow(), playerLocation.getLocationColumn()).setLocationVisited(true);
                     //check if player has reached the exit
                     if ((playerLocation.getLocationColumn() == map.getMapExitColumn()) && (playerLocation.getLocationRow() == map.getMapExitRow())) {
                         WinGameView winView = new WinGameView();
                         winView.display();
                     }
-                    playerLocation.setLocationRow(playerLocation.getLocationRow() + 1);
-                    FireSwamp.getPlayer().setPlayerPosition(playerLocation);
-                    //set current location to "visited"
-                    FireSwamp.getCurrentGame().getGameMap().getLocationAt(playerLocation.getLocationRow(), playerLocation.getLocationColumn()).setLocationVisited(true);
+                    
                 }
                 break;
             case WEST:
@@ -67,7 +71,8 @@ public class MovementControl {
                                                      + direction.toString()
                                                      + " because that location is outside "
                                                      + "the bounds of the map.");
-                } else {
+                }
+                else {
                     //no need to check if player reached the exit if going west
                     playerLocation.setLocationColumn(playerLocation.getLocationColumn() - 1);
                     FireSwamp.getPlayer().setPlayerPosition(playerLocation);
@@ -81,16 +86,18 @@ public class MovementControl {
                             + direction.toString()
                             + " because that location is outside "
                             + "the bounds of the map.");
-                } else {
+                } 
+                else {
+                    playerLocation.setLocationColumn(playerLocation.getLocationColumn() + 1);
+                    FireSwamp.getPlayer().setPlayerPosition(playerLocation);
+                    //set current location to "visited"
+                    FireSwamp.getCurrentGame().getGameMap().getLocationAt(playerLocation.getLocationRow(), playerLocation.getLocationColumn()).setLocationVisited(true);
                     //check if player has reached the exit
                     if ((playerLocation.getLocationColumn() == map.getMapExitColumn()) && (playerLocation.getLocationRow() == map.getMapExitRow())) {
                         WinGameView winView = new WinGameView();
                         winView.display();
                     }
-                    playerLocation.setLocationColumn(playerLocation.getLocationColumn() + 1);
-                    FireSwamp.getPlayer().setPlayerPosition(playerLocation);
-                    //set current location to "visited"
-                    FireSwamp.getCurrentGame().getGameMap().getLocationAt(playerLocation.getLocationRow(), playerLocation.getLocationColumn()).setLocationVisited(true);
+                    
                 }
                 break;
         }

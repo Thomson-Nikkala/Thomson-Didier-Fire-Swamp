@@ -43,7 +43,7 @@ public class FlameSpurtView extends View {
     @Override
     public void display() {
         //Display the problem to be solved
-        this.console.println("\n** To avoid your demise, answer this math problem:"
+        this.console.println(this.message + "\n** To avoid your demise, answer this math problem:"
                            + "\n****************************************************"
                            + "\n>>   What is the volume of a Pyramid of"
                            + "\n>>   " + pyramidLength + " feet long,"
@@ -65,6 +65,7 @@ public class FlameSpurtView extends View {
             try {
                 ArrayList<Item> inventory = FireSwamp.getPlayer().getPlayerInventory();
                 inControl.checkInventory(inventory, ItemType.BUCKET);
+                System.out.println(inventory.toString());
             } catch (InventoryControlException ice) {
                 ErrorView.display(this.getClass().getName(),"Alas, that's incorrect, and you have no bucket "
                              + " of water to cover the flames who roast you."
@@ -107,7 +108,6 @@ public class FlameSpurtView extends View {
                 Double.parseDouble(input);
             } catch (NumberFormatException nf) {
                 ErrorView.display(this.getClass().getName(), "\nPlease enter a valid number.");
-                return null;
             }
             
             valid = true;
