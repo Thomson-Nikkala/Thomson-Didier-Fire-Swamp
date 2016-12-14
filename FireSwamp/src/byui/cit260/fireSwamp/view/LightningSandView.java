@@ -36,12 +36,12 @@ public class LightningSandView extends View {
         double diam = Math.random() * 29 + 1;  //diameter will be [1..30)
 
         //Display problem
-        this.console.println(" You see a pit of lightning sand in front of you."
+        this.console.println("\n You see a pit of lightning sand in front of you."
                 + "\n To avoid being swallowed up by the sand, you must calculate the"
                 + "\n distance you will need to walk around one side of the pit.  "
                 + "\n The distance across the pit is ");
         this.console.printf("%.2f", diam);
-        this.console.printf(".");
+        this.console.printf(" feet.  How far is it to go around? (in feet) ");
 
         //Collect input
         String input = getInput();

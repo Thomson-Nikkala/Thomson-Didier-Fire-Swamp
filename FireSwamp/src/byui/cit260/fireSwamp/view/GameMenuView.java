@@ -75,7 +75,7 @@ public class GameMenuView extends View {
             case "N": {
                 try {
                     this.moveNorth();
-                } catch (DangerControlException ex) {
+                } catch (DangerControlException | GameControlException ex) {
                     Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
@@ -83,7 +83,7 @@ public class GameMenuView extends View {
             case "E": {
                 try {
                     this.moveEast();
-                } catch (DangerControlException ex) {
+                } catch (DangerControlException | GameControlException ex) {
                     Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
@@ -91,7 +91,7 @@ public class GameMenuView extends View {
             case "W": {
                 try {
                     this.moveWest();
-                } catch (DangerControlException ex) {
+                } catch (DangerControlException | GameControlException ex) {
                     Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
@@ -99,7 +99,7 @@ public class GameMenuView extends View {
             case "S": {
                 try {
                     this.moveSouth();
-                } catch (DangerControlException ex) {
+                } catch (DangerControlException | GameControlException ex) {
                     Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
@@ -253,7 +253,7 @@ public class GameMenuView extends View {
 
     }
 
-    private void moveNorth() throws DangerControlException {
+    private void moveNorth() throws DangerControlException, GameControlException {
         Map map = FireSwamp.getCurrentGame().getGameMap();
         Player player = FireSwamp.getPlayer();
         try {
@@ -264,7 +264,7 @@ public class GameMenuView extends View {
 
     }
 
-    private void moveEast() throws DangerControlException {
+    private void moveEast() throws DangerControlException, GameControlException {
         Map map = FireSwamp.getCurrentGame().getGameMap();
         Player player = FireSwamp.getPlayer();
         try {
@@ -274,7 +274,7 @@ public class GameMenuView extends View {
         }
     }
 
-    private void moveWest() throws DangerControlException {
+    private void moveWest() throws DangerControlException, GameControlException {
         Map map = FireSwamp.getCurrentGame().getGameMap();
         Player player = FireSwamp.getPlayer();
         try {
@@ -284,7 +284,7 @@ public class GameMenuView extends View {
         }
     }
 
-    private void moveSouth() throws DangerControlException {
+    private void moveSouth() throws DangerControlException, GameControlException {
         Map map = FireSwamp.getCurrentGame().getGameMap();
         Player player = FireSwamp.getPlayer();
         try {
