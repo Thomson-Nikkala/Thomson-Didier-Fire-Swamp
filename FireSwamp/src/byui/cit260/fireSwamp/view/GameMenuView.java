@@ -247,6 +247,8 @@ public class GameMenuView extends View {
                 this.console.println(ex.getMessage());
             }
             MapControl.deleteItemFromLocation(location);
+        } else {
+            this.console.println("\nThere is no item here to take.");
         }
 
     }

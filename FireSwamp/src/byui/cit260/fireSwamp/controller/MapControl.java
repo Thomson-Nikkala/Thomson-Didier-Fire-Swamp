@@ -70,9 +70,9 @@ public class MapControl {
         }
         //check for item at location and print it out if it exists
         if (testLocation.getItem() == null) {
-            string = string + "\nOn the ground, you see nothing.";
+            string = string + "\nAlso, on the ground, you see nothing.";
         } else {
-            string = string + "\nOn the ground, you see ";
+            string = string + "\nAlso, on the ground, you see ";
             switch (testLocation.getItem().getItemType()) {
                 case NONE:
                     string = string + "nothing.";
