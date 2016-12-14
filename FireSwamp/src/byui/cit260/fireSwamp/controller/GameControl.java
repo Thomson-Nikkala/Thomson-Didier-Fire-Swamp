@@ -49,14 +49,12 @@ public class GameControl {
         int startingRow = 2;
         int startingColumn = 0;
         map.setMapEntranceRow(startingRow);
-        map.setMapEntranceColumn(startingColumn);
-        //set starting location to visited
-        //map[startingRow][startingColumn].setLocationVisited = true;
-        
+        map.setMapEntranceColumn(startingColumn); 
         Danger noDanger = new Danger();
         noDanger.setDangerType(DangerType.NONE);
         map.getLocationAt(startingRow, startingColumn).setDanger(noDanger);
-        
+        //set starting location to visited
+        map.getLocationAt(startingRow, startingColumn).setLocationVisited(true); 
        
         //Set map exit at a random location on the last column and remove danger if present
         int exitColumn = Map.COLUMNS - 1;

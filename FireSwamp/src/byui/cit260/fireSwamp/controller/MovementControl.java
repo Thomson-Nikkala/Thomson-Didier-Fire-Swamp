@@ -41,6 +41,8 @@ public class MovementControl {
                     }
                     playerLocation.setLocationRow(playerLocation.getLocationRow() - 1);
                     FireSwamp.getPlayer().setPlayerPosition(playerLocation);
+                    //set current location to "visited"
+                    FireSwamp.getCurrentGame().getGameMap().getLocationAt(playerLocation.getLocationRow(), playerLocation.getLocationColumn()).setLocationVisited(true);
                 }
                 break;
             case SOUTH:
@@ -58,6 +60,8 @@ public class MovementControl {
                     }
                     playerLocation.setLocationRow(playerLocation.getLocationRow() + 1);
                     FireSwamp.getPlayer().setPlayerPosition(playerLocation);
+                    //set current location to "visited"
+                    FireSwamp.getCurrentGame().getGameMap().getLocationAt(playerLocation.getLocationRow(), playerLocation.getLocationColumn()).setLocationVisited(true);
                 }
                 break;
             case WEST:
@@ -70,6 +74,8 @@ public class MovementControl {
                     //no need to check if player reached the exit if going west
                     playerLocation.setLocationColumn(playerLocation.getLocationColumn() - 1);
                     FireSwamp.getPlayer().setPlayerPosition(playerLocation);
+                    //set current location to "visited"
+                    FireSwamp.getCurrentGame().getGameMap().getLocationAt(playerLocation.getLocationRow(), playerLocation.getLocationColumn()).setLocationVisited(true);
                 }
                 break;
             case EAST:
@@ -87,6 +93,8 @@ public class MovementControl {
                     }
                     playerLocation.setLocationColumn(playerLocation.getLocationColumn() + 1);
                     FireSwamp.getPlayer().setPlayerPosition(playerLocation);
+                    //set current location to "visited"
+                    FireSwamp.getCurrentGame().getGameMap().getLocationAt(playerLocation.getLocationRow(), playerLocation.getLocationColumn()).setLocationVisited(true);
                 }
                 break;
         }
