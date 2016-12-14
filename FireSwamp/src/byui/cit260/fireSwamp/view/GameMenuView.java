@@ -237,9 +237,9 @@ public class GameMenuView extends View {
 
         boolean isItem;
         isItem = MapControl.checkForItem(location);
-
+       
         //if there is, add a copy of that item to the inventory, then delete it from the location
-        if (isItem) {
+        if (isItem) {          
             try {
                 InventoryControl.addItemToInventory(location.getItem(), inventory);
                 this.console.println("\nItem added to inventory.");

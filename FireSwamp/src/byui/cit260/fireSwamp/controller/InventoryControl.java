@@ -44,11 +44,12 @@ public class InventoryControl {
         throws InventoryControlException {
         
         //make new item identical to the one passed in
-        Item newItem = null;
+        Item newItem = new Item();
+       
         newItem.setItemDescription(item.getItemDescription());
         newItem.setItemName(item.getItemName());
         newItem.setItemType(item.getItemType());
-        
+
         //add item to inventory
         boolean add = inventory.add(newItem);
         if (add == false) {

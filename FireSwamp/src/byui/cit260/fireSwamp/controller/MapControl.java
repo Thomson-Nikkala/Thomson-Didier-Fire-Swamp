@@ -24,7 +24,8 @@ public class MapControl {
      */
     public static boolean checkForItem(Location location) {
 
-        if (location.getItem() == null) {
+        if (location.getItem() == null) { 
+            System.out.println("null"); //for debugging only
             return false;
         } else {
             return location.getItem().getItemType() != ItemType.NONE;

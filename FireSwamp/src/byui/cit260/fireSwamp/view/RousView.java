@@ -43,7 +43,7 @@ public class RousView extends View {
         this.console.printf(" feet long. It is common knowledge that "
             + "\n Rodents of Unusual Size are half as tall as they are long. "
             + "\n How high will you need to jump to clear the rodent by "
-            + "\n half a foot?  (in feet)");
+            + "\n half a foot? (in feet) ");
 
         //Collect input
         String input = getInput();
@@ -53,7 +53,7 @@ public class RousView extends View {
 
         //Display results
         if (isCorrect) {
-            this.console.println("You successfully jump over the ROUS.");
+            this.console.println("\nYou successfully jump over the ROUS.");
         } else {
             //Check for healing potion (itemType 3)
             InventoryControl inControl = new InventoryControl();
