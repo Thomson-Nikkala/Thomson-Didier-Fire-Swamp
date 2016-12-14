@@ -235,13 +235,14 @@ public class GameMenuView extends View {
         Location location = FireSwamp.getPlayer().getPlayerPosition();
         ArrayList<Item> inventory = FireSwamp.getPlayer().getPlayerInventory();
 
-        boolean isItem = false;
+        boolean isItem;
         isItem = MapControl.checkForItem(location);
 
         //if there is, add a copy of that item to the inventory, then delete it from the location
         if (isItem) {
             try {
                 InventoryControl.addItemToInventory(location.getItem(), inventory);
+                this.console.println("\nItem added to inventory.");
             } catch (InventoryControlException ex) {
                 this.console.println(ex.getMessage());
             }

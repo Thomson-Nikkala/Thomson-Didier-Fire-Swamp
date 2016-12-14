@@ -36,14 +36,14 @@ public class RousView extends View {
         length = Math.random() * 12 + 3;  //ROUS length will be [3..15) feet
 
         //Display problem
-        this.console.println(" A rodent of Unusual Size challenges you."
+        this.console.print("\n A rodent of Unusual Size challenges you."
             + "\n To avoid being bitten by the beast, you must jump over it."
             + "\n The ROUS is ");
         this.console.printf("%.2f", length);
-        this.console.printf(" feet long. It is common knowledge that "
+        this.console.print(" feet long. It is common knowledge that "
             + "\n Rodents of Unusual Size are half as tall as they are long. "
             + "\n How high will you need to jump to clear the rodent by "
-            + "\n half a foot?");
+            + "\n half a foot?  (in feet)");
 
         //Collect input
         String input = getInput();
