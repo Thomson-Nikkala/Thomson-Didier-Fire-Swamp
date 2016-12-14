@@ -68,9 +68,8 @@ public class GameControl {
 
         currentGame.setGameMap(map);
         
-        createAndAssignItems(map);
-        
         itemEmptyAutofill(map);
+        createAndAssignItems(map);
         
         FireSwamp.setCurrentGame(currentGame);
     }
@@ -161,7 +160,7 @@ public class GameControl {
                 int randomCol = rand.nextInt(Map.COLUMNS);
 
                 Location location = map.getLocationAt(randomRow, randomCol);
-                if (location.getItem() == null) {
+                if (location.getItem().getItemType() == ItemType.NONE) {
                     location.setItem(item);
                     placed = true;
                 }

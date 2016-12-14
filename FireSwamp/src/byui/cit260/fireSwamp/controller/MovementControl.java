@@ -4,8 +4,7 @@
  ************************************************** */
 package byui.cit260.fireSwamp.controller;
 
-import byui.cit260.fireSwamp.enums.DangerType;
-import byui.cit260.fireSwamp.enums.Direction;
+import byui.cit260.fireSwamp.enums.*;
 import byui.cit260.fireSwamp.exceptions.DangerControlException;
 import byui.cit260.fireSwamp.exceptions.GameControlException;
 import byui.cit260.fireSwamp.exceptions.MovementControlException;
@@ -23,7 +22,7 @@ public class MovementControl {
             throws MovementControlException, DangerControlException, GameControlException {
 
         Map map = FireSwamp.getCurrentGame().getGameMap();
-        Location playerLocation = FireSwamp.getPlayer().getPlayerPosition();
+        Location playerLocation = player.getPlayerPosition();
 
         switch (direction) {
             case NORTH:
@@ -34,8 +33,7 @@ public class MovementControl {
                             + "the bounds of the map.");
                 } else {
                     //check if player has reached the exit
-                    if ((playerLocation.getLocationColumn() == map.getMapExitColumn())
-                            && (playerLocation.getLocationRow() == map.getMapExitRow())) {
+                    if ((playerLocation.getLocationColumn() == map.getMapExitColumn()) && (playerLocation.getLocationRow() == map.getMapExitRow())) {
                         WinGameView winView = new WinGameView();
                         winView.display();
                     }
@@ -53,8 +51,7 @@ public class MovementControl {
                             + "the bounds of the map.");
                 } else {
                     //check if player has reached the exit
-                    if ((playerLocation.getLocationColumn() == map.getMapExitColumn())
-                            && (playerLocation.getLocationRow() == map.getMapExitRow())) {
+                    if ((playerLocation.getLocationColumn() == map.getMapExitColumn()) && (playerLocation.getLocationRow() == map.getMapExitRow())) {
                         WinGameView winView = new WinGameView();
                         winView.display();
                     }
@@ -67,9 +64,9 @@ public class MovementControl {
             case WEST:
                 if (playerLocation.getLocationColumn() == 0) {
                     throw new MovementControlException("\n## Can not go "
-                            + direction.toString()
-                            + " because that location is outside "
-                            + "the bounds of the map.");
+                                                     + direction.toString()
+                                                     + " because that location is outside "
+                                                     + "the bounds of the map.");
                 } else {
                     //no need to check if player reached the exit if going west
                     playerLocation.setLocationColumn(playerLocation.getLocationColumn() - 1);
@@ -86,8 +83,7 @@ public class MovementControl {
                             + "the bounds of the map.");
                 } else {
                     //check if player has reached the exit
-                    if ((playerLocation.getLocationColumn() == map.getMapExitColumn())
-                            && (playerLocation.getLocationRow() == map.getMapExitRow())) {
+                    if ((playerLocation.getLocationColumn() == map.getMapExitColumn()) && (playerLocation.getLocationRow() == map.getMapExitRow())) {
                         WinGameView winView = new WinGameView();
                         winView.display();
                     }
@@ -99,8 +95,11 @@ public class MovementControl {
                 break;
         }
 
+        // Gets player's current location
         int row = playerLocation.getLocationRow();
         int col = playerLocation.getLocationColumn();
+
+        // Check for danger at player's current location
         DangerType whatDanger = map.getLocationAt(row, col).getDanger().getDangerType();
 
         if (whatDanger != DangerType.NONE) {
@@ -130,9 +129,8 @@ public class MovementControl {
                 default:
                     break;
             }
-        } else {
-
         }
-
+        
+        
     }
 }

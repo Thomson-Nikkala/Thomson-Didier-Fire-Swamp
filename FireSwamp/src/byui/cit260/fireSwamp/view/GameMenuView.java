@@ -172,6 +172,7 @@ public class GameMenuView extends View {
         }
 
         //map.mapStatistics();
+        
         //this temporary section is for testing the checkInventory function
         ArrayList<Item> inventory = new ArrayList<>();
         InventoryControl inControl = new InventoryControl();
@@ -203,8 +204,9 @@ public class GameMenuView extends View {
     //look function checks for the sandy soil that indicates lightning sand
     private void look() {
         try {
-            this.console.println(MapControl.checkLook(FireSwamp.getPlayer().getPlayerPosition(),
-                    FireSwamp.getCurrentGame().getGameMap()));
+            Location playerPosition = FireSwamp.getPlayer().getPlayerPosition();
+            Map gameMap = FireSwamp.getCurrentGame().getGameMap();
+            this.console.println(MapControl.checkLook(playerPosition, gameMap));
         } catch (MapControlException ex) {
             Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -231,12 +233,17 @@ public class GameMenuView extends View {
     }
 
     private void takeItem() {
-        Map map = FireSwamp.getCurrentGame().getGameMap();
+        
         Location location = FireSwamp.getPlayer().getPlayerPosition();
+        Map map = FireSwamp.getCurrentGame().getGameMap();
+        
+        int row = location.getLocationRow();
+        int col = location.getLocationColumn();
+        
         ArrayList<Item> inventory = FireSwamp.getPlayer().getPlayerInventory();
 
         boolean isItem;
-        isItem = MapControl.checkForItem(location);
+        isItem = (map.getLocationAt(row, col).getItem().getItemType() != ItemType.NONE);
        
         //if there is, add a copy of that item to the inventory, then delete it from the location
         if (isItem) {          
@@ -246,7 +253,7 @@ public class GameMenuView extends View {
             } catch (InventoryControlException ex) {
                 this.console.println(ex.getMessage());
             }
-            MapControl.deleteItemFromLocation(location);
+            MapControl.deleteItemFromLocation(map.getLocationAt(row, col));
         } else {
             this.console.println("\nThere is no item here to take.");
         }

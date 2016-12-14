@@ -4,7 +4,6 @@
  ***************************************************/
 package byui.cit260.fireSwamp.model;
 
-import byui.cit260.fireSwamp.enums.DangerType;
 import java.io.Serializable;
 import java.util.Objects;
 

@@ -20,146 +20,159 @@ public class MapControl {
     /**
      *
      * @param location
-     * @return true if there is an item at the location
      */
-    public static boolean checkForItem(Location location) {
-
-        if (location.getItem() == null) { 
-            System.out.println("null"); //for debugging only
-            return false;
-        } else {
-            return location.getItem().getItemType() != ItemType.NONE;
-        }
-    }
-
+    
     public static void deleteItemFromLocation(Location location) {
         Item item = new Item();
         item.setItemType(ItemType.NONE);
         location.setItem(item);
     }
 
-    public static String checkLook(Location testLocation, Map map) throws MapControlException {
-        String string = "\nYou see nothing strange nearby.";
+    public static String checkLook(Location playerLocation, Map map) throws MapControlException {
+        String strDanger = "";
+        String strItem = "";
 
-        //check for nearby LightningSand
-        int row = testLocation.getLocationRow();
-        int col = testLocation.getLocationColumn();
-
-        //check west
+        
+        int row = playerLocation.getLocationRow();
+        int col = playerLocation.getLocationColumn();
+        
+        
+        //check for all nearby LightningSand
+        //Look north
         if (row > 0) {
-            if (map.getLocationAt(row - 1, col).getDanger().getDangerType() == DangerType.LIGHTNINGSAND) {
-                string = "\nYou see a strange patch of sand to the west.";
+            Location northLocation = map.getLocationAt(row - 1, col);
+            if (northLocation.getDanger().getDangerType() == DangerType.LIGHTNINGSAND) {
+                strDanger += "\nYou see a strange patch of sand to the north.";
             }
         }
-        //check east
+        //Look south
         if (row < (Map.ROWS - 1)) {
-            if (map.getLocationAt(row + 1, col).getDanger().getDangerType() == DangerType.LIGHTNINGSAND) {
-                string = "\nYou see a strange patch of sand to the east.";
+            Location southLocation = map.getLocationAt(row + 1, col);
+            if (southLocation.getDanger().getDangerType() == DangerType.LIGHTNINGSAND) {
+                strDanger += "\nYou see a strange patch of sand to the south.";
             }
         }
-        //check north
+        //Look west
         if (col > 0) {
-            if (map.getLocationAt(row, col - 1).getDanger().getDangerType() == DangerType.LIGHTNINGSAND) {
-                string = "\nYou see a strange patch of sand to the north.";
+            Location westLocation = map.getLocationAt(row, col - 1);
+            if (westLocation.getDanger().getDangerType() == DangerType.LIGHTNINGSAND) {
+                strDanger += "\nYou see a strange patch of sand to the west.";
             }
         }
-        //check south
+        //Look east
         if (col < (Map.COLUMNS - 1)) {
-            if (map.getLocationAt(row, col + 1).getDanger().getDangerType() == DangerType.LIGHTNINGSAND) {
-                string = "\nYou see a strange patch of sand to the south.";
+            Location eastLocation = map.getLocationAt(row, col + 1);
+            if (eastLocation.getDanger().getDangerType() == DangerType.LIGHTNINGSAND) {
+                strDanger += "\nYou see a strange patch of sand to the east.";
             }
         }
+        
         //check for item at location and print it out if it exists
-        if (testLocation.getItem() == null) {
-            string = string + "\nAlso, on the ground, you see nothing.";
+        Item itemAtPlayerPosition = map.getLocationAt(row, col).getItem();        
+        ItemType foundItemType = itemAtPlayerPosition.getItemType();
+        if (foundItemType == ItemType.NONE) {
+            strItem += "\nThere are no item here.";
         } else {
-            string = string + "\nAlso, on the ground, you see ";
-            switch (testLocation.getItem().getItemType()) {
-                case NONE:
-                    string = string + "nothing.";
-                    break;
+            strItem += "\nAlso, on the ground, you see ";
+            
+            switch (foundItemType) {
                 case BUCKET:
-                    string = string + "a wooden bucket full of water.";
+                    strItem += "a wooden bucket full of water.";
                     break;
                 case POTION:
-                    string = string + "a shimmery purple healing potion.";
+                    strItem += "a shimmery purple healing potion.";
                     break;
                 case ROPE:
-                    string = string + "a long section of sturdy rope.";
+                    strItem += "a long section of sturdy rope.";
                     break;
                 default:
                     break;
             }
         }
-        return string;
+        if (strDanger == "") {
+            return strItem;
+        }
+        else {
+            return strDanger + strItem;
+        }
     }
 
     public static String checkSmell(Location testLocation, Map map) throws MapControlException {
-        String string = "You smell no particular odor.";
+        String strDanger = "";
         //check for nearby ROUS
         int row = testLocation.getLocationRow();
         int col = testLocation.getLocationColumn();
 
-        //check west
+        //check north
         if (row > 0) {
             if (map.getLocationAt(row - 1, col).getDanger().getDangerType() == DangerType.ROUS) {
-                string = "\nYou smell an odor reminiscent of wet dog and rotting garbage wafting from the west.";
-            }
-        }
-        //check east
-        if (row < (Map.ROWS - 1)) {
-            if (map.getLocationAt(row + 1, col).getDanger().getDangerType() == DangerType.ROUS) {
-                string = "\nYou smell an odor reminiscent of wet dog and rotting garbage wafting from the east.";
-            }
-        }
-        //check north
-        if (col > 0) {
-            if (map.getLocationAt(row, col - 1).getDanger().getDangerType() == DangerType.ROUS) {
-                string = "\nYou smell an odor reminiscent of wet dog and rotting garbage wafting from the north.";
+                strDanger = "\nYou smell an odor reminiscent of wet dog and rotting garbage wafting from the north.";
             }
         }
         //check south
-        if (col < (Map.COLUMNS - 1)) {
-            if (map.getLocationAt(row, col + 1).getDanger().getDangerType() == DangerType.ROUS) {
-                string = "\nYou smell an odor reminiscent of wet dog and rotting garbage wafting from the south.";
+        if (row < (Map.ROWS - 1)) {
+            if (map.getLocationAt(row + 1, col).getDanger().getDangerType() == DangerType.ROUS) {
+                strDanger += "\nYou smell an odor reminiscent of wet dog and rotting garbage wafting from the south.";
             }
         }
-        return string;
+        //check west
+        if (col > 0) {
+            if (map.getLocationAt(row, col - 1).getDanger().getDangerType() == DangerType.ROUS) {
+                strDanger += "\nYou smell an odor reminiscent of wet dog and rotting garbage wafting from the west.";
+            }
+        }
+        //check east
+        if (col < (Map.COLUMNS - 1)) {
+            if (map.getLocationAt(row, col + 1).getDanger().getDangerType() == DangerType.ROUS) {
+                strDanger += "\nYou smell an odor reminiscent of wet dog and rotting garbage wafting from the east.";
+            }
+        }
+        
+        if (strDanger == "") {
+            strDanger = "\nYou smell no particular odor.";
+        }
+        
+        return strDanger;
 
     }
 
     public static String checkListen(Location testLocation, Map map) throws MapControlException {
-        String string = "\nYou just hear your own breathing. Calm down.";
+        String strDanger = "";
         //check for nearby Fire Spurt
         //check for nearby LightningSand
         int row = testLocation.getLocationRow();
         int col = testLocation.getLocationColumn();
 
-        //check west
+        //check north
         if (row > 0) {
             if (map.getLocationAt(row - 1, col).getDanger().getDangerType() == DangerType.FLAMESPURT) {
-                string = "\nYou hear a popping noise to the west .";
-            }
-        }
-        //check east
-        if (row < (Map.ROWS - 1)) {
-            if (map.getLocationAt(row + 1, col).getDanger().getDangerType() == DangerType.FLAMESPURT) {
-                string = "\nYou hear a popping noise to the east.";
-            }
-        }
-        //check north
-        if (col > 0) {
-            if (map.getLocationAt(row, col - 1).getDanger().getDangerType() == DangerType.FLAMESPURT) {
-                string = "\nYou hear a popping noise to the north.";
+                strDanger += "\nYou hear a popping noise to the north.";
             }
         }
         //check south
-        if (col < (Map.COLUMNS - 1)) {
-            if (map.getLocationAt(row, col + 1).getDanger().getDangerType() == DangerType.FLAMESPURT) {
-                string = "\nYou hear a popping noise to the south.";
+        if (row < (Map.ROWS - 1)) {
+            if (map.getLocationAt(row + 1, col).getDanger().getDangerType() == DangerType.FLAMESPURT) {
+                strDanger += "\nYou hear a popping noise to the south.";
             }
         }
-        return string;
+        //check west
+        if (col > 0) {
+            if (map.getLocationAt(row, col - 1).getDanger().getDangerType() == DangerType.FLAMESPURT) {
+                strDanger += "\nYou hear a popping noise to the west.";
+            }
+        }
+        //check east
+        if (col < (Map.COLUMNS - 1)) {
+            if (map.getLocationAt(row, col + 1).getDanger().getDangerType() == DangerType.FLAMESPURT) {
+                strDanger += "\nYou hear a popping noise to the east.";
+            }
+        }
+        
+        if (strDanger == "") {
+            strDanger = "\nYou just hear your own breathing. Calm down.";
+        }
+        
+        return strDanger;
     }
 
 }

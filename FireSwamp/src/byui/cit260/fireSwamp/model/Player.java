@@ -16,23 +16,12 @@ public class Player implements Serializable {
 
     // class instance variables
     private String playerName;
-    //private char playerGender; never use this
     private ArrayList<Item> playerInventory = new ArrayList<>();
     private Location playerPosition;
-    //private boolean playerAlive;   never use this
-   // private boolean playerInDanger;  never use this
 
     // default constructor
     public Player() {
     }
-
-    /*public boolean isPlayerInDanger() {
-        return playerInDanger;
-    }
-
-    public void setPlayerInDanger(boolean playerInDanger) {
-        this.playerInDanger = playerInDanger;
-    }*/
     
     public void setPlayerInventory(ArrayList<Item> playerInventory) {
         this.playerInventory = playerInventory;
@@ -81,12 +70,9 @@ public class Player implements Serializable {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 47 * hash + Objects.hashCode(this.playerName);
-       // hash = 47 * hash + this.playerGender;
-        hash = 47 * hash + Objects.hashCode(this.playerInventory);
-        hash = 47 * hash + Objects.hashCode(this.playerPosition);
-       // hash = 47 * hash + (this.playerAlive ? 1 : 0);
-       // hash = 47 * hash + (this.playerInDanger ? 1 : 0);
+        hash = 97 * hash + Objects.hashCode(this.playerName);
+        hash = 97 * hash + Objects.hashCode(this.playerInventory);
+        hash = 97 * hash + Objects.hashCode(this.playerPosition);
         return hash;
     }
 
@@ -102,15 +88,6 @@ public class Player implements Serializable {
             return false;
         }
         final Player other = (Player) obj;
-        /*if (this.playerGender != other.playerGender) {
-            return false;
-        }
-        if (this.playerAlive != other.playerAlive) {
-            return false;
-        }
-        if (this.playerInDanger != other.playerInDanger) {
-            return false;
-        }  */
         if (!Objects.equals(this.playerName, other.playerName)) {
             return false;
         }
@@ -125,13 +102,6 @@ public class Player implements Serializable {
 
     @Override
     public String toString() {
-        return "Player{" + "playerName=" + playerName
-                        // + ", playerGender=" + playerGender
-                         + ", playerInventory=" + playerInventory
-                         + ", playerPosition=" + playerPosition
-                       //  + ", playerAlive=" + playerAlive
-                        // + ", playerInDanger=" + playerInDanger + '}'
-                ;
-    }
-    
+        return "Player{" + "playerName=" + playerName + ", playerInventory=" + playerInventory + ", playerPosition=" + playerPosition + '}';
+    }    
 }
