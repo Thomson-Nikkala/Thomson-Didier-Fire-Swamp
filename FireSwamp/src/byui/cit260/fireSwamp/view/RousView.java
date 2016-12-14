@@ -71,7 +71,7 @@ public class RousView extends View {
                 }
             }
 
-            System.err.println("Alas, that's incorrect, and you have no healing potion. You are bitten by the ROUS and perish.");
+            this.console.println("Alas, that's incorrect, and you have no healing potion. You are bitten by the ROUS and perish.");
             LoseMenuView loseView = new LoseMenuView();
             try {
                 loseView.display();

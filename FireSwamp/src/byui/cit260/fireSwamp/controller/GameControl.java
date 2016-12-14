@@ -50,7 +50,8 @@ public class GameControl {
         int startingColumn = 0;
         map.setMapEntranceRow(startingRow);
         map.setMapEntranceColumn(startingColumn);
-        
+        //set starting location to visited
+        //map[startingRow][startingColumn].setLocationVisited = true;
         
         Danger noDanger = new Danger();
         noDanger.setDangerType(DangerType.NONE);

@@ -1,12 +1,13 @@
-/***************************************************
+/** *************************************************
  * MovementControl Class                           *
  *                                                 *
- ***************************************************/
+ ************************************************** */
 package byui.cit260.fireSwamp.controller;
 
 import byui.cit260.fireSwamp.enums.DangerType;
 import byui.cit260.fireSwamp.enums.Direction;
 import byui.cit260.fireSwamp.exceptions.DangerControlException;
+import byui.cit260.fireSwamp.exceptions.GameControlException;
 import byui.cit260.fireSwamp.exceptions.MovementControlException;
 import byui.cit260.fireSwamp.model.*;
 import byui.cit260.fireSwamp.view.*;
@@ -17,47 +18,56 @@ import fireswamp.FireSwamp;
  * @authors Didier Jourdain and Nikkala Thomson
  */
 public class MovementControl {
-    
-    
-    public static void movePlayerDirection(Player player, Direction direction) 
-                        throws MovementControlException, DangerControlException {
-        
+
+    public static void movePlayerDirection(Player player, Direction direction)
+            throws MovementControlException, DangerControlException, GameControlException {
+
         Map map = FireSwamp.getCurrentGame().getGameMap();
         Location playerLocation = FireSwamp.getPlayer().getPlayerPosition();
-        
+
         switch (direction) {
             case NORTH:
-                if (playerLocation.getLocationRow()== 0) {
+                if (playerLocation.getLocationRow() == 0) {
                     throw new MovementControlException("\n## Can not go "
-                                                + direction.toString()
-                                                + " because that location is outside "
-                                                + "the bounds of the map.");
-                }
-                else {
-                    playerLocation.setLocationRow(playerLocation.getLocationRow()- 1);
+                            + direction.toString()
+                            + " because that location is outside "
+                            + "the bounds of the map.");
+                } else {
+                    //check if player has reached the exit
+                    if ((playerLocation.getLocationColumn() == map.getMapExitColumn())
+                            && (playerLocation.getLocationRow() == map.getMapExitRow())) {
+                        WinGameView winView = new WinGameView();
+                        winView.display();
+                    }
+                    playerLocation.setLocationRow(playerLocation.getLocationRow() - 1);
                     FireSwamp.getPlayer().setPlayerPosition(playerLocation);
                 }
                 break;
             case SOUTH:
-                if (playerLocation.getLocationRow()== Map.ROWS - 1) {
+                if (playerLocation.getLocationRow() == Map.ROWS - 1) {
                     throw new MovementControlException("\n## Can not go "
-                                                + direction.toString()
-                                                + " because that location is outside "
-                                                + "the bounds of the map.");
-                }
-                else {
-                    playerLocation.setLocationRow(playerLocation.getLocationRow()+ 1);
+                            + direction.toString()
+                            + " because that location is outside "
+                            + "the bounds of the map.");
+                } else {
+                    //check if player has reached the exit
+                    if ((playerLocation.getLocationColumn() == map.getMapExitColumn())
+                            && (playerLocation.getLocationRow() == map.getMapExitRow())) {
+                        WinGameView winView = new WinGameView();
+                        winView.display();
+                    }
+                    playerLocation.setLocationRow(playerLocation.getLocationRow() + 1);
                     FireSwamp.getPlayer().setPlayerPosition(playerLocation);
                 }
                 break;
             case WEST:
                 if (playerLocation.getLocationColumn() == 0) {
                     throw new MovementControlException("\n## Can not go "
-                                                + direction.toString()
-                                                + " because that location is outside "
-                                                + "the bounds of the map.");
-                }
-                else {
+                            + direction.toString()
+                            + " because that location is outside "
+                            + "the bounds of the map.");
+                } else {
+                    //no need to check if player reached the exit if going west
                     playerLocation.setLocationColumn(playerLocation.getLocationColumn() - 1);
                     FireSwamp.getPlayer().setPlayerPosition(playerLocation);
                 }
@@ -65,25 +75,30 @@ public class MovementControl {
             case EAST:
                 if (playerLocation.getLocationColumn() == Map.COLUMNS - 1) {
                     throw new MovementControlException("\n## Can not go "
-                                                + direction.toString()
-                                                + " because that location is outside "
-                                                + "the bounds of the map.");
-                }
-                else {
+                            + direction.toString()
+                            + " because that location is outside "
+                            + "the bounds of the map.");
+                } else {
+                    //check if player has reached the exit
+                    if ((playerLocation.getLocationColumn() == map.getMapExitColumn())
+                            && (playerLocation.getLocationRow() == map.getMapExitRow())) {
+                        WinGameView winView = new WinGameView();
+                        winView.display();
+                    }
                     playerLocation.setLocationColumn(playerLocation.getLocationColumn() + 1);
                     FireSwamp.getPlayer().setPlayerPosition(playerLocation);
                 }
                 break;
         }
-        
+
         int row = playerLocation.getLocationRow();
         int col = playerLocation.getLocationColumn();
-        DangerType whatDanger = map.getLocationAt(row, col).getDanger().getDangerType();   
-        
+        DangerType whatDanger = map.getLocationAt(row, col).getDanger().getDangerType();
+
         if (whatDanger != DangerType.NONE) {
-            
+
             switch (whatDanger) {
-                
+
                 case FLAMESPURT:
                     DangerControl fsDangerControl = new DangerControl();
                     double fsLength = fsDangerControl.generateDouble(3, 99);
@@ -107,10 +122,9 @@ public class MovementControl {
                 default:
                     break;
             }
+        } else {
+
         }
-        else {
-            
-        }
-        
+
     }
 }
