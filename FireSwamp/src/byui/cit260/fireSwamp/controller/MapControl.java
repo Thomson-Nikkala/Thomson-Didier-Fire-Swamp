@@ -71,7 +71,7 @@ public class MapControl {
         Item itemAtPlayerPosition = map.getLocationAt(row, col).getItem();        
         ItemType foundItemType = itemAtPlayerPosition.getItemType();
         if (foundItemType == ItemType.NONE) {
-            strItem += "\nThere are no item here.";
+            strItem += "\nThere are no items here.";
         } else {
             strItem += "\nAlso, on the ground, you see ";
             

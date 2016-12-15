@@ -12,8 +12,13 @@ public class ErrorView {
     private static final PrintWriter errorFile = FireSwamp.getOutFile();
     private static final PrintWriter logFile = FireSwamp.getLogFile();
     
+    /**
+     *
+     * @param className
+     * @param errorMessage
+     */
     public static void display(String className, String errorMessage) {
-        
+   
         errorFile.println(
                     "------------------------------------------------------"
                   + "\n- ERROR - " + errorMessage
