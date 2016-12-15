@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class InventoryControl {
     
      /**********************************************
-     * checkInventory function (Nikkala)
+     * checkInventory method (Nikkala)
      * checks if the desired item is present in the inventory
      * @param inventory
      * @param itemType
@@ -38,11 +38,11 @@ public class InventoryControl {
                 found = inventory.indexOf(item);  //index of item in the list
             }
         }
-        //if no such item found
+        
         if (found != -1) {
             return found;
         }
-        else {
+        else {    //if no such item found
             throw new InventoryControlException("Item not found in inventory.");
         }
         

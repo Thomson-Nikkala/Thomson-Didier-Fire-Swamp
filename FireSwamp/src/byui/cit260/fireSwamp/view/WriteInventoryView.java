@@ -1,7 +1,7 @@
 package byui.cit260.fireSwamp.view;
 
-import byui.cit260.fireSwamp.exceptions.GameControlException;
 import byui.cit260.fireSwamp.model.Item;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class WriteInventoryView extends View {
     
-    public static void writeInventory(ArrayList<Item> itemList, String filepath) throws GameControlException {
+    public static void writeInventory(ArrayList<Item> itemList, String filepath) throws IOException {
       
        
         try (PrintWriter output = new PrintWriter(filepath))
@@ -34,7 +34,7 @@ public class WriteInventoryView extends View {
         
         catch(Exception e) {
             
-            throw new GameControlException(e.getMessage());
+            throw new IOException(e.getMessage());
             
         }
         

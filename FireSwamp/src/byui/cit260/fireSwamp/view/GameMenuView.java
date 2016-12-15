@@ -355,8 +355,8 @@ public class GameMenuView extends View {
             //save inventory list to specified file
             WriteInventoryView.writeInventory(FireSwamp.getPlayer().getPlayerInventory(), filePath);
             this.console.println("\nInventory successfully written to file " + filePath + ".");
-        } catch (GameControlException gce) {
-            ErrorView.display("GameMenuView", gce.getMessage());
+        } catch (IOException ioe) {
+            ErrorView.display("GameMenuView", ioe.getMessage());
 
         }
     }
