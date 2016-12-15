@@ -12,6 +12,7 @@ package byui.cit260.fireSwamp.controller;
 import byui.cit260.fireSwamp.enums.ItemType;
 import byui.cit260.fireSwamp.exceptions.InventoryControlException;
 import byui.cit260.fireSwamp.model.Item;
+import byui.cit260.fireSwamp.model.Player;
 import java.util.ArrayList;
 
 
@@ -29,18 +30,25 @@ public class InventoryControl {
     public int checkInventory(ArrayList<Item> inventory, ItemType itemType) 
             throws InventoryControlException {
 
+        int found = -1;
         //for each loop
         for (Item item : inventory) {
             //check for position of item in the list
             if (item.getItemType() == itemType) {
-                return inventory.indexOf(item);  //index of item in the list
+                found = inventory.indexOf(item);  //index of item in the list
             }
         }
         //if no such item found
-        throw new InventoryControlException("Item not found in inventory.");
+        if (found != -1) {
+            return found;
+        }
+        else {
+            throw new InventoryControlException("Item not found in inventory.");
+        }
+        
     }   
     
-    public static void addItemToInventory(Item item, ArrayList<Item> inventory)
+    public static void addItemToInventory(Item item, Player player)
         throws InventoryControlException {
         
         //make new item identical to the one passed in
@@ -51,9 +59,12 @@ public class InventoryControl {
         newItem.setItemType(item.getItemType());
 
         //add item to inventory
-        boolean add = inventory.add(newItem);
-        if (add == false) {
+        ArrayList<Item> playerInventory = player.getPlayerInventory();
+        if (!playerInventory.add(newItem)) {
             throw new InventoryControlException("Unable to add item to inventory.");
+        }
+        else {
+            player.setPlayerInventory(playerInventory);
         }
         
     }  

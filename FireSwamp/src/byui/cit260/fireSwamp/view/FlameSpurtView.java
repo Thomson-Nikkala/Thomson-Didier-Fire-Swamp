@@ -59,16 +59,17 @@ public class FlameSpurtView extends View {
         //Display results
         if (isCorrect) {
             this.console.println("You made it across");
-        } else {
+        }
+        else {
             //Check for bucket of water (itemType 2) 
             InventoryControl inControl = new InventoryControl();
             try {
-                ArrayList<Item> inventory = FireSwamp.getPlayer().getPlayerInventory();
+                ArrayList<Item> inventory = FireSwamp.getPlayer().getPlayerInventory();                
                 inControl.checkInventory(inventory, ItemType.BUCKET);
-                System.out.println(inventory.toString());
             } catch (InventoryControlException ice) {
-                ErrorView.display(this.getClass().getName(),"Alas, that's incorrect, and you have no bucket "
-                             + " of water to cover the flames who roast you."
+                this.console.println(ice.getMessage());
+                this.console.println("Alas, that's incorrect, and you have no bucket "
+                             + " of water to repel the flames which roast you."
                              + "\nThe correct answer was: "
                              + volumeComputed + "\n");
                 LoseMenuView loseView = new LoseMenuView();
@@ -78,13 +79,8 @@ public class FlameSpurtView extends View {
                     Logger.getLogger(FlameSpurtView.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            
-            LoseMenuView loseView = new LoseMenuView();
-            try {
-                loseView.display();
-            } catch (GameControlException ex) {
-                Logger.getLogger(FlameSpurtView.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            this.console.println("\nLucky you! You have a bucket of water to repel the flames.\n");
+            // need to remove the item once used
         }
     }
 

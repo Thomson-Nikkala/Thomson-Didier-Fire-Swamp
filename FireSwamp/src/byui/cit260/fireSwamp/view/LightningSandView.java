@@ -52,7 +52,8 @@ public class LightningSandView extends View {
         //Display results
         if (isCorrect) {
             this.console.println("You made it across");
-        } else {
+        }
+        else {
             //Check for rope (itemType 1) 
             InventoryControl inControl = new InventoryControl();
             try {
@@ -61,7 +62,7 @@ public class LightningSandView extends View {
             } catch (InventoryControlException ice) {
                 this.console.println(ice.getMessage());
                 this.console.println("Alas, that's incorrect, and you have no rope "
-                             + " to help pull you out.");
+                             + "to pull yourself out of this sandy tomb.");
                 LoseMenuView loseView = new LoseMenuView();
                 try {
                     loseView.display();
@@ -69,6 +70,8 @@ public class LightningSandView extends View {
                     Logger.getLogger(LightningSandView.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+            this.console.println("\nLucky you! You have a rope to pull yourself out of this mess.\n");
+            // need to remove the item once used
         }
     }
 

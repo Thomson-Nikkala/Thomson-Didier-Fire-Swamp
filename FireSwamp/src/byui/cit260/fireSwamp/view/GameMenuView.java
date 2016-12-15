@@ -173,7 +173,7 @@ public class GameMenuView extends View {
 
         //map.mapStatistics();
         
-        //this temporary section is for testing the checkInventory function
+        /*this temporary section is for testing the checkInventory function
         ArrayList<Item> inventory = new ArrayList<>();
         InventoryControl inControl = new InventoryControl();
 
@@ -198,7 +198,7 @@ public class GameMenuView extends View {
             this.console.println(ice.getMessage());
         }
 
-        //end of testing checkInventory function
+        end of testing checkInventory function */
     }
 
     //look function checks for the sandy soil that indicates lightning sand
@@ -234,25 +234,29 @@ public class GameMenuView extends View {
 
     private void takeItem() {
         
-        Location location = FireSwamp.getPlayer().getPlayerPosition();
+        
+        Player player = FireSwamp.getPlayer();
+        Location playerLocation = player.getPlayerPosition();
         Map map = FireSwamp.getCurrentGame().getGameMap();
         
-        int row = location.getLocationRow();
-        int col = location.getLocationColumn();
+        int row = playerLocation.getLocationRow();
+        int col = playerLocation.getLocationColumn();
         
-        ArrayList<Item> inventory = FireSwamp.getPlayer().getPlayerInventory();
+        ArrayList<Item> inventory = player.getPlayerInventory();
 
+        Item item = map.getLocationAt(row, col).getItem();
         boolean isItem;
-        isItem = (map.getLocationAt(row, col).getItem().getItemType() != ItemType.NONE);
+        isItem = (item.getItemType() != ItemType.NONE);
        
-        //if there is, add a copy of that item to the inventory, then delete it from the location
+        //if there is, add a copy of that item to the inventory
         if (isItem) {          
             try {
-                InventoryControl.addItemToInventory(location.getItem(), inventory);
+                InventoryControl.addItemToInventory(item, player);
                 this.console.println("\nItem added to inventory.");
             } catch (InventoryControlException ex) {
                 this.console.println(ex.getMessage());
-            }
+                }
+            // then delete it from the location    
             MapControl.deleteItemFromLocation(map.getLocationAt(row, col));
         } else {
             this.console.println("\nThere is no item here to take.");

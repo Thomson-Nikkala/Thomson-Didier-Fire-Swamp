@@ -54,7 +54,8 @@ public class RousView extends View {
         //Display results
         if (isCorrect) {
             this.console.println("\nYou successfully jump over the ROUS.");
-        } else {
+        }
+        else {
             //Check for healing potion (itemType 3)
             InventoryControl inControl = new InventoryControl();
             try {
@@ -62,7 +63,7 @@ public class RousView extends View {
                 inControl.checkInventory(inventory, ItemType.POTION);
             } catch (InventoryControlException ice) {
                 ErrorView.display(this.getClass().getName(), ice.getMessage());
-                this.console.println("You have no healing potion to save you from the ROUS bite. ");
+                this.console.println("You have no healing potion to save you from the poisonous ROUS bite. ");
                 LoseMenuView loseView = new LoseMenuView();
                 try {
                     loseView.display();
@@ -70,14 +71,8 @@ public class RousView extends View {
                     Logger.getLogger(RousView.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-
-            this.console.println("Alas, that's incorrect, and you have no healing potion. You are bitten by the ROUS and perish.");
-            LoseMenuView loseView = new LoseMenuView();
-            try {
-                loseView.display();
-            } catch (GameControlException ex) {
-                Logger.getLogger(RousView.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            this.console.println("\nLucky you! You have a healing potion to neutralize the ROUS' bite poison.\n");
+            // need to remove the item once used.
         }
     }
 
